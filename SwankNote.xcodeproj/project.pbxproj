@@ -1,0 +1,609 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* SwankNoteAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SwankNoteAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		741DD86F1040A4B80036534B /* SwankNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DD86E1040A4B80036534B /* SwankNavigator.m */; };
+		741DDAE91041B06F0036534B /* NoteFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DDAE81041B06F0036534B /* NoteFilter.m */; };
+		743AB97E103EB4BE00924994 /* SwankRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743AB97C103EB4BE00924994 /* SwankRootViewController.m */; };
+		743AB97F103EB4BE00924994 /* SwankRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 743AB97D103EB4BE00924994 /* SwankRootViewController.xib */; };
+		749063611042850400DF65DA /* NoteSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 749063601042850400DF65DA /* NoteSync.m */; };
+		7490656E10429A0500DF65DA /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490651D10429A0500DF65DA /* CDataScanner.m */; };
+		7490656F10429A0500DF65DA /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652010429A0500DF65DA /* CDataScanner_Extensions.m */; };
+		7490657010429A0500DF65DA /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652210429A0500DF65DA /* NSCharacterSet_Extensions.m */; };
+		7490657110429A0500DF65DA /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652410429A0500DF65DA /* NSDictionary_JSONExtensions.m */; };
+		7490657210429A0500DF65DA /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652610429A0500DF65DA /* NSScanner_Extensions.m */; };
+		7490657310429A0500DF65DA /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652910429A0500DF65DA /* CJSONDeserializer.m */; };
+		7490657410429A0500DF65DA /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652B10429A0500DF65DA /* CJSONScanner.m */; };
+		7490657510429A0500DF65DA /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652D10429A0500DF65DA /* CJSONSerializer.m */; };
+		749065AF10429A0500DF65DA /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490651D10429A0500DF65DA /* CDataScanner.m */; };
+		749065B010429A0500DF65DA /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652010429A0500DF65DA /* CDataScanner_Extensions.m */; };
+		749065B110429A0500DF65DA /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652210429A0500DF65DA /* NSCharacterSet_Extensions.m */; };
+		749065B210429A0500DF65DA /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652410429A0500DF65DA /* NSDictionary_JSONExtensions.m */; };
+		749065B310429A0500DF65DA /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652610429A0500DF65DA /* NSScanner_Extensions.m */; };
+		749065B410429A0500DF65DA /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652910429A0500DF65DA /* CJSONDeserializer.m */; };
+		749065B510429A0500DF65DA /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652B10429A0500DF65DA /* CJSONScanner.m */; };
+		749065B610429A0500DF65DA /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652D10429A0500DF65DA /* CJSONSerializer.m */; };
+		7490661810429CB600DF65DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		7490661910429CB700DF65DA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749064D2104297E400DF65DA /* SenTestingKit.framework */; };
+		7490661A10429CB800DF65DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		7490661B10429CB900DF65DA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		7490661C10429CBB00DF65DA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		74A73C7B103FB2950016986D /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A73C7A103FB2950016986D /* Note.m */; };
+		74A73CEC103FBAE60016986D /* SwankNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74A73CEB103FBAE60016986D /* SwankNote.xcdatamodeld */; };
+		74DB9BD9103EC76D0053BEA0 /* EditNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB9BD7103EC76D0053BEA0 /* EditNoteViewController.m */; };
+		74DB9BDA103EC76D0053BEA0 /* EditNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74DB9BD8103EC76D0053BEA0 /* EditNoteViewController.xib */; };
+		74FD196C103E46BD0060CF1C /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD196A103E46BD0060CF1C /* IndexViewController.m */; };
+		74FD196D103E46BD0060CF1C /* IndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74FD196B103E46BD0060CF1C /* IndexViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* SwankNoteAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwankNoteAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* SwankNoteAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwankNoteAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* SwankNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwankNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ../MainWindow.xib; sourceTree = "<group>"; };
+		28C3AD890F43EF2300507BA6 /* SwankNote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = SwankNote.xcdatamodel; sourceTree = "<group>"; };
+		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* SwankNote_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwankNote_Prefix.pch; sourceTree = "<group>"; };
+		741DD86D1040A4B80036534B /* SwankNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwankNavigator.h; sourceTree = "<group>"; };
+		741DD86E1040A4B80036534B /* SwankNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwankNavigator.m; sourceTree = "<group>"; };
+		741DD95F10415E030036534B /* SwankNote 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 5.xcdatamodel"; sourceTree = "<group>"; };
+		741DDAE71041B06F0036534B /* NoteFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteFilter.h; sourceTree = "<group>"; };
+		741DDAE81041B06F0036534B /* NoteFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteFilter.m; sourceTree = "<group>"; };
+		743AB97B103EB4BE00924994 /* SwankRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwankRootViewController.h; sourceTree = "<group>"; };
+		743AB97C103EB4BE00924994 /* SwankRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwankRootViewController.m; sourceTree = "<group>"; };
+		743AB97D103EB4BE00924994 /* SwankRootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwankRootViewController.xib; sourceTree = "<group>"; };
+		746CD5801040200B003EA2E7 /* SwankNote 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 4.xcdatamodel"; sourceTree = "<group>"; };
+		7490635F1042850400DF65DA /* NoteSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSync.h; sourceTree = "<group>"; };
+		749063601042850400DF65DA /* NoteSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSync.m; sourceTree = "<group>"; };
+		7490646A104294FF00DF65DA /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
+		749064D2104297E400DF65DA /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		749064FB104298FB00DF65DA /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7490651C10429A0500DF65DA /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
+		7490651D10429A0500DF65DA /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
+		7490651F10429A0500DF65DA /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		7490652010429A0500DF65DA /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		7490652110429A0500DF65DA /* NSCharacterSet_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCharacterSet_Extensions.h; sourceTree = "<group>"; };
+		7490652210429A0500DF65DA /* NSCharacterSet_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCharacterSet_Extensions.m; sourceTree = "<group>"; };
+		7490652310429A0500DF65DA /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		7490652410429A0500DF65DA /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		7490652510429A0500DF65DA /* NSScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSScanner_Extensions.h; sourceTree = "<group>"; };
+		7490652610429A0500DF65DA /* NSScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSScanner_Extensions.m; sourceTree = "<group>"; };
+		7490652810429A0500DF65DA /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		7490652910429A0500DF65DA /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		7490652A10429A0500DF65DA /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		7490652B10429A0500DF65DA /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
+		7490652C10429A0500DF65DA /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		7490652D10429A0500DF65DA /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		749066DF1042C22F00DF65DA /* SwankNote 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 6.xcdatamodel"; sourceTree = "<group>"; };
+		74A73C79103FB2950016986D /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		74A73C7A103FB2950016986D /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		74A73CED103FBAE60016986D /* SwankNote 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 2.xcdatamodel"; sourceTree = "<group>"; };
+		74DB9BD6103EC76D0053BEA0 /* EditNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNoteViewController.h; sourceTree = "<group>"; };
+		74DB9BD7103EC76D0053BEA0 /* EditNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNoteViewController.m; sourceTree = "<group>"; };
+		74DB9BD8103EC76D0053BEA0 /* EditNoteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditNoteViewController.xib; sourceTree = "<group>"; };
+		74F186F3104402DE007EEB2A /* SwankNote 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 7.xcdatamodel"; sourceTree = "<group>"; };
+		74FD1969103E46BD0060CF1C /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexViewController.h; path = ../IndexViewController.h; sourceTree = "<group>"; };
+		74FD196A103E46BD0060CF1C /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndexViewController.m; path = ../IndexViewController.m; sourceTree = "<group>"; };
+		74FD196B103E46BD0060CF1C /* IndexViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IndexViewController.xib; path = ../IndexViewController.xib; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* SwankNote-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SwankNote-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		749064F8104298FB00DF65DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7490661810429CB600DF65DA /* UIKit.framework in Frameworks */,
+				7490661910429CB700DF65DA /* SenTestingKit.framework in Frameworks */,
+				7490661A10429CB800DF65DA /* Foundation.framework in Frameworks */,
+				7490661B10429CB900DF65DA /* CoreGraphics.framework in Frameworks */,
+				7490661C10429CBB00DF65DA /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				741DD86C1040A4900036534B /* Swank Navigator */,
+				741DD7FF10402D2A0036534B /* Note */,
+				74DB9BD5103EC73A0053BEA0 /* Edit Note */,
+				743AB97A103EB44600924994 /* Swank Root */,
+				74FD196F103E46ED0060CF1C /* App Delegate */,
+				74FD196E103E46C90060CF1C /* Index */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* SwankNote.app */,
+				749064FB104298FB00DF65DA /* Test.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				7490646A104294FF00DF65DA /* Test-Info.plist */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				74906514104299D900DF65DA /* Touch JSON */,
+				32CA4F630368D1EE00C91783 /* SwankNote_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				74A73CEB103FBAE60016986D /* SwankNote.xcdatamodeld */,
+				8D1107310486CEB800E47090 /* SwankNote-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				749064D2104297E400DF65DA /* SenTestingKit.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				28D801B30F44B63D00FB423F /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		741DD7FF10402D2A0036534B /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				74A73C79103FB2950016986D /* Note.h */,
+				74A73C7A103FB2950016986D /* Note.m */,
+				741DDAE71041B06F0036534B /* NoteFilter.h */,
+				741DDAE81041B06F0036534B /* NoteFilter.m */,
+				7490635F1042850400DF65DA /* NoteSync.h */,
+				749063601042850400DF65DA /* NoteSync.m */,
+			);
+			name = Note;
+			sourceTree = "<group>";
+		};
+		741DD86C1040A4900036534B /* Swank Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				741DD86D1040A4B80036534B /* SwankNavigator.h */,
+				741DD86E1040A4B80036534B /* SwankNavigator.m */,
+			);
+			name = "Swank Navigator";
+			sourceTree = "<group>";
+		};
+		743AB97A103EB44600924994 /* Swank Root */ = {
+			isa = PBXGroup;
+			children = (
+				743AB97B103EB4BE00924994 /* SwankRootViewController.h */,
+				743AB97C103EB4BE00924994 /* SwankRootViewController.m */,
+				743AB97D103EB4BE00924994 /* SwankRootViewController.xib */,
+			);
+			name = "Swank Root";
+			sourceTree = "<group>";
+		};
+		74906514104299D900DF65DA /* Touch JSON */ = {
+			isa = PBXGroup;
+			children = (
+				7490651B10429A0500DF65DA /* Source */,
+			);
+			name = "Touch JSON";
+			sourceTree = "<group>";
+		};
+		7490651B10429A0500DF65DA /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7490651C10429A0500DF65DA /* CDataScanner.h */,
+				7490651D10429A0500DF65DA /* CDataScanner.m */,
+				7490651E10429A0500DF65DA /* Extensions */,
+				7490652710429A0500DF65DA /* JSON */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		7490651E10429A0500DF65DA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7490651F10429A0500DF65DA /* CDataScanner_Extensions.h */,
+				7490652010429A0500DF65DA /* CDataScanner_Extensions.m */,
+				7490652110429A0500DF65DA /* NSCharacterSet_Extensions.h */,
+				7490652210429A0500DF65DA /* NSCharacterSet_Extensions.m */,
+				7490652310429A0500DF65DA /* NSDictionary_JSONExtensions.h */,
+				7490652410429A0500DF65DA /* NSDictionary_JSONExtensions.m */,
+				7490652510429A0500DF65DA /* NSScanner_Extensions.h */,
+				7490652610429A0500DF65DA /* NSScanner_Extensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7490652710429A0500DF65DA /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				7490652810429A0500DF65DA /* CJSONDeserializer.h */,
+				7490652910429A0500DF65DA /* CJSONDeserializer.m */,
+				7490652A10429A0500DF65DA /* CJSONScanner.h */,
+				7490652B10429A0500DF65DA /* CJSONScanner.m */,
+				7490652C10429A0500DF65DA /* CJSONSerializer.h */,
+				7490652D10429A0500DF65DA /* CJSONSerializer.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		74DB9BD5103EC73A0053BEA0 /* Edit Note */ = {
+			isa = PBXGroup;
+			children = (
+				74DB9BD6103EC76D0053BEA0 /* EditNoteViewController.h */,
+				74DB9BD7103EC76D0053BEA0 /* EditNoteViewController.m */,
+				74DB9BD8103EC76D0053BEA0 /* EditNoteViewController.xib */,
+			);
+			name = "Edit Note";
+			sourceTree = "<group>";
+		};
+		74FD196E103E46C90060CF1C /* Index */ = {
+			isa = PBXGroup;
+			children = (
+				74FD196B103E46BD0060CF1C /* IndexViewController.xib */,
+				74FD1969103E46BD0060CF1C /* IndexViewController.h */,
+				74FD196A103E46BD0060CF1C /* IndexViewController.m */,
+			);
+			name = Index;
+			sourceTree = "<group>";
+		};
+		74FD196F103E46ED0060CF1C /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				1D3623240D0F684500981E51 /* SwankNoteAppDelegate.h */,
+				1D3623250D0F684500981E51 /* SwankNoteAppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* SwankNote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "SwankNote" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwankNote;
+			productName = SwankNote;
+			productReference = 1D6058910D05DD3D006BFB54 /* SwankNote.app */;
+			productType = "com.apple.product-type.application";
+		};
+		749064FA104298FB00DF65DA /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7490650C1042996A00DF65DA /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				749064F6104298FB00DF65DA /* Resources */,
+				749064F7104298FB00DF65DA /* Sources */,
+				749064F8104298FB00DF65DA /* Frameworks */,
+				749064F9104298FB00DF65DA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Test;
+			productName = Test;
+			productReference = 749064FB104298FB00DF65DA /* Test.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SwankNote" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* SwankNote */,
+				749064FA104298FB00DF65DA /* Test */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				74FD196D103E46BD0060CF1C /* IndexViewController.xib in Resources */,
+				743AB97F103EB4BE00924994 /* SwankRootViewController.xib in Resources */,
+				74DB9BDA103EC76D0053BEA0 /* EditNoteViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		749064F6104298FB00DF65DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		749064F9104298FB00DF65DA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* SwankNoteAppDelegate.m in Sources */,
+				74A73CEC103FBAE60016986D /* SwankNote.xcdatamodeld in Sources */,
+				74FD196C103E46BD0060CF1C /* IndexViewController.m in Sources */,
+				743AB97E103EB4BE00924994 /* SwankRootViewController.m in Sources */,
+				74DB9BD9103EC76D0053BEA0 /* EditNoteViewController.m in Sources */,
+				74A73C7B103FB2950016986D /* Note.m in Sources */,
+				741DD86F1040A4B80036534B /* SwankNavigator.m in Sources */,
+				741DDAE91041B06F0036534B /* NoteFilter.m in Sources */,
+				749063611042850400DF65DA /* NoteSync.m in Sources */,
+				749065AF10429A0500DF65DA /* CDataScanner.m in Sources */,
+				749065B010429A0500DF65DA /* CDataScanner_Extensions.m in Sources */,
+				749065B110429A0500DF65DA /* NSCharacterSet_Extensions.m in Sources */,
+				749065B210429A0500DF65DA /* NSDictionary_JSONExtensions.m in Sources */,
+				749065B310429A0500DF65DA /* NSScanner_Extensions.m in Sources */,
+				749065B410429A0500DF65DA /* CJSONDeserializer.m in Sources */,
+				749065B510429A0500DF65DA /* CJSONScanner.m in Sources */,
+				749065B610429A0500DF65DA /* CJSONSerializer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		749064F7104298FB00DF65DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7490656E10429A0500DF65DA /* CDataScanner.m in Sources */,
+				7490656F10429A0500DF65DA /* CDataScanner_Extensions.m in Sources */,
+				7490657010429A0500DF65DA /* NSCharacterSet_Extensions.m in Sources */,
+				7490657110429A0500DF65DA /* NSDictionary_JSONExtensions.m in Sources */,
+				7490657210429A0500DF65DA /* NSScanner_Extensions.m in Sources */,
+				7490657310429A0500DF65DA /* CJSONDeserializer.m in Sources */,
+				7490657410429A0500DF65DA /* CJSONScanner.m in Sources */,
+				7490657510429A0500DF65DA /* CJSONSerializer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks\"",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SwankNote_Prefix.pch;
+				INFOPLIST_FILE = "SwankNote-Info.plist";
+				PRODUCT_NAME = SwankNote;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks\"",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SwankNote_Prefix.pch;
+				INFOPLIST_FILE = "SwankNote-Info.plist";
+				PRODUCT_NAME = SwankNote;
+			};
+			name = Release;
+		};
+		749064FC104298FC00DF65DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "Test-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Test;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		749064FD104298FC00DF65DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "Test-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Test;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "SwankNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7490650C1042996A00DF65DA /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				749064FC104298FC00DF65DA /* Debug */,
+				749064FD104298FC00DF65DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SwankNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		74A73CEB103FBAE60016986D /* SwankNote.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				28C3AD890F43EF2300507BA6 /* SwankNote.xcdatamodel */,
+				74A73CED103FBAE60016986D /* SwankNote 2.xcdatamodel */,
+				746CD5801040200B003EA2E7 /* SwankNote 4.xcdatamodel */,
+				741DD95F10415E030036534B /* SwankNote 5.xcdatamodel */,
+				749066DF1042C22F00DF65DA /* SwankNote 6.xcdatamodel */,
+				74F186F3104402DE007EEB2A /* SwankNote 7.xcdatamodel */,
+			);
+			currentVersion = 74F186F3104402DE007EEB2A /* SwankNote 7.xcdatamodel */;
+			path = SwankNote.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
