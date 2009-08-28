@@ -2,11 +2,9 @@
 #import "SwankNoteAppDelegate.h"
 
 @implementation Note
-@dynamic identity;
-@dynamic swankId;
-@dynamic text;
-@dynamic createdAt;
-@dynamic updatedAt;
+@dynamic identity, swankId;
+@dynamic text, tags;
+@dynamic createdAt, updatedAt, swankTime, dirty;
 
 + (Note *)new
 {
@@ -15,6 +13,7 @@
   Note *note = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:context];
   note.swankId = [NSNumber numberWithInt:0];
   note.createdAt = [NSDate date];
+  note.dirty = [NSNumber numberWithBool:YES];
   return note;
 }
 
@@ -25,15 +24,18 @@
   [context rollback];
 }
 
-- (void)save  
+- (void)save:(bool)markAsDirty
 {
-  [self save:YES];
+  [self save:markAsDirty updateTimestamp:YES];
 }
 
-- (void)save:(bool)updateTimestamp
+- (void)save:(bool)markAsDirty updateTimestamp:(bool)updateTimestamp
 {
   if (updateTimestamp)
     self.updatedAt = [NSDate date];
+  
+  if (markAsDirty)
+    self.dirty = [NSNumber numberWithBool:YES];
   
   SwankNoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
   NSManagedObjectContext *context = [appDelegate managedObjectContext];

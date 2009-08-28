@@ -10,10 +10,12 @@
 @property (nonatomic, retain) NSString *tags;
 @property (nonatomic, retain) NSDate *createdAt;
 @property (nonatomic, retain) NSDate *updatedAt;
+@property (nonatomic, retain) NSDate *swankTime;
+@property (nonatomic, retain) NSNumber *dirty;
 
 - (void)cancel;
-- (void)save;
-- (void)save:(bool)updateTimestamp;
+- (void)save:(bool)markAsDirty;
+- (void)save:(bool)markAsDirty updateTimestamp:(bool)updateTimestamp;
 - (void)destroy;
 
 @end

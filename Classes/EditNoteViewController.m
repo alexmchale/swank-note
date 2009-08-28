@@ -33,7 +33,7 @@
 
   note.text = [text text];
   
-  [note save];
+  [note save:YES];
   
   [self dismiss:UIModalTransitionStyleCoverVertical];
 }

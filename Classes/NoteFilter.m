@@ -43,6 +43,14 @@
   return [[self context] countForFetchRequest:[self request] error:nil];
 }
 
+- (NSArray *)fetchDirtyNotes:(bool)dirty
+{
+  NSFetchRequest *req = [self request];
+  [req setPredicate:[NSPredicate predicateWithFormat:@"dirty=%@", [NSNumber numberWithBool:dirty]]];
+  
+  return [[self context] executeFetchRequest:req error:nil];
+}
+
 - (Note *)atIndex:(NSInteger)index
 {
   NSFetchRequest *request = [self request];

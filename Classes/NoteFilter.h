@@ -8,6 +8,7 @@
 - (Note *)findBySwankId:(NSNumber *)swankId;
 
 - (NSInteger)count;
+- (NSArray *)fetchDirtyNotes:(bool)dirty;
 - (Note *)atIndex:(NSInteger)index;
 - (NSInteger)indexOf:(Note *)note;
 
