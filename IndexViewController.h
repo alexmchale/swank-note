@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NoteFilter *noteFilter;
 @property (nonatomic, retain) NoteSync *noteSync;
 
+- (IBAction)sync;
 - (IBAction)composeNewMessage;
 - (void)reload;
 

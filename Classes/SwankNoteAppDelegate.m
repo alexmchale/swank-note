@@ -8,7 +8,6 @@
 
 #import "SwankNoteAppDelegate.h"
 #import "SwankRootViewController.h"
-#import "NoteSync.h"
 
 @implementation SwankNoteAppDelegate
 

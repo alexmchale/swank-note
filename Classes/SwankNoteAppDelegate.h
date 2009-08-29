@@ -11,11 +11,11 @@
 @interface SwankNoteAppDelegate : NSObject <UIApplicationDelegate> {
 	SwankRootViewController *swankRootViewController;
 	
-    NSManagedObjectModel *managedObjectModel;
-    NSManagedObjectContext *managedObjectContext;	    
-    NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-    UIWindow *window;
+  NSManagedObjectModel *managedObjectModel;
+  NSManagedObjectContext *managedObjectContext;	    
+  NSPersistentStoreCoordinator *persistentStoreCoordinator;
+  
+  UIWindow *window;
 }
 
 - (IBAction)saveAction:sender;

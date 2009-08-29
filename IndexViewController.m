@@ -31,6 +31,11 @@
   [super viewDidLoad];
 }
 
+- (IBAction)sync
+{
+  [noteSync updateNotes];
+}
+
 - (IBAction)composeNewMessage
 {
   [self editNewNote];
