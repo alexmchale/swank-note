@@ -3,22 +3,68 @@
 
 @implementation NoteFilter
 
-- (NSManagedObjectContext *)context
+@synthesize context;
+
+- (NoteFilter *)initWithContext
 {
+  [super init];
+  
   SwankNoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-  return [appDelegate managedObjectContext];
+  NSPersistentStoreCoordinator *coordinator = [appDelegate persistentStoreCoordinator];
+  
+  if (coordinator != nil)
+  {
+    self.context = [[NSManagedObjectContext alloc] init];
+    [context setPersistentStoreCoordinator: coordinator];
+    [context setRetainsRegisteredObjects:YES];
+  }
+  
+  return self;
+}
+
+- (Note *)newNote
+{
+  Note *note = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:context];
+  note.swankId = [NSNumber numberWithInt:0];
+  note.createdAt = [NSDate date];
+  note.dirty = [NSNumber numberWithBool:YES];
+  return note;
+}
+
+- (void)cancelChanges
+{
+  [context rollback];
+}
+
+- (void)destroy:(Note *)note
+{
+  [context deleteObject:note];
+  [context save:nil];
+  [context reset];
+}
+
+- (void)save:(Note *)note isDirty:(bool)dirty updateTimestamp:(bool)updateTimestamp
+{
+  if (updateTimestamp)
+    note.updatedAt = [NSDate date];
+
+  note.dirty = [NSNumber numberWithBool:dirty];
+  
+  [context save:nil];  
 }
 
 - (NSFetchRequest *)request
 {
   NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Note" 
-                                                       inManagedObjectContext:[self context]];
+                                                       inManagedObjectContext:context];
   
-  NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO] autorelease];
+  NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO];
   
   NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
   [request setEntity:entityDescription];
   [request setSortDescriptors:[NSArray arrayWithObject:sort]];
+  
+  [sort release];
   
   return request;
 }
@@ -30,7 +76,7 @@
   
   NSFetchRequest *req = [self request];
   [req setPredicate:[NSPredicate predicateWithFormat:@"swankId=%@", swankId]];
-  NSArray *res = [[self context] executeFetchRequest:req error:nil];
+  NSArray *res = [self.context executeFetchRequest:req error:nil];
   
   if (res == nil || [res count] == 0)
     return nil;
@@ -38,9 +84,34 @@
   return [res objectAtIndex:0];
 }
 
+- (NSDate *)swankSyncTime
+{
+  NSFetchRequest *req = [self request];
+  
+  NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO];
+  [req setSortDescriptors:[NSArray arrayWithObject:sort]];
+  [req setPredicate:[NSPredicate predicateWithFormat:@"dirty=0 AND swankId>0"]];
+  [req setFetchLimit:1];
+  NSArray *res = [self.context executeFetchRequest:req error:nil];
+  
+  [sort release];
+  
+  if (res == nil || [res count] == 0)
+    return nil;
+  
+  Note *note = [res objectAtIndex:0];
+  
+  return note.updatedAt;
+}
+
+- (void)resetContext
+{
+  [context reset];
+}
+
 - (NSInteger)count
 {
-  return [[self context] countForFetchRequest:[self request] error:nil];
+  return [self.context countForFetchRequest:[self request] error:nil];
 }
 
 - (NSArray *)fetchDirtyNotes:(bool)dirty
@@ -48,7 +119,12 @@
   NSFetchRequest *req = [self request];
   [req setPredicate:[NSPredicate predicateWithFormat:@"dirty=%@", [NSNumber numberWithBool:dirty]]];
   
-  return [[self context] executeFetchRequest:req error:nil];
+  return [self.context executeFetchRequest:req error:nil];
+}
+
+- (NSArray *)fetchAll
+{
+  return [self.context executeFetchRequest:[self request] error:nil];
 }
 
 - (Note *)atIndex:(NSInteger)index
@@ -57,26 +133,24 @@
   [request setFetchOffset:index];
   [request setFetchLimit:1];
 
-  NSArray *result = [[self context] executeFetchRequest:request error:nil];
-  Note *note = nil;
+  NSArray *result = [self.context executeFetchRequest:request error:nil];
   
   if ([result count] > 0)
-  {
-    note = [result objectAtIndex:0];
-
-//    note.identity = [[note valueForKey:@"identity"] intValue];
-//    note.createdAt = [note valueForKey:@"createdAt"];
-//    note.updatedAt = [note valueForKey:@"updatedAt"];
-//    note.text = [note valueForKey:@"text"];
-  }
+    return [result objectAtIndex:0];
     
-  return note;
+  return nil;
 }
 
 - (NSInteger)indexOf:(Note *)note
 {
-  NSArray *result = [[self context] executeFetchRequest:[self request] error:nil];
+  NSArray *result = [self.context executeFetchRequest:[self request] error:nil];
   return [result indexOfObject:note];
+}
+
+- (void)dealloc
+{
+  [context release];
+  [super dealloc];
 }
 
 @end

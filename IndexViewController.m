@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad
 {
-  NoteFilter *newNoteFilter = [[NoteFilter alloc] init];
+  NoteFilter *newNoteFilter = [[NoteFilter alloc] initWithContext];
   self.noteFilter = newNoteFilter;
   [newNoteFilter release];
   
@@ -43,6 +43,7 @@
 
 - (void)reload
 {
+  [noteFilter resetContext];
   [table reloadData];
 }
 

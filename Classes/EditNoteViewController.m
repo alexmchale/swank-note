@@ -28,20 +28,31 @@
 
 - (IBAction)save
 {
+  NoteFilter *noteFilter = [[NoteFilter alloc] initWithContext];
+  
   if (note == nil)
-    self.note = [Note new];
+    self.note = [noteFilter newNote];
 
   note.text = [text text];
-  
-  [note save:YES];
+
+  [noteFilter save:note isDirty:YES updateTimestamp:YES];
   
   [self dismiss:UIModalTransitionStyleCoverVertical];
+
+  [noteFilter release];  
+  
+  NoteSync *sync = [[NoteSync alloc] init];
+  [sync updateNotes];
+  [sync release];  
 }
 
 - (IBAction)destroy
 {
-  [note destroy];
+  NoteFilter *noteFilter = [[NoteFilter alloc] initWithContext];
+  
+  [noteFilter destroy:note];
   [self dismiss:UIModalTransitionStyleCoverVertical];
+  [noteFilter release];
 }
 
 - (IBAction)previous

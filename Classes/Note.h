@@ -13,9 +13,6 @@
 @property (nonatomic, retain) NSDate *swankTime;
 @property (nonatomic, retain) NSNumber *dirty;
 
-- (void)cancel;
-- (void)save:(bool)markAsDirty;
-- (void)save:(bool)markAsDirty updateTimestamp:(bool)updateTimestamp;
-- (void)destroy;
+- (NSString *)swankDbPostPath;
 
 @end
