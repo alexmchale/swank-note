@@ -40,6 +40,12 @@
 		7490661A10429CB800DF65DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		7490661B10429CB900DF65DA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		7490661C10429CBB00DF65DA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		74966BFB104941A20057A3A6 /* WPProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 74966BFA104941A20057A3A6 /* WPProgressHUD.m */; };
+		74966BFC104941A20057A3A6 /* WPProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 74966BFA104941A20057A3A6 /* WPProgressHUD.m */; };
+		74966C331049A5ED0057A3A6 /* NSStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74966C321049A5ED0057A3A6 /* NSStringUtilities.m */; };
+		74966C341049A5ED0057A3A6 /* NSStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74966C321049A5ED0057A3A6 /* NSStringUtilities.m */; };
+		74966C371049A6AD0057A3A6 /* NSDictionaryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74966C361049A6AD0057A3A6 /* NSDictionaryUtilities.m */; };
+		74966C381049A6AD0057A3A6 /* NSDictionaryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74966C361049A6AD0057A3A6 /* NSDictionaryUtilities.m */; };
 		74A73C7B103FB2950016986D /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A73C7A103FB2950016986D /* Note.m */; };
 		74A73CEC103FBAE60016986D /* SwankNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74A73CEB103FBAE60016986D /* SwankNote.xcdatamodeld */; };
 		74DB9BD9103EC76D0053BEA0 /* EditNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB9BD7103EC76D0053BEA0 /* EditNoteViewController.m */; };
@@ -91,6 +97,12 @@
 		7490652C10429A0500DF65DA /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
 		7490652D10429A0500DF65DA /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		749066DF1042C22F00DF65DA /* SwankNote 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 6.xcdatamodel"; sourceTree = "<group>"; };
+		74966BF9104941A20057A3A6 /* WPProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPProgressHUD.h; sourceTree = "<group>"; };
+		74966BFA104941A20057A3A6 /* WPProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPProgressHUD.m; sourceTree = "<group>"; };
+		74966C311049A5ED0057A3A6 /* NSStringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringUtilities.h; sourceTree = "<group>"; };
+		74966C321049A5ED0057A3A6 /* NSStringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringUtilities.m; sourceTree = "<group>"; };
+		74966C351049A6AD0057A3A6 /* NSDictionaryUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionaryUtilities.h; sourceTree = "<group>"; };
+		74966C361049A6AD0057A3A6 /* NSDictionaryUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryUtilities.m; sourceTree = "<group>"; };
 		74A73C79103FB2950016986D /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		74A73C7A103FB2950016986D /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		74A73CED103FBAE60016986D /* SwankNote 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -135,6 +147,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				74966ED0104BE4A10057A3A6 /* Account Settings */,
+				74966C301049A5D00057A3A6 /* Monkey Patches */,
+				74966BF61049417B0057A3A6 /* Widgets */,
 				741DD86C1040A4900036534B /* Swank Navigator */,
 				741DD7FF10402D2A0036534B /* Note */,
 				74DB9BD5103EC73A0053BEA0 /* Edit Note */,
@@ -275,6 +290,33 @@
 				7490652D10429A0500DF65DA /* CJSONSerializer.m */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		74966BF61049417B0057A3A6 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				74966BF9104941A20057A3A6 /* WPProgressHUD.h */,
+				74966BFA104941A20057A3A6 /* WPProgressHUD.m */,
+			);
+			name = Widgets;
+			sourceTree = "<group>";
+		};
+		74966C301049A5D00057A3A6 /* Monkey Patches */ = {
+			isa = PBXGroup;
+			children = (
+				74966C311049A5ED0057A3A6 /* NSStringUtilities.h */,
+				74966C321049A5ED0057A3A6 /* NSStringUtilities.m */,
+				74966C351049A6AD0057A3A6 /* NSDictionaryUtilities.h */,
+				74966C361049A6AD0057A3A6 /* NSDictionaryUtilities.m */,
+			);
+			name = "Monkey Patches";
+			sourceTree = "<group>";
+		};
+		74966ED0104BE4A10057A3A6 /* Account Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Account Settings";
 			sourceTree = "<group>";
 		};
 		74DB9BD5103EC73A0053BEA0 /* Edit Note */ = {
@@ -423,6 +465,9 @@
 				749065B410429A0500DF65DA /* CJSONDeserializer.m in Sources */,
 				749065B510429A0500DF65DA /* CJSONScanner.m in Sources */,
 				749065B610429A0500DF65DA /* CJSONSerializer.m in Sources */,
+				74966BFB104941A20057A3A6 /* WPProgressHUD.m in Sources */,
+				74966C341049A5ED0057A3A6 /* NSStringUtilities.m in Sources */,
+				74966C381049A6AD0057A3A6 /* NSDictionaryUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +483,9 @@
 				7490657310429A0500DF65DA /* CJSONDeserializer.m in Sources */,
 				7490657410429A0500DF65DA /* CJSONScanner.m in Sources */,
 				7490657510429A0500DF65DA /* CJSONSerializer.m in Sources */,
+				74966BFC104941A20057A3A6 /* WPProgressHUD.m in Sources */,
+				74966C331049A5ED0057A3A6 /* NSStringUtilities.m in Sources */,
+				74966C371049A6AD0057A3A6 /* NSDictionaryUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
