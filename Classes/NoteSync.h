@@ -3,7 +3,7 @@
 
 @protocol NoteSyncDelegate
 
-- (void)noteUpdated:(Note *)note;
+- (void)notesWereUpdated;
 
 @end
 

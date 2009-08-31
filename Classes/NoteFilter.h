@@ -13,8 +13,6 @@
 - (Note *)findBySwankId:(NSNumber *)swankId;
 
 - (Note *)newNote;
-- (void)save:(Note *)note isDirty:(bool)dirty updateTimestamp:(bool)updateTimestamp;
-- (void)destroy:(Note *)note;
 
 - (void)resetContext;
 - (NSDate *)swankSyncTime;

@@ -35,22 +35,25 @@
 
   note.text = [text text];
 
-  [noteFilter save:note isDirty:YES updateTimestamp:YES];
-  
-  [self dismiss:UIModalTransitionStyleCoverVertical];
+  [note save:YES updateTimestamp:YES];
 
   [noteFilter release];  
+      
+	SwankNoteAppDelegate *app = [[UIApplication sharedApplication] delegate];
+  [[[app swankRootViewController] indexViewController] reload];
   
   NoteSync *sync = [[NoteSync alloc] init];
   [sync updateNotes];
   [sync release];  
+  
+  [self dismiss:UIModalTransitionStyleCoverVertical];
 }
 
 - (IBAction)destroy
 {
   NoteFilter *noteFilter = [[NoteFilter alloc] initWithContext];
   
-  [noteFilter destroy:note];
+  [note destroy];
   [self dismiss:UIModalTransitionStyleCoverVertical];
   [noteFilter release];
 }

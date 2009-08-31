@@ -36,23 +36,6 @@
   [context rollback];
 }
 
-- (void)destroy:(Note *)note
-{
-  [context deleteObject:note];
-  [context save:nil];
-  [context reset];
-}
-
-- (void)save:(Note *)note isDirty:(bool)dirty updateTimestamp:(bool)updateTimestamp
-{
-  if (updateTimestamp)
-    note.updatedAt = [NSDate date];
-
-  note.dirty = [NSNumber numberWithBool:dirty];
-  
-  [context save:nil];  
-}
-
 - (NSFetchRequest *)request
 {
   NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Note" 

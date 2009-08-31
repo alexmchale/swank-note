@@ -6,6 +6,7 @@
 #import "NoteFilter.h"
 #import "NSDictionaryUtilities.h"
 
+#define kSwankHost @"swankdb.com:3000"
 #define kFrob @"91eb85ae181114313fdf441d3a02d7a4a02a0e13"
 
 @implementation NoteSync
@@ -25,8 +26,6 @@
   [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
   
   // Get the notes that are currently on SwankDB.
-
-  NSString *swankHost = @"swankdb.com:3000";
   
   NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
   [paramDict setValue:kFrob forKey:@"frob"];
@@ -35,7 +34,7 @@
   NSString *paramString = [paramDict convertDictionaryToURIParameterString];
   [paramDict release];
   
-  NSString *urlString = [NSString stringWithFormat:@"http://%@/entries/download?%@", swankHost, paramString];
+  NSString *urlString = [NSString stringWithFormat:@"http://%@/entries/download?%@", kSwankHost, paramString];
   NSURL *url = [NSURL URLWithString:urlString];
   
   NSURLRequest *req = [NSURLRequest requestWithURL:url];
@@ -77,9 +76,7 @@
       
       note.dirty = [NSNumber numberWithBool:NO];
       
-      [noteFilter save:note isDirty:NO updateTimestamp:NO];
-      
-      [self.delegate noteUpdated:note];
+      [note save:NO updateTimestamp:NO];
     }
   }
 }
@@ -93,31 +90,30 @@
   
   for (Note *note in notes)
   {
-    NSMutableDictionary *noteDict = [[NSMutableDictionary alloc] init];
-    
     // Generate data to send to SwankDB.
     
-    [noteDict setValue:note.text forKey:@"entry_content"];
-    [noteDict setValue:note.tags forKey:@"entry_tags"];
-    
-    NSString *postString = [noteDict convertDictionaryToURIParameterString];
-    NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
+    [paramDict setValue:kFrob forKey:@"frob"];
+    [paramDict setValue:note.text forKey:@"entry_content"];
+    [paramDict setValue:note.tags forKey:@"entry_tags"];
+    [paramDict setValue:@"true" forKey:@"json"];
+    NSString *paramString = [paramDict convertDictionaryToURIParameterString];
+    [paramDict release];
     
     // Build the URL to post to.
     
-    NSString *swankHost = @"swankdb.com:3000";
     NSString *notePath = [note swankDbPostPath];
-    NSString *params = @"frob=91eb85ae181114313fdf441d3a02d7a4a02a0e13&json";
-    NSString *urlString = [NSString stringWithFormat:@"http://%@%@?%@", swankHost, notePath, params];    
+    NSString *urlString = [NSString stringWithFormat:@"http://%@%@?%@", kSwankHost, notePath, paramString];    
     NSURL *url = [NSURL URLWithString:urlString];
     
     // Build the post request.
     
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-    [req setHTTPMethod:@"POST"];
-    [req setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [req setHTTPBody:postData];
+    
+    if (note.swankId == nil || note.swankId == 0)
+      [req setHTTPMethod:@"POST"];
+    else
+      [req setHTTPMethod:@"PUT"];
     
     // Post to SwankDB.
     
@@ -133,10 +129,8 @@
     {
       note.swankId = swankId;
        
-      [noteFilter save:note isDirty:NO updateTimestamp:NO];
+      [note save:NO updateTimestamp:NO];
     }
-    
-    [noteDict release];
   }
     
   [noteFilter release];
@@ -149,8 +143,7 @@
   [self getNotes];
   [self postDirtyNotes];
   
-	SwankNoteAppDelegate *app = [[UIApplication sharedApplication] delegate];
-  [[[app swankRootViewController] indexViewController] reload];
+  [self.delegate notesWereUpdated];
   
   [pool release];
 }

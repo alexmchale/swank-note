@@ -14,4 +14,21 @@
   return @"/entries";
 }
 
+- (void)save:(bool)isDirty updateTimestamp:(bool)updateTimestamp
+{
+  if (updateTimestamp)
+    self.updatedAt = [NSDate date];
+  
+  self.dirty = [NSNumber numberWithBool:isDirty];
+  
+  [[self managedObjectContext] save:nil];  
+}
+
+- (void)destroy
+{
+  [[self managedObjectContext] deleteObject:self];
+  [[self managedObjectContext] save:nil];
+  [[self managedObjectContext] reset];
+}
+
 @end

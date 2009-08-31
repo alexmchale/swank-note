@@ -51,6 +51,7 @@
 {
   self.table = nil;
   self.noteFilter = nil;
+  self.noteSync = nil;
   [super viewDidUnload];
 }
 
@@ -58,6 +59,7 @@
 {
   [table release];
   [noteFilter release];
+  [noteSync release];
   [super dealloc];
 }
 
@@ -100,7 +102,8 @@
   return cell;
 }
 
-- (void)noteUpdated:(Note *)note
+#pragma mark NoteSync
+- (void)notesWereUpdated
 {
   [self reload];
 }
