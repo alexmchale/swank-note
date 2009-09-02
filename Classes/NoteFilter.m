@@ -3,7 +3,7 @@
 
 @implementation NoteFilter
 
-@synthesize context;
+@synthesize context, searchTerm;
 
 - (NoteFilter *)initWithContext
 {
@@ -47,6 +47,14 @@
   [request setEntity:entityDescription];
   [request setSortDescriptors:[NSArray arrayWithObject:sort]];
   
+  if (self.searchTerm != nil && [self.searchTerm length] > 0)
+  {
+    NSString *wcSearchTerm = [[NSString alloc] initWithFormat:@".*%@.*", searchTerm];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"text MATCHES %@", wcSearchTerm];
+    [request setPredicate:pred];
+    [wcSearchTerm release];
+  }
+  
   [sort release];
   
   return request;
@@ -85,6 +93,11 @@
   Note *note = [res objectAtIndex:0];
   
   return note.updatedAt;
+}
+
+- (void)searchText:(NSString *)newSearchTerm
+{
+  self.searchTerm = newSearchTerm;
 }
 
 - (void)resetContext

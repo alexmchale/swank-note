@@ -1,11 +1,3 @@
-//
-//  SwankNoteAppDelegate.m
-//  SwankNote
-//
-//  Created by Alex McHale on 8/20/09.
-//  Copyright __MyCompanyName__ 2009. All rights reserved.
-//
-
 #import "SwankNoteAppDelegate.h"
 #import "SwankRootViewController.h"
 

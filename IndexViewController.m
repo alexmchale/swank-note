@@ -13,7 +13,7 @@
 #import "NoteFilter.h"
 
 @implementation IndexViewController
-@synthesize noteFilter, noteSync, table;
+@synthesize noteFilter, noteSync, table, searchBar;
 
 - (void)viewDidLoad
 {
@@ -26,9 +26,11 @@
   [newNoteSync release];
   self.noteSync.delegate = self;
   [self.noteSync updateNotes];
-  
+    
   [self reload];
   [super viewDidLoad];
+  
+  [table setContentOffset:CGPointMake(0.0, 44.0) animated:NO];
 }
 
 - (IBAction)sync
@@ -41,6 +43,22 @@
   [self editNewNote];
 }
 
+- (IBAction)showSearchBar
+{
+  if ([self.searchBar isFirstResponder])
+  {
+    [noteFilter searchText:nil];
+    [self reload];
+    [table setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
+    [self.searchBar resignFirstResponder];
+  }
+  else
+  {
+    [table setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
+    [self.searchBar becomeFirstResponder];
+  }
+}
+
 - (void)reload
 {
   [noteFilter resetContext];
@@ -50,6 +68,7 @@
 - (void)viewDidUnload 
 {
   self.table = nil;
+  self.searchBar = nil;
   self.noteFilter = nil;
   self.noteSync = nil;
   [super viewDidUnload];
@@ -58,6 +77,7 @@
 - (void)dealloc 
 {
   [table release];
+  [searchBar release];
   [noteFilter release];
   [noteSync release];
   [super dealloc];
@@ -106,6 +126,29 @@
 - (void)notesWereUpdated
 {
   [self reload];
+}
+
+#pragma mark Search Bar Delegate Methods
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+  [self reload];
+  [searchBar resignFirstResponder];
+  
+  [table setContentOffset:CGPointMake(0.0, 44.0) animated:NO];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchTerm
+{
+  [self.noteFilter searchText:searchTerm];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+  [self.searchBar setText:@""];
+  [self.noteFilter searchText:nil];
+  [self reload];
+  [searchBar resignFirstResponder];
+  [table setContentOffset:CGPointMake(0.0, 44.0) animated:NO];
 }
 
 @end
