@@ -51,11 +51,13 @@
 
 - (IBAction)destroy
 {
-  NoteFilter *noteFilter = [[NoteFilter alloc] initWithContext];
-  
   [note destroy];
+  
+  NoteSync *sync = [[NoteSync alloc] init];
+  [sync updateNotes];
+  [sync release];  
+  
   [self dismiss:UIModalTransitionStyleCoverVertical];
-  [noteFilter release];
 }
 
 - (IBAction)previous

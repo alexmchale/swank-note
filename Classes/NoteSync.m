@@ -53,20 +53,21 @@
     if (note == nil)
       note = [noteFilter newNote];
     
+    NSDate *oldSwankTime = note.swankTime;
     NSDate *newSwankTime = [dateFormatter dateFromString:[noteDict valueForKey:@"updated_at"]];
     
-    if (note.updatedAt == nil || [note.swankTime compare:newSwankTime] == NSOrderedAscending)
+    if (note.updatedAt == nil || oldSwankTime == nil || [oldSwankTime compare:newSwankTime] == NSOrderedAscending)
     {
       note.swankId = swankId;
       
       id newContent = [noteDict valueForKey:@"content"];
-      if (newContent != [NSNull null])
+      if ([newContent isKindOfClass:[NSString class]])
         note.text = [noteDict valueForKey:@"content"];
       else
         note.text = @"";
       
       id newTags = [noteDict valueForKey:@"tags"];
-      if (newTags != [NSNull null])
+      if ([newTags isKindOfClass:[NSString class]])
         note.tags = [noteDict valueForKey:@"tags"];
       else
         note.tags = @"";
@@ -111,7 +112,7 @@
     
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     
-    if (note.swankId == nil || note.swankId == 0)
+    if (note.swankId == nil || [note.swankId intValue] == 0)
       [req setHTTPMethod:@"POST"];
     else
       [req setHTTPMethod:@"PUT"];

@@ -49,10 +49,13 @@
   
   if (self.searchTerm != nil && [self.searchTerm length] > 0)
   {
-    NSString *wcSearchTerm = [[NSString alloc] initWithFormat:@".*%@.*", searchTerm];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"text MATCHES %@", wcSearchTerm];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"text CONTAINS[cd] %@", searchTerm];
     [request setPredicate:pred];
-    [wcSearchTerm release];
+  }
+  else
+  {
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(text != nil) && (text != '')"];
+    [request setPredicate:pred];
   }
   
   [sort release];

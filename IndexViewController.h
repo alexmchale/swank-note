@@ -1,11 +1,3 @@
-//
-//  IndexViewController.h
-//  SwankNote
-//
-//  Created by Alex McHale on 8/20/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import "SwankNavigator.h"
 #import "NoteFilter.h"

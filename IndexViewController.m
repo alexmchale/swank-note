@@ -1,11 +1,3 @@
-//
-//  IndexViewController.m
-//  SwankNote
-//
-//  Created by Alex McHale on 8/20/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
-
 #import "IndexViewController.h"
 #import "SwankNoteAppDelegate.h"
 #import "SwankRootViewController.h"
@@ -33,30 +25,9 @@
   [table setContentOffset:CGPointMake(0.0, 44.0) animated:NO];
 }
 
-- (IBAction)sync
-{
-  [noteSync updateNotes];
-}
-
 - (IBAction)composeNewMessage
 {
   [self editNewNote];
-}
-
-- (IBAction)showSearchBar
-{
-  if ([self.searchBar isFirstResponder])
-  {
-    [noteFilter searchText:nil];
-    [self reload];
-    [table setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
-    [self.searchBar resignFirstResponder];
-  }
-  else
-  {
-    [table setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
-    [self.searchBar becomeFirstResponder];
-  }
 }
 
 - (void)reload
@@ -123,16 +94,37 @@
 }
 
 #pragma mark NoteSync
+- (IBAction)sync
+{
+  [noteSync updateNotes];
+}
+
 - (void)notesWereUpdated
 {
   [self reload];
 }
 
-#pragma mark Search Bar Delegate Methods
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+#pragma mark Search Bar Methods
+- (IBAction)showSearchBar
+{
+  if ([self.searchBar isFirstResponder])
+  {
+    [noteFilter searchText:nil];
+    [self reload];
+    [table setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
+    [self.searchBar resignFirstResponder];
+  }
+  else
+  {
+    [table setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
+    [self.searchBar becomeFirstResponder];
+  }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)activeSearchBar
 {
   [self reload];
-  [searchBar resignFirstResponder];
+  [activeSearchBar resignFirstResponder];
   
   [table setContentOffset:CGPointMake(0.0, 44.0) animated:NO];
 }
@@ -142,12 +134,12 @@
   [self.noteFilter searchText:searchTerm];
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+- (void)searchBarCancelButtonClicked:(UISearchBar *)activeSearchBar
 {
   [self.searchBar setText:@""];
   [self.noteFilter searchText:nil];
   [self reload];
-  [searchBar resignFirstResponder];
+  [activeSearchBar resignFirstResponder];
   [table setContentOffset:CGPointMake(0.0, 44.0) animated:NO];
 }
 

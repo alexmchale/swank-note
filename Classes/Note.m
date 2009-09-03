@@ -26,9 +26,8 @@
 
 - (void)destroy
 {
-  [[self managedObjectContext] deleteObject:self];
-  [[self managedObjectContext] save:nil];
-  [[self managedObjectContext] reset];
+  self.text = @"";
+  [self save:YES updateTimestamp:YES];
 }
 
 @end
