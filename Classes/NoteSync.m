@@ -10,11 +10,12 @@
 #define kFrob @"91eb85ae181114313fdf441d3a02d7a4a02a0e13"
 
 @implementation NoteSync
-@synthesize delegate;
+@synthesize delegate, running;
 
 - (void)updateNotes
 {
-  [NSThread detachNewThreadSelector:@selector(syncNotes) toTarget:self withObject:nil];
+  if (!self.running)
+    [NSThread detachNewThreadSelector:@selector(syncNotes) toTarget:self withObject:nil];
 }
 
 - (void)getNotes
@@ -138,6 +139,8 @@
 
 - (void)syncNotes
 {
+  self.running = YES;
+  
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
   [self getNotes];
@@ -146,6 +149,8 @@
   [self.delegate notesWereUpdated];
   
   [pool release];
+  
+  self.running = NO;
 }
 
 - (void)dealloc
