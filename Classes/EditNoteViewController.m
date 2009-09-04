@@ -78,6 +78,15 @@
   [self dismissModalViewControllerAnimated:YES];  
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+  UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notepaper.png"]];
+  [[self view] addSubview: imgView];
+  [[self view] sendSubviewToBack: imgView];
+  
+  [super viewWillAppear:animated];
+}
+
 - (void)viewDidUnload {
   self.note = nil;
   self.text = nil;

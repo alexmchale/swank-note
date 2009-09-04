@@ -46,6 +46,12 @@
 		74966C341049A5ED0057A3A6 /* NSStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74966C321049A5ED0057A3A6 /* NSStringUtilities.m */; };
 		74966C371049A6AD0057A3A6 /* NSDictionaryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74966C361049A6AD0057A3A6 /* NSDictionaryUtilities.m */; };
 		74966C381049A6AD0057A3A6 /* NSDictionaryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74966C361049A6AD0057A3A6 /* NSDictionaryUtilities.m */; };
+		749670221050A3550057A3A6 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749670201050A3550057A3A6 /* AccountSettingsViewController.m */; };
+		749670231050A3550057A3A6 /* AccountSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 749670211050A3550057A3A6 /* AccountSettingsViewController.xib */; };
+		749670241050A3550057A3A6 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749670201050A3550057A3A6 /* AccountSettingsViewController.m */; };
+		749670251050A3550057A3A6 /* AccountSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 749670211050A3550057A3A6 /* AccountSettingsViewController.xib */; };
+		7496703B1050A8140057A3A6 /* notepaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 7496703A1050A8140057A3A6 /* notepaper.png */; };
+		7496703C1050A8140057A3A6 /* notepaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 7496703A1050A8140057A3A6 /* notepaper.png */; };
 		74A73C7B103FB2950016986D /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A73C7A103FB2950016986D /* Note.m */; };
 		74A73CEC103FBAE60016986D /* SwankNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74A73CEB103FBAE60016986D /* SwankNote.xcdatamodeld */; };
 		74DB9BD9103EC76D0053BEA0 /* EditNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB9BD7103EC76D0053BEA0 /* EditNoteViewController.m */; };
@@ -103,6 +109,10 @@
 		74966C321049A5ED0057A3A6 /* NSStringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringUtilities.m; sourceTree = "<group>"; };
 		74966C351049A6AD0057A3A6 /* NSDictionaryUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionaryUtilities.h; sourceTree = "<group>"; };
 		74966C361049A6AD0057A3A6 /* NSDictionaryUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryUtilities.m; sourceTree = "<group>"; };
+		7496701F1050A3550057A3A6 /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewController.h; sourceTree = "<group>"; };
+		749670201050A3550057A3A6 /* AccountSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingsViewController.m; sourceTree = "<group>"; };
+		749670211050A3550057A3A6 /* AccountSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountSettingsViewController.xib; sourceTree = "<group>"; };
+		7496703A1050A8140057A3A6 /* notepaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notepaper.png; sourceTree = "<group>"; };
 		74A73C79103FB2950016986D /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		74A73C7A103FB2950016986D /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		74A73CED103FBAE60016986D /* SwankNote 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -195,6 +205,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7496703A1050A8140057A3A6 /* notepaper.png */,
 				74A73CEB103FBAE60016986D /* SwankNote.xcdatamodeld */,
 				8D1107310486CEB800E47090 /* SwankNote-Info.plist */,
 			);
@@ -315,6 +326,9 @@
 		74966ED0104BE4A10057A3A6 /* Account Settings */ = {
 			isa = PBXGroup;
 			children = (
+				7496701F1050A3550057A3A6 /* AccountSettingsViewController.h */,
+				749670201050A3550057A3A6 /* AccountSettingsViewController.m */,
+				749670211050A3550057A3A6 /* AccountSettingsViewController.xib */,
 			);
 			name = "Account Settings";
 			sourceTree = "<group>";
@@ -414,6 +428,8 @@
 				74FD196D103E46BD0060CF1C /* IndexViewController.xib in Resources */,
 				743AB97F103EB4BE00924994 /* SwankRootViewController.xib in Resources */,
 				74DB9BDA103EC76D0053BEA0 /* EditNoteViewController.xib in Resources */,
+				749670251050A3550057A3A6 /* AccountSettingsViewController.xib in Resources */,
+				7496703C1050A8140057A3A6 /* notepaper.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +437,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				749670231050A3550057A3A6 /* AccountSettingsViewController.xib in Resources */,
+				7496703B1050A8140057A3A6 /* notepaper.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +486,7 @@
 				74966BFB104941A20057A3A6 /* WPProgressHUD.m in Sources */,
 				74966C341049A5ED0057A3A6 /* NSStringUtilities.m in Sources */,
 				74966C381049A6AD0057A3A6 /* NSDictionaryUtilities.m in Sources */,
+				749670241050A3550057A3A6 /* AccountSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +505,7 @@
 				74966BFC104941A20057A3A6 /* WPProgressHUD.m in Sources */,
 				74966C331049A5ED0057A3A6 /* NSStringUtilities.m in Sources */,
 				74966C371049A6AD0057A3A6 /* NSDictionaryUtilities.m in Sources */,
+				749670221050A3550057A3A6 /* AccountSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
