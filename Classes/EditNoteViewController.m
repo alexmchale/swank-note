@@ -6,7 +6,7 @@
 #import "Note.h"
 
 @implementation EditNoteViewController
-@synthesize text;
+@synthesize text, backgroundImage;
 @synthesize note;
 
 - (void)edit
@@ -80,19 +80,26 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notepaper.png"]];
-  [[self view] addSubview: imgView];
-  [[self view] sendSubviewToBack: imgView];
+  if (self.backgroundImage == nil)
+  {
+    self.backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notepaper.png"]];
+    [self.view addSubview: self.backgroundImage];
+    [self.view sendSubviewToBack: self.backgroundImage];
+  }
   
   [super viewWillAppear:animated];
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload 
+{
+  self.backgroundImage = nil;
   self.note = nil;
   self.text = nil;
 }
 
-- (void)dealloc {
+- (void)dealloc 
+{
+  [backgroundImage release];
   [note release];
   [text release];
   [super dealloc];

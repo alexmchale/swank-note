@@ -1,11 +1,3 @@
-//
-//  EditNoteViewController.h
-//  SwankNote
-//
-//  Created by Alex McHale on 8/21/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import "Note.h"
 #import "SwankNavigator.h"
@@ -21,12 +13,14 @@
 @interface EditNoteViewController : SwankNavigator <UITextViewDelegate>
 {  
   UITextView *text;
+  UIImageView *backgroundImage;
   
   BOOL viewShifted;
   Note *note;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *text;
+@property (nonatomic, retain) UIImageView *backgroundImage;
 @property (nonatomic, retain) Note *note;
 
 - (void)edit;
