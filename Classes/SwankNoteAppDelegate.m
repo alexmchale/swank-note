@@ -102,16 +102,27 @@
  Returns the persistent store coordinator for the application.
  If the coordinator doesn't already exist, it is created and the application's store added to it.
  */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-  if (persistentStoreCoordinator != nil) {
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator 
+{
+  if (persistentStoreCoordinator != nil)
     return persistentStoreCoordinator;
-  }
 	
-  NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"SwankNote.sqlite"]];
+  NSURL *storeUrl = [NSURL fileURLWithPath:[[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"SwankNote.sqlite"]];
+
+  NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                           [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                           [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
 	
 	NSError *error;
+  
   persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
-  if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error]) {
+  
+  if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType 
+                                                configuration:nil 
+                                                          URL:storeUrl 
+                                                      options:options
+                                                        error:&error])
+  {
     // Handle error
   }    
 	
