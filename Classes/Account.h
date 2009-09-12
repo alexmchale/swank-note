@@ -18,5 +18,6 @@
 
 - (bool) isDefault;
 - (bool) testConnection:(UIView *)progressViewParent;
+- (UIColor *) color;
 
 @end
