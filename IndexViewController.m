@@ -3,75 +3,86 @@
 #import "SwankRootViewController.h"
 #import "Note.h"
 #import "NoteFilter.h"
+#import "AppSettings.h"
 
 @implementation IndexViewController
-@synthesize noteFilter, noteSync, table, searchBar;
+@synthesize notes, searchBar, noteEditor;
+@synthesize filterForTag;
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  
+  [self reload];
+}
 
 - (void)viewDidLoad
 {
-  NoteFilter *newNoteFilter = [[NoteFilter alloc] initWithContext];
-  self.noteFilter = newNoteFilter;
-  [newNoteFilter release];
+  [super viewDidLoad];
+
+  EditNoteViewController *newEditor = [[EditNoteViewController alloc] init];
+  self.noteEditor = newEditor;
+  [newEditor release];
   
-  NoteSync *newNoteSync = [[NoteSync alloc] init];
-  self.noteSync = newNoteSync;
+  /*
+  NoteSync *noteSync = [[NoteSync alloc] init];
   [newNoteSync release];
   self.noteSync.delegate = self;
   [self.noteSync updateNotes];
-    
-  [self reload];
-  [super viewDidLoad];
+   */
   
-  [table setContentOffset:CGPointMake(0.0, 44.0) animated:NO];
-}
-
-- (IBAction)composeNewMessage
-{
-  [self editNewNote];
+  // Don't show the search box by default.
+  //[self.tableView setContentOffset:CGPointMake(0.0, 44.0) animated:NO];
 }
 
 - (void)reload
 {
-  [noteFilter resetContext];
-  [table reloadData];
+  if (filterForTag == nil)
+    self.notes = [NoteFilter fetchAll];
+  else
+    self.notes = [NoteFilter fetchAllWithTag:filterForTag];
+  
+  [self.tableView reloadData];
 }
 
 - (void)viewDidUnload 
 {
-  self.table = nil;
   self.searchBar = nil;
-  self.noteFilter = nil;
-  self.noteSync = nil;
+  self.notes = nil;
+  self.noteEditor = nil;
   [super viewDidUnload];
 }
 
 - (void)dealloc 
 {
-  [table release];
   [searchBar release];
-  [noteFilter release];
-  [noteSync release];
+  [notes release];
+  [noteEditor release];
+  [filterForTag release];
   [super dealloc];
 }
 
 #pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  Note *note = [noteFilter atIndex:[indexPath row]];
-  [self editNote:note];
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  
+  Note *note = [notes objectAtIndex:[indexPath row]];
+  noteEditor.note = note;
+  noteEditor.navigation = notes;
+  [self.navigationController pushViewController:noteEditor animated:YES];
 }
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return [noteFilter count];
+  return [notes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   static NSString *tableId = @"IndexTableId";
-  Note *note = [noteFilter atIndex:[indexPath row]];
+  Note *note = [notes objectAtIndex:[indexPath row]];
   NSDate *date = (NSDate *)note.updatedAt;
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableId];
@@ -94,11 +105,6 @@
 }
 
 #pragma mark NoteSync
-- (IBAction)sync
-{
-  [noteSync updateNotes];
-}
-
 - (void)notesWereUpdated
 {
   [self reload];
@@ -107,9 +113,10 @@
 #pragma mark Search Bar Methods
 - (IBAction)showSearchBar
 {
+  /*
   if ([self.searchBar isFirstResponder])
   {
-    [noteFilter searchText:nil];
+    //[noteFilter searchText:nil];
     [self reload];
     [table setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
     [self.searchBar resignFirstResponder];
@@ -119,28 +126,33 @@
     [table setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
     [self.searchBar becomeFirstResponder];
   }
+  */
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)activeSearchBar
 {
+  /*
   [self reload];
   [activeSearchBar resignFirstResponder];
   
   [table setContentOffset:CGPointMake(0.0, 44.0) animated:NO];
+  */
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchTerm
 {
-  [self.noteFilter searchText:searchTerm];
+  //[self.noteFilter searchText:searchTerm];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)activeSearchBar
 {
+  /*
   [self.searchBar setText:@""];
-  [self.noteFilter searchText:nil];
+  //[self.noteFilter searchText:nil];
   [self reload];
   [activeSearchBar resignFirstResponder];
   [table setContentOffset:CGPointMake(0.0, 44.0) animated:NO];
+  */
 }
 
 @end

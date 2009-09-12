@@ -14,20 +14,20 @@
   return @"/entries";
 }
 
-- (void)save:(bool)isDirty updateTimestamp:(bool)updateTimestamp
+- (void)save:(bool)isDirty
 {
-  if (updateTimestamp)
+  if (isDirty)
     self.updatedAt = [NSDate date];
   
   self.dirty = [NSNumber numberWithBool:isDirty];
   
-  [[self managedObjectContext] save:nil];  
+  [[self managedObjectContext] save:nil];
 }
 
 - (void)destroy
 {
   self.text = @"";
-  [self save:YES updateTimestamp:YES];
+  [self save:YES];
 }
 
 @end

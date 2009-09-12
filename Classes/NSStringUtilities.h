@@ -4,5 +4,6 @@
 
 - (void)alertWithTitle:(NSString *)title;
 - (NSString *)stringByAddingPercentEscapesForURI;
+- (NSArray *)splitForTags;
 
 @end

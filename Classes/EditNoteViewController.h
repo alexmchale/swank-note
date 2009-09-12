@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "Note.h"
-#import "SwankNavigator.h"
+#import "ChildViewController.h"
+#import "EditNoteTagsViewController.h"
 
 // the amount of vertical shift upwards keep the Notes text view visible as the keyboard appears
 #define kKEYBOARD_HEIGHT     215
@@ -10,26 +11,41 @@
 // the duration of the animation for the view shift
 #define kVerticalOffsetAnimationDuration		0.50
 
-@interface EditNoteViewController : SwankNavigator <UITextViewDelegate>
+@interface EditNoteViewController : UIViewController <UITextViewDelegate>
 {  
   UITextView *text;
   UIImageView *backgroundImage;
   
-  BOOL viewShifted;
+  bool viewShifted;
   Note *note;
+  NSArray *navigation;
+  
+  UIToolbar *keyboardToolbar;
+  
+  EditNoteTagsViewController *tagsController;
+  
+  UIToolbar *bottomToolbar;
+  UIBarButtonItem *noteLeft;
+  UIBarButtonItem *noteRight;
+  UIBarButtonItem *separator;
+  UIBarButtonItem *trash;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *text;
 @property (nonatomic, retain) UIImageView *backgroundImage;
 @property (nonatomic, retain) Note *note;
+@property (nonatomic, retain) NSArray *navigation;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *noteLeft;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *noteRight;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *trash;
+@property (nonatomic, retain) EditNoteTagsViewController *tagsController;
 
-- (void)edit;
-- (void)edit:(Note *)note;
-- (IBAction)cancel;
-- (IBAction)save;
+- (IBAction)dismissKeyboard:(id)sender;
+- (IBAction)cancel:(id)sender;
+- (IBAction)save:(id)sender;
 - (IBAction)previous;
 - (IBAction)next;
 - (IBAction)destroy;
-- (void)dismiss:(UIModalTransitionStyle)style;
+- (IBAction)editTags;
 
 @end

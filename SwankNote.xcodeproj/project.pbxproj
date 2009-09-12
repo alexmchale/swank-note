@@ -14,7 +14,6 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
-		741DD86F1040A4B80036534B /* SwankNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DD86E1040A4B80036534B /* SwankNavigator.m */; };
 		741DDAE91041B06F0036534B /* NoteFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DDAE81041B06F0036534B /* NoteFilter.m */; };
 		743AB97E103EB4BE00924994 /* SwankRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743AB97C103EB4BE00924994 /* SwankRootViewController.m */; };
 		743AB97F103EB4BE00924994 /* SwankRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 743AB97D103EB4BE00924994 /* SwankRootViewController.xib */; };
@@ -52,12 +51,41 @@
 		749670251050A3550057A3A6 /* AccountSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 749670211050A3550057A3A6 /* AccountSettingsViewController.xib */; };
 		7496703B1050A8140057A3A6 /* notepaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 7496703A1050A8140057A3A6 /* notepaper.png */; };
 		7496703C1050A8140057A3A6 /* notepaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 7496703A1050A8140057A3A6 /* notepaper.png */; };
+		749670C91051C2F20057A3A6 /* UITableViewUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749670C81051C2F20057A3A6 /* UITableViewUtilities.m */; };
+		749670CA1051C2F20057A3A6 /* UITableViewUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749670C81051C2F20057A3A6 /* UITableViewUtilities.m */; };
+		749670DE10529CF20057A3A6 /* NSArrayUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749670DD10529CF20057A3A6 /* NSArrayUtilities.m */; };
+		749670DF10529CF20057A3A6 /* NSArrayUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749670DD10529CF20057A3A6 /* NSArrayUtilities.m */; };
+		749671241052B38D0057A3A6 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 749671231052B38D0057A3A6 /* AppSettings.m */; };
+		749671251052B38D0057A3A6 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 749671231052B38D0057A3A6 /* AppSettings.m */; };
+		7496721C105310660057A3A6 /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7496721B105310660057A3A6 /* ChildViewController.m */; };
+		7496721D105310660057A3A6 /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7496721B105310660057A3A6 /* ChildViewController.m */; };
+		74967221105310E90057A3A6 /* TopLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967220105310E90057A3A6 /* TopLevelViewController.m */; };
+		74967222105310E90057A3A6 /* TopLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967220105310E90057A3A6 /* TopLevelViewController.m */; };
+		7496730B10532C6A0057A3A6 /* TagIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7496730A10532C6A0057A3A6 /* TagIndexViewController.m */; };
+		7496730C10532C6A0057A3A6 /* TagIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7496730A10532C6A0057A3A6 /* TagIndexViewController.m */; };
+		749676C6105414F20057A3A6 /* EditNoteTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749676C5105414F20057A3A6 /* EditNoteTagsViewController.m */; };
+		749676C7105414F20057A3A6 /* EditNoteTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749676C5105414F20057A3A6 /* EditNoteTagsViewController.m */; };
+		749677A9105525C50057A3A6 /* NewTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749677A8105525C50057A3A6 /* NewTagsViewController.m */; };
+		749677AA105525C50057A3A6 /* NewTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749677A8105525C50057A3A6 /* NewTagsViewController.m */; };
+		74967AE11056740B0057A3A6 /* NoteDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967AE01056740B0057A3A6 /* NoteDownloader.m */; };
+		74967AE21056740B0057A3A6 /* NoteDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967AE01056740B0057A3A6 /* NoteDownloader.m */; };
+		74967BC61056F05F0057A3A6 /* NoteUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967BC51056F05F0057A3A6 /* NoteUploader.m */; };
+		74967BC71056F05F0057A3A6 /* NoteUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967BC51056F05F0057A3A6 /* NoteUploader.m */; };
+		74967D401058B0D60057A3A6 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967D3F1058B0D60057A3A6 /* Account.m */; };
+		74967D411058B0D60057A3A6 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967D3F1058B0D60057A3A6 /* Account.m */; };
+		74967D8E10591ECF0057A3A6 /* EditAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967D8D10591ECF0057A3A6 /* EditAccountViewController.m */; };
+		74967D8F10591ECF0057A3A6 /* EditAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967D8D10591ECF0057A3A6 /* EditAccountViewController.m */; };
+		74967E6C105A2CCE0057A3A6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967E6B105A2CCE0057A3A6 /* MBProgressHUD.m */; };
+		74967E6D105A2CCE0057A3A6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 74967E6B105A2CCE0057A3A6 /* MBProgressHUD.m */; };
+		74967E74105A2F8B0057A3A6 /* RoundedRectBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 74967E73105A2F8B0057A3A6 /* RoundedRectBlack.png */; };
+		74967E75105A2F8B0057A3A6 /* RoundedRectBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 74967E73105A2F8B0057A3A6 /* RoundedRectBlack.png */; };
+		74967EB3105A32BF0057A3A6 /* WPpregressHUDBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 74967EB2105A32BF0057A3A6 /* WPpregressHUDBackground.png */; };
+		74967EB4105A32BF0057A3A6 /* WPpregressHUDBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 74967EB2105A32BF0057A3A6 /* WPpregressHUDBackground.png */; };
 		74A73C7B103FB2950016986D /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A73C7A103FB2950016986D /* Note.m */; };
 		74A73CEC103FBAE60016986D /* SwankNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74A73CEB103FBAE60016986D /* SwankNote.xcdatamodeld */; };
 		74DB9BD9103EC76D0053BEA0 /* EditNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB9BD7103EC76D0053BEA0 /* EditNoteViewController.m */; };
 		74DB9BDA103EC76D0053BEA0 /* EditNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74DB9BD8103EC76D0053BEA0 /* EditNoteViewController.xib */; };
 		74FD196C103E46BD0060CF1C /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD196A103E46BD0060CF1C /* IndexViewController.m */; };
-		74FD196D103E46BD0060CF1C /* IndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74FD196B103E46BD0060CF1C /* IndexViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,8 +100,6 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SwankNote_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwankNote_Prefix.pch; sourceTree = "<group>"; };
-		741DD86D1040A4B80036534B /* SwankNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwankNavigator.h; sourceTree = "<group>"; };
-		741DD86E1040A4B80036534B /* SwankNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwankNavigator.m; sourceTree = "<group>"; };
 		741DD95F10415E030036534B /* SwankNote 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 5.xcdatamodel"; sourceTree = "<group>"; };
 		741DDAE71041B06F0036534B /* NoteFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteFilter.h; sourceTree = "<group>"; };
 		741DDAE81041B06F0036534B /* NoteFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteFilter.m; sourceTree = "<group>"; };
@@ -113,6 +139,35 @@
 		749670201050A3550057A3A6 /* AccountSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingsViewController.m; sourceTree = "<group>"; };
 		749670211050A3550057A3A6 /* AccountSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountSettingsViewController.xib; sourceTree = "<group>"; };
 		7496703A1050A8140057A3A6 /* notepaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notepaper.png; sourceTree = "<group>"; };
+		749670C71051C2F20057A3A6 /* UITableViewUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewUtilities.h; sourceTree = "<group>"; };
+		749670C81051C2F20057A3A6 /* UITableViewUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewUtilities.m; sourceTree = "<group>"; };
+		749670DC10529CF20057A3A6 /* NSArrayUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayUtilities.h; sourceTree = "<group>"; };
+		749670DD10529CF20057A3A6 /* NSArrayUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayUtilities.m; sourceTree = "<group>"; };
+		749671221052B38D0057A3A6 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
+		749671231052B38D0057A3A6 /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
+		749671291052B3AB0057A3A6 /* SwankNote 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 9.xcdatamodel"; sourceTree = "<group>"; };
+		7496721A105310660057A3A6 /* ChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildViewController.h; sourceTree = "<group>"; };
+		7496721B105310660057A3A6 /* ChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
+		7496721F105310E90057A3A6 /* TopLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopLevelViewController.h; sourceTree = "<group>"; };
+		74967220105310E90057A3A6 /* TopLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopLevelViewController.m; sourceTree = "<group>"; };
+		7496730910532C6A0057A3A6 /* TagIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagIndexViewController.h; sourceTree = "<group>"; };
+		7496730A10532C6A0057A3A6 /* TagIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagIndexViewController.m; sourceTree = "<group>"; };
+		749676C4105414F20057A3A6 /* EditNoteTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNoteTagsViewController.h; sourceTree = "<group>"; };
+		749676C5105414F20057A3A6 /* EditNoteTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNoteTagsViewController.m; sourceTree = "<group>"; };
+		749677A7105525C50057A3A6 /* NewTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTagsViewController.h; sourceTree = "<group>"; };
+		749677A8105525C50057A3A6 /* NewTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTagsViewController.m; sourceTree = "<group>"; };
+		74967ADF1056740B0057A3A6 /* NoteDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDownloader.h; sourceTree = "<group>"; };
+		74967AE01056740B0057A3A6 /* NoteDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDownloader.m; sourceTree = "<group>"; };
+		74967BC41056F05F0057A3A6 /* NoteUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteUploader.h; sourceTree = "<group>"; };
+		74967BC51056F05F0057A3A6 /* NoteUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteUploader.m; sourceTree = "<group>"; };
+		74967D3E1058B0D60057A3A6 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		74967D3F1058B0D60057A3A6 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		74967D8C10591ECF0057A3A6 /* EditAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAccountViewController.h; sourceTree = "<group>"; };
+		74967D8D10591ECF0057A3A6 /* EditAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAccountViewController.m; sourceTree = "<group>"; };
+		74967E6A105A2CCE0057A3A6 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		74967E6B105A2CCE0057A3A6 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		74967E73105A2F8B0057A3A6 /* RoundedRectBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RoundedRectBlack.png; path = Classes/RoundedRectBlack.png; sourceTree = "<group>"; };
+		74967EB2105A32BF0057A3A6 /* WPpregressHUDBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WPpregressHUDBackground.png; sourceTree = "<group>"; };
 		74A73C79103FB2950016986D /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		74A73C7A103FB2950016986D /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		74A73CED103FBAE60016986D /* SwankNote 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -123,7 +178,6 @@
 		74F1870A1044DA40007EEB2A /* SwankNote 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 8.xcdatamodel"; sourceTree = "<group>"; };
 		74FD1969103E46BD0060CF1C /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexViewController.h; path = ../IndexViewController.h; sourceTree = "<group>"; };
 		74FD196A103E46BD0060CF1C /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndexViewController.m; path = ../IndexViewController.m; sourceTree = "<group>"; };
-		74FD196B103E46BD0060CF1C /* IndexViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IndexViewController.xib; path = ../IndexViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SwankNote-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SwankNote-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,10 +211,11 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7496730810532C520057A3A6 /* Tag Index */,
+				7496720E10530DA60057A3A6 /* App Navigator */,
 				74966ED0104BE4A10057A3A6 /* Account Settings */,
 				74966C301049A5D00057A3A6 /* Monkey Patches */,
 				74966BF61049417B0057A3A6 /* Widgets */,
-				741DD86C1040A4900036534B /* Swank Navigator */,
 				741DD7FF10402D2A0036534B /* Note */,
 				74DB9BD5103EC73A0053BEA0 /* Edit Note */,
 				743AB97A103EB44600924994 /* Swank Root */,
@@ -205,6 +260,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74967EB2105A32BF0057A3A6 /* WPpregressHUDBackground.png */,
+				74967E73105A2F8B0057A3A6 /* RoundedRectBlack.png */,
 				7496703A1050A8140057A3A6 /* notepaper.png */,
 				74A73CEB103FBAE60016986D /* SwankNote.xcdatamodeld */,
 				8D1107310486CEB800E47090 /* SwankNote-Info.plist */,
@@ -233,17 +290,12 @@
 				741DDAE81041B06F0036534B /* NoteFilter.m */,
 				7490635F1042850400DF65DA /* NoteSync.h */,
 				749063601042850400DF65DA /* NoteSync.m */,
+				74967ADF1056740B0057A3A6 /* NoteDownloader.h */,
+				74967AE01056740B0057A3A6 /* NoteDownloader.m */,
+				74967BC41056F05F0057A3A6 /* NoteUploader.h */,
+				74967BC51056F05F0057A3A6 /* NoteUploader.m */,
 			);
 			name = Note;
-			sourceTree = "<group>";
-		};
-		741DD86C1040A4900036534B /* Swank Navigator */ = {
-			isa = PBXGroup;
-			children = (
-				741DD86D1040A4B80036534B /* SwankNavigator.h */,
-				741DD86E1040A4B80036534B /* SwankNavigator.m */,
-			);
-			name = "Swank Navigator";
 			sourceTree = "<group>";
 		};
 		743AB97A103EB44600924994 /* Swank Root */ = {
@@ -306,6 +358,8 @@
 		74966BF61049417B0057A3A6 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				74967E6A105A2CCE0057A3A6 /* MBProgressHUD.h */,
+				74967E6B105A2CCE0057A3A6 /* MBProgressHUD.m */,
 				74966BF9104941A20057A3A6 /* WPProgressHUD.h */,
 				74966BFA104941A20057A3A6 /* WPProgressHUD.m */,
 			);
@@ -319,6 +373,10 @@
 				74966C321049A5ED0057A3A6 /* NSStringUtilities.m */,
 				74966C351049A6AD0057A3A6 /* NSDictionaryUtilities.h */,
 				74966C361049A6AD0057A3A6 /* NSDictionaryUtilities.m */,
+				749670C71051C2F20057A3A6 /* UITableViewUtilities.h */,
+				749670C81051C2F20057A3A6 /* UITableViewUtilities.m */,
+				749670DC10529CF20057A3A6 /* NSArrayUtilities.h */,
+				749670DD10529CF20057A3A6 /* NSArrayUtilities.m */,
 			);
 			name = "Monkey Patches";
 			sourceTree = "<group>";
@@ -329,8 +387,34 @@
 				7496701F1050A3550057A3A6 /* AccountSettingsViewController.h */,
 				749670201050A3550057A3A6 /* AccountSettingsViewController.m */,
 				749670211050A3550057A3A6 /* AccountSettingsViewController.xib */,
+				749671221052B38D0057A3A6 /* AppSettings.h */,
+				749671231052B38D0057A3A6 /* AppSettings.m */,
+				74967D3E1058B0D60057A3A6 /* Account.h */,
+				74967D3F1058B0D60057A3A6 /* Account.m */,
+				74967D8C10591ECF0057A3A6 /* EditAccountViewController.h */,
+				74967D8D10591ECF0057A3A6 /* EditAccountViewController.m */,
 			);
 			name = "Account Settings";
+			sourceTree = "<group>";
+		};
+		7496720E10530DA60057A3A6 /* App Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				7496721A105310660057A3A6 /* ChildViewController.h */,
+				7496721B105310660057A3A6 /* ChildViewController.m */,
+				7496721F105310E90057A3A6 /* TopLevelViewController.h */,
+				74967220105310E90057A3A6 /* TopLevelViewController.m */,
+			);
+			name = "App Navigator";
+			sourceTree = "<group>";
+		};
+		7496730810532C520057A3A6 /* Tag Index */ = {
+			isa = PBXGroup;
+			children = (
+				7496730910532C6A0057A3A6 /* TagIndexViewController.h */,
+				7496730A10532C6A0057A3A6 /* TagIndexViewController.m */,
+			);
+			name = "Tag Index";
 			sourceTree = "<group>";
 		};
 		74DB9BD5103EC73A0053BEA0 /* Edit Note */ = {
@@ -339,6 +423,10 @@
 				74DB9BD6103EC76D0053BEA0 /* EditNoteViewController.h */,
 				74DB9BD7103EC76D0053BEA0 /* EditNoteViewController.m */,
 				74DB9BD8103EC76D0053BEA0 /* EditNoteViewController.xib */,
+				749676C4105414F20057A3A6 /* EditNoteTagsViewController.h */,
+				749676C5105414F20057A3A6 /* EditNoteTagsViewController.m */,
+				749677A7105525C50057A3A6 /* NewTagsViewController.h */,
+				749677A8105525C50057A3A6 /* NewTagsViewController.m */,
 			);
 			name = "Edit Note";
 			sourceTree = "<group>";
@@ -346,7 +434,6 @@
 		74FD196E103E46C90060CF1C /* Index */ = {
 			isa = PBXGroup;
 			children = (
-				74FD196B103E46BD0060CF1C /* IndexViewController.xib */,
 				74FD1969103E46BD0060CF1C /* IndexViewController.h */,
 				74FD196A103E46BD0060CF1C /* IndexViewController.m */,
 			);
@@ -425,11 +512,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				74FD196D103E46BD0060CF1C /* IndexViewController.xib in Resources */,
 				743AB97F103EB4BE00924994 /* SwankRootViewController.xib in Resources */,
 				74DB9BDA103EC76D0053BEA0 /* EditNoteViewController.xib in Resources */,
 				749670251050A3550057A3A6 /* AccountSettingsViewController.xib in Resources */,
 				7496703C1050A8140057A3A6 /* notepaper.png in Resources */,
+				74967E74105A2F8B0057A3A6 /* RoundedRectBlack.png in Resources */,
+				74967EB3105A32BF0057A3A6 /* WPpregressHUDBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +527,8 @@
 			files = (
 				749670231050A3550057A3A6 /* AccountSettingsViewController.xib in Resources */,
 				7496703B1050A8140057A3A6 /* notepaper.png in Resources */,
+				74967E75105A2F8B0057A3A6 /* RoundedRectBlack.png in Resources */,
+				74967EB4105A32BF0057A3A6 /* WPpregressHUDBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,7 +562,6 @@
 				743AB97E103EB4BE00924994 /* SwankRootViewController.m in Sources */,
 				74DB9BD9103EC76D0053BEA0 /* EditNoteViewController.m in Sources */,
 				74A73C7B103FB2950016986D /* Note.m in Sources */,
-				741DD86F1040A4B80036534B /* SwankNavigator.m in Sources */,
 				741DDAE91041B06F0036534B /* NoteFilter.m in Sources */,
 				749063611042850400DF65DA /* NoteSync.m in Sources */,
 				749065AF10429A0500DF65DA /* CDataScanner.m in Sources */,
@@ -487,6 +576,19 @@
 				74966C341049A5ED0057A3A6 /* NSStringUtilities.m in Sources */,
 				74966C381049A6AD0057A3A6 /* NSDictionaryUtilities.m in Sources */,
 				749670241050A3550057A3A6 /* AccountSettingsViewController.m in Sources */,
+				749670CA1051C2F20057A3A6 /* UITableViewUtilities.m in Sources */,
+				749670DF10529CF20057A3A6 /* NSArrayUtilities.m in Sources */,
+				749671251052B38D0057A3A6 /* AppSettings.m in Sources */,
+				7496721D105310660057A3A6 /* ChildViewController.m in Sources */,
+				74967222105310E90057A3A6 /* TopLevelViewController.m in Sources */,
+				7496730C10532C6A0057A3A6 /* TagIndexViewController.m in Sources */,
+				749676C7105414F20057A3A6 /* EditNoteTagsViewController.m in Sources */,
+				749677AA105525C50057A3A6 /* NewTagsViewController.m in Sources */,
+				74967AE11056740B0057A3A6 /* NoteDownloader.m in Sources */,
+				74967BC61056F05F0057A3A6 /* NoteUploader.m in Sources */,
+				74967D401058B0D60057A3A6 /* Account.m in Sources */,
+				74967D8E10591ECF0057A3A6 /* EditAccountViewController.m in Sources */,
+				74967E6C105A2CCE0057A3A6 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +608,19 @@
 				74966C331049A5ED0057A3A6 /* NSStringUtilities.m in Sources */,
 				74966C371049A6AD0057A3A6 /* NSDictionaryUtilities.m in Sources */,
 				749670221050A3550057A3A6 /* AccountSettingsViewController.m in Sources */,
+				749670C91051C2F20057A3A6 /* UITableViewUtilities.m in Sources */,
+				749670DE10529CF20057A3A6 /* NSArrayUtilities.m in Sources */,
+				749671241052B38D0057A3A6 /* AppSettings.m in Sources */,
+				7496721C105310660057A3A6 /* ChildViewController.m in Sources */,
+				74967221105310E90057A3A6 /* TopLevelViewController.m in Sources */,
+				7496730B10532C6A0057A3A6 /* TagIndexViewController.m in Sources */,
+				749676C6105414F20057A3A6 /* EditNoteTagsViewController.m in Sources */,
+				749677A9105525C50057A3A6 /* NewTagsViewController.m in Sources */,
+				74967AE21056740B0057A3A6 /* NoteDownloader.m in Sources */,
+				74967BC71056F05F0057A3A6 /* NoteUploader.m in Sources */,
+				74967D411058B0D60057A3A6 /* Account.m in Sources */,
+				74967D8F10591ECF0057A3A6 /* EditAccountViewController.m in Sources */,
+				74967E6D105A2CCE0057A3A6 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +641,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SwankNote_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "SwankNote-Info.plist";
 				PRODUCT_NAME = SwankNote;
 			};
@@ -667,8 +783,9 @@
 				749066DF1042C22F00DF65DA /* SwankNote 6.xcdatamodel */,
 				74F186F3104402DE007EEB2A /* SwankNote 7.xcdatamodel */,
 				74F1870A1044DA40007EEB2A /* SwankNote 8.xcdatamodel */,
+				749671291052B3AB0057A3A6 /* SwankNote 9.xcdatamodel */,
 			);
-			currentVersion = 74F1870A1044DA40007EEB2A /* SwankNote 8.xcdatamodel */;
+			currentVersion = 749671291052B3AB0057A3A6 /* SwankNote 9.xcdatamodel */;
 			path = SwankNote.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

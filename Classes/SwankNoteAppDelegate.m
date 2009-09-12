@@ -1,19 +1,25 @@
-#import "SwankNoteAppDelegate.h"
 #import "SwankRootViewController.h"
+#import "TopLevelViewController.h"
 
 @implementation SwankNoteAppDelegate
 
 @synthesize window;
-@synthesize swankRootViewController;
+@synthesize navController;
+@synthesize synchronizer;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
-    
-    // Override point for customization after app launch    
+  // Override point for customization after app launch
 
-	[window addSubview:swankRootViewController.view];
+  self.synchronizer = [[NoteSync alloc] init];
+  [self.synchronizer updateNotes];
+
+  TopLevelViewController *top = (TopLevelViewController *)navController.topViewController;
+  [top initWithStyle:UITableViewStyleGrouped];
+	[window addSubview:navController.view];
+  
 	[window makeKeyAndVisible];
 }
 
@@ -53,6 +59,11 @@
 
 #pragma mark -
 #pragma mark Core Data stack
++ (NSManagedObjectContext *)context
+{
+  SwankNoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+  return [appDelegate managedObjectContext];
+}
 
 /**
  Returns the managed object context for the application.
@@ -126,7 +137,7 @@
 #pragma mark Memory management
 
 - (void)dealloc {
-	[swankRootViewController release];
+	[navController release];
 	
   [managedObjectContext release];
   [managedObjectModel release];

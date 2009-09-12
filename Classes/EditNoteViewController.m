@@ -2,92 +2,177 @@
 #import "SwankNoteAppDelegate.h"
 #import "IndexViewController.h"
 #import "SwankRootViewController.h"
-#import "SwankNavigator.h"
 #import "Note.h"
 
 @implementation EditNoteViewController
 @synthesize text, backgroundImage;
-@synthesize note;
+@synthesize note, navigation;
+@synthesize noteLeft, noteRight, trash;
+@synthesize tagsController;
 
-- (void)edit
+#pragma mark Public Methods
+- (IBAction)editTags
 {
-  self.note = nil;
-  [self.text setText:@""];
+  [self.navigationController pushViewController:tagsController animated:YES];
 }
 
-- (void)edit:(Note *)newNote
+- (void) synchronize
 {
-  self.note = newNote;
-  [self.text setText:newNote.text];
+  SwankNoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+  [appDelegate.synchronizer updateNotes];
 }
 
-- (IBAction)cancel
+#pragma mark Controller Actions
+- (IBAction)dismissKeyboard:(id)sender
 {
-  [self dismiss:UIModalTransitionStyleCoverVertical];
+  [text resignFirstResponder];
 }
 
-- (IBAction)save
+- (IBAction)cancel:(id)sender
 {
-  NoteFilter *noteFilter = [[NoteFilter alloc] initWithContext];
-  
-  if (note == nil)
-    self.note = [noteFilter newNote];
+  [[note managedObjectContext] rollback];
+  [self.navigationController popViewControllerAnimated:YES];
+}
 
-  note.text = [text text];
-
-  [note save:YES updateTimestamp:YES];
-
-  [noteFilter release];  
-      
-	SwankNoteAppDelegate *app = [[UIApplication sharedApplication] delegate];
-  [[[app swankRootViewController] indexViewController] reload];
-  
-  NoteSync *sync = [[NoteSync alloc] init];
-  [sync updateNotes];
-  [sync release];  
-  
-  [self dismiss:UIModalTransitionStyleCoverVertical];
+- (IBAction)save:(id)sender
+{
+  if ([text isFirstResponder])
+  {
+    [text resignFirstResponder];
+  }
+  else
+  {
+    if (note == nil)
+      note = [NoteFilter newNote];
+    
+    NSString *newTags = [tagsController.currentTags componentsJoinedByString:@" "];
+    
+    note.text = [text text];
+    note.tags = newTags;
+    
+    [note save:YES];    
+    [self synchronize];
+    [self.navigationController popViewControllerAnimated:YES];
+  }
 }
 
 - (IBAction)destroy
 {
   [note destroy];
+  [self synchronize];
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (Note *)noteAtOffset:(NSInteger)offset
+{
+  if (navigation == nil || note == nil)
+    return nil;
   
-  NoteSync *sync = [[NoteSync alloc] init];
-  [sync updateNotes];
-  [sync release];  
+  NSInteger index = [navigation indexOfObject:note];
   
-  [self dismiss:UIModalTransitionStyleCoverVertical];
+  if (index == NSNotFound)
+    return nil;
+  
+  NSInteger otherNoteIndex = index + offset;
+  
+  if (otherNoteIndex < 0 || otherNoteIndex >= [navigation count])
+    return nil;
+  
+  return [navigation objectAtIndex:otherNoteIndex];
 }
 
 - (IBAction)previous
 {
-  [self edit:[self previousNote:note]];
+  Note *previousNote = [self noteAtOffset:-1];
+  
+  if (previousNote != nil)
+    self.note = previousNote;
+  
+  [self viewWillAppear:NO];
 }
 
 - (IBAction)next
 {
-  [self edit:[self nextNote:note]];
+  Note *nextNote = [self noteAtOffset:+1];
+  
+  if (nextNote != nil)
+    self.note = nextNote;
+  
+  [self viewWillAppear:NO];
 }
 
-- (void)dismiss:(UIModalTransitionStyle)style
+- (void)setNote:(Note *)newNote
 {
-  self.note = nil;
-  [self reloadIndex];
-  self.modalTransitionStyle = style;
-  [self dismissModalViewControllerAnimated:YES];  
+  note = newNote;
+  [tagsController resetForNote:note];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+#pragma mark View Initializers
+- (void)viewDidLoad
 {
-  if (self.backgroundImage == nil)
+  [super viewDidLoad];
+  
+  // Set the left navigation button.
+  
+  UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" 
+                                                                   style:UIBarButtonItemStyleBordered 
+                                                                  target:self 
+                                                                  action:@selector(cancel:)];
+  self.navigationItem.leftBarButtonItem = cancelButton;
+  [cancelButton release];
+  
+  // Set the right navigation button.
+  
+  UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" 
+                                                                 style:UIBarButtonItemStyleDone 
+                                                                target:self 
+                                                                action:@selector(save:)];
+  self.navigationItem.rightBarButtonItem = saveButton;
+  [saveButton release];
+  
+  // Set the editor background image.
+  
+  if (self.backgroundImage == nil && FALSE)
   {
     self.backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notepaper.png"]];
     [self.view addSubview: self.backgroundImage];
     [self.view sendSubviewToBack: self.backgroundImage];
   }
   
+  // Add keyboard hooks.
+  
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+  [nc addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+  [nc addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+  
+  // Add tag editor.
+  
+  EditNoteTagsViewController *newTagsController = [[EditNoteTagsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+  self.tagsController = newTagsController;
+  [newTagsController resetForNote:note];
+  [newTagsController release];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
   [super viewWillAppear:animated];
+  
+  if (note == nil)
+    text.text = @"";
+  else
+    text.text = note.text;
+  
+  noteLeft.enabled = [self noteAtOffset:-1] != nil;
+  noteRight.enabled = [self noteAtOffset:+1] != nil;
+  trash.enabled = note != nil;
+  
+  if ([text.text length] == 0)
+    [text becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  note.text = text.text;
 }
 
 - (void)viewDidUnload 
@@ -95,6 +180,10 @@
   self.backgroundImage = nil;
   self.note = nil;
   self.text = nil;
+  self.noteLeft = nil;
+  self.noteRight = nil;
+  self.trash = nil;
+  self.tagsController = nil;
 }
 
 - (void)dealloc 
@@ -102,47 +191,50 @@
   [backgroundImage release];
   [note release];
   [text release];
+  [noteLeft release];
+  [noteRight release];
+  [trash release];
+  [tagsController release];
   [super dealloc];
 }
 
-#pragma mark UITextViewDelegate
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+#pragma mark Keyboard Hooks
+-(void) keyboardWillShow:(NSNotification *)notification
 {
-	if (!viewShifted)
-  {		
-    // don't shift if it's already shifted
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:kVerticalOffsetAnimationDuration];
-    
-		CGRect rect = textView.frame;		
-		rect.size.height -= kOFFSET_FOR_KEYBOARD;
-		textView.frame = rect;
-    
-		[UIView commitAnimations];
-		
-		viewShifted = TRUE;
-	}
+  // Change the right button to Done, to dismiss the keyboard.
   
-	return YES;
+  self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
+  self.navigationItem.rightBarButtonItem.title = @"Done";
+  self.navigationItem.rightBarButtonItem.action = @selector(dismissKeyboard:);
+  
+  // Adjust the text view to accomidate the keyboard.
+  
+  CGRect textDim = text.frame;
+  CGRect keyboardDim;
+  
+  [[notification.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardDim];
+  textDim.size.height -= keyboardDim.size.height - 70;
+  
+  text.frame = textDim;
 }
 
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+-(void) keyboardWillHide:(NSNotification *)notification
 {
-  if (viewShifted)
-  {
-    [UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:kVerticalOffsetAnimationDuration];
-    
-		CGRect rect = textView.frame;
-		rect.size.height += kOFFSET_FOR_KEYBOARD;
-		textView.frame = rect;
-    
-		[UIView commitAnimations];
-		
-		viewShifted = FALSE;
-  }
+  // Change right button to Save.
   
-  return YES;
+  self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
+  self.navigationItem.rightBarButtonItem.title = @"Save";
+  self.navigationItem.rightBarButtonItem.action = @selector(save:);
+  
+  // Adjust the text view to its original size.
+  
+  CGRect textDim = text.frame;
+  CGRect keyboardDim;
+  
+  [[notification.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardDim];
+  textDim.size.height += keyboardDim.size.height - 70;
+  
+  text.frame = textDim;
 }
 
 @end

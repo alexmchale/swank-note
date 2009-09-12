@@ -21,4 +21,19 @@
   return [NSMakeCollectable(s) autorelease];
 }
 
+- (NSArray *)splitForTags
+{
+  NSMutableArray *cleanArray = [[[NSMutableArray alloc] init] autorelease];
+  NSString *cleanString = [self lowercaseString];
+  NSArray *tagsArray = [cleanString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+  
+  for (NSString *tag in tagsArray)
+  {    
+    if ([tag length] > 0 && ![cleanArray containsObject:tag])
+      [cleanArray addObject:tag];
+  }
+  
+  return cleanArray;
+}
+
 @end

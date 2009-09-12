@@ -3,6 +3,7 @@
 @implementation SwankRootViewController
 @synthesize indexViewController;
 @synthesize editNoteViewController;
+@synthesize accountSettingsViewController;
 
 - (void)showEditor
 {
@@ -14,6 +15,18 @@
 	}
 
   [self presentModalViewController:editNoteViewController animated:YES];
+}
+
+- (void)showSettings
+{
+  if (self.accountSettingsViewController == nil)
+  {
+    AccountSettingsViewController *settings = [[AccountSettingsViewController alloc] initWithNibName:@"AccountSettingsViewController" bundle:nil];
+    self.accountSettingsViewController = settings;
+    [settings release];
+  }
+  
+  [self presentModalViewController:accountSettingsViewController animated:YES];
 }
 
 - (void)viewDidLoad

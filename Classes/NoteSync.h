@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "Note.h"
+#import "NoteDownloader.h"
+#import "NoteUploader.h"
 
 @protocol NoteSyncDelegate
 
@@ -10,14 +12,13 @@
 
 @interface NoteSync : NSObject
 {
-  id<NoteSyncDelegate> delegate;
-  bool running;
+  NoteDownloader *downloader;
+  NoteUploader *uploader;
 }
 
-@property (nonatomic, retain) id<NoteSyncDelegate> delegate;
-@property bool running;
+@property (nonatomic, retain) NoteDownloader *downloader;
+@property (nonatomic, retain) NoteUploader *uploader;
 
 - (void)updateNotes;
-- (void)syncNotes;
 
 @end

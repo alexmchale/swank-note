@@ -1,23 +1,23 @@
 #import <UIKit/UIKit.h>
-#import "SwankNavigator.h"
 #import "NoteFilter.h"
 #import "NoteSync.h"
+#import "ChildViewController.h"
+#import "EditNoteViewController.h"
 
-@interface IndexViewController : SwankNavigator <UITableViewDelegate, UITableViewDataSource, NoteSyncDelegate, UISearchBarDelegate>
+@interface IndexViewController : ChildViewController <NoteSyncDelegate>
+//SwankNavigator <UITableViewDelegate, UITableViewDataSource, NoteSyncDelegate, UISearchBarDelegate>
 {
-  UITableView *table;
   UISearchBar *searchBar;
-  NoteFilter *noteFilter;
-  NoteSync *noteSync;
+  NSArray *notes;
+  EditNoteViewController *noteEditor;
+  NSString *filterForTag;
 }
 
-@property (nonatomic, retain) IBOutlet UITableView *table;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, retain) NoteFilter *noteFilter;
-@property (nonatomic, retain) NoteSync *noteSync;
+@property (nonatomic, retain) NSArray *notes;
+@property (nonatomic, retain) EditNoteViewController *noteEditor;
+@property (nonatomic, retain) NSString *filterForTag;
 
-- (IBAction)sync;
-- (IBAction)composeNewMessage;
 - (IBAction)showSearchBar;
 - (void)reload;
 

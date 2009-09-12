@@ -1,15 +1,11 @@
-//
-//  SwankNoteAppDelegate.h
-//  SwankNote
-//
-//  Created by Alex McHale on 8/20/09.
-//  Copyright __MyCompanyName__ 2009. All rights reserved.
-//
+#import "NoteSync.h"
 
 @class SwankRootViewController;
 
 @interface SwankNoteAppDelegate : NSObject <UIApplicationDelegate> {
-	SwankRootViewController *swankRootViewController;
+  UINavigationController *navController;
+  
+  NoteSync *synchronizer;
 	
   NSManagedObjectModel *managedObjectModel;
   NSManagedObjectContext *managedObjectContext;	    
@@ -18,9 +14,12 @@
   UIWindow *window;
 }
 
++ (NSManagedObjectContext *)context;
 - (IBAction)saveAction:sender;
 
-@property (nonatomic, retain) IBOutlet SwankRootViewController *swankRootViewController;
+@property (nonatomic, retain) IBOutlet UINavigationController *navController;
+
+@property (nonatomic, retain) NoteSync *synchronizer;
 
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;

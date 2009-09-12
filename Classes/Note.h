@@ -14,7 +14,7 @@
 @property (nonatomic, retain) NSNumber *dirty;
 
 - (NSString *)swankDbPostPath;
-- (void)save:(bool)isDirty updateTimestamp:(bool)updateTimestamp;
+- (void)save:(bool)isDirty;
 - (void)destroy;
 
 @end

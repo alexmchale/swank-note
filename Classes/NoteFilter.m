@@ -3,27 +3,9 @@
 
 @implementation NoteFilter
 
-@synthesize context, searchTerm;
-
-- (NoteFilter *)initWithContext
++ (Note *)newNote
 {
-  [super init];
-  
-  SwankNoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-  NSPersistentStoreCoordinator *coordinator = [appDelegate persistentStoreCoordinator];
-  
-  if (coordinator != nil)
-  {
-    self.context = [[NSManagedObjectContext alloc] init];
-    [context setPersistentStoreCoordinator: coordinator];
-    [context setRetainsRegisteredObjects:YES];
-  }
-  
-  return self;
-}
-
-- (Note *)newNote
-{
+  NSManagedObjectContext *context = [SwankNoteAppDelegate context];
   Note *note = [NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:context];
   note.swankId = [NSNumber numberWithInt:0];
   note.createdAt = [NSDate date];
@@ -31,15 +13,10 @@
   return note;
 }
 
-- (void)cancelChanges
-{
-  [context rollback];
-}
-
-- (NSFetchRequest *)request
++ (NSFetchRequest *)request
 {
   NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Note" 
-                                                       inManagedObjectContext:context];
+                                                       inManagedObjectContext:[SwankNoteAppDelegate context]];
   
   NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO];
   
@@ -47,30 +24,38 @@
   [request setEntity:entityDescription];
   [request setSortDescriptors:[NSArray arrayWithObject:sort]];
   
-  if (self.searchTerm != nil && [self.searchTerm length] > 0)
-  {
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"text CONTAINS[cd] %@", searchTerm];
-    [request setPredicate:pred];
-  }
-  else
-  {
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(text != nil) && (text != '')"];
-    [request setPredicate:pred];
-  }
+  NSPredicate *pred = [NSPredicate predicateWithFormat:@"(text != nil) && (text != '')"];
+  [request setPredicate:pred];
   
   [sort release];
   
   return request;
 }
 
-- (Note *)findBySwankId:(NSNumber *)swankId
++ (NSArray *) fetchRecentNotes:(NSInteger)count
+{
+  if (count <= 0)
+    return [NSArray arrayWithObjects:nil];
+  
+  NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO];
+  
+  NSFetchRequest *req = [self request];
+  [req setFetchLimit:count];
+  [req setSortDescriptors:[NSArray arrayWithObject:sort]];
+  
+  [sort release];
+  
+  return [[SwankNoteAppDelegate context] executeFetchRequest:req error:nil];
+}
+
++ (Note *) fetchBySwankId:(NSNumber *)swankId
 {
   if (swankId == nil)
     return nil;
   
   NSFetchRequest *req = [self request];
   [req setPredicate:[NSPredicate predicateWithFormat:@"swankId=%@", swankId]];
-  NSArray *res = [self.context executeFetchRequest:req error:nil];
+  NSArray *res = [[SwankNoteAppDelegate context] executeFetchRequest:req error:nil];
   
   if (res == nil || [res count] == 0)
     return nil;
@@ -78,7 +63,7 @@
   return [res objectAtIndex:0];
 }
 
-- (NSDate *)swankSyncTime
++ (NSDate *)swankSyncTime
 {
   NSFetchRequest *req = [self request];
   
@@ -86,7 +71,8 @@
   [req setSortDescriptors:[NSArray arrayWithObject:sort]];
   [req setPredicate:[NSPredicate predicateWithFormat:@"dirty=0 AND swankId>0"]];
   [req setFetchLimit:1];
-  NSArray *res = [self.context executeFetchRequest:req error:nil];
+  
+  NSArray *res = [[SwankNoteAppDelegate context] executeFetchRequest:req error:nil];
   
   [sort release];
   
@@ -94,45 +80,86 @@
     return nil;
   
   Note *note = [res objectAtIndex:0];
+  NSDate *lastUpdateDate = note.updatedAt;
   
-  return note.updatedAt;
+  return lastUpdateDate;
 }
 
-- (void)searchText:(NSString *)newSearchTerm
++ (NSInteger)count
 {
-  self.searchTerm = newSearchTerm;
+  return [[SwankNoteAppDelegate context] countForFetchRequest:[self request] error:nil];
 }
 
-- (void)resetContext
++ (Note *) fetchFirstDirtyNote
 {
-  [context reset];
+  NSFetchRequest *req = [self request];
+  [req setPredicate:[NSPredicate predicateWithFormat:@"dirty=%@", [NSNumber numberWithBool:YES]]];
+  [req setFetchLimit:1];
+  
+  NSArray *notes = [[SwankNoteAppDelegate context] executeFetchRequest:req error:nil];
+  
+  if (notes == nil || [notes count] == 0)
+    return nil;
+  
+  return [notes objectAtIndex:0];
 }
 
-- (NSInteger)count
-{
-  return [self.context countForFetchRequest:[self request] error:nil];
-}
-
-- (NSArray *)fetchDirtyNotes:(bool)dirty
++ (NSArray *)fetchDirtyNotes:(bool)dirty
 {
   NSFetchRequest *req = [self request];
   [req setPredicate:[NSPredicate predicateWithFormat:@"dirty=%@", [NSNumber numberWithBool:dirty]]];
   
-  return [self.context executeFetchRequest:req error:nil];
+  return [[SwankNoteAppDelegate context] executeFetchRequest:req error:nil];
 }
 
-- (NSArray *)fetchAll
++ (NSArray *)fetchAll
 {
-  return [self.context executeFetchRequest:[self request] error:nil];
+  return [[SwankNoteAppDelegate context] executeFetchRequest:[self request] error:nil];
 }
 
-- (Note *)atIndex:(NSInteger)index
++ (NSArray *)fetchAllWithTag:(NSString *)tag
+{
+  NSFetchRequest *req = [self request];
+  
+  NSString *tag1 = [[NSString alloc] initWithFormat:@"* %@", tag];
+  NSString *tag2 = [[NSString alloc] initWithFormat:@"%@ *", tag];
+  NSString *tag3 = [[NSString alloc] initWithFormat:@"* %@ *", tag];
+  
+  [req setPredicate:[NSPredicate predicateWithFormat:@"text != nil && text != '' && (tags LIKE %@ || tags LIKE %@ || tags LIKE %@ || tags LIKE %@)", tag, tag1, tag2, tag3]];
+  
+  [tag1 release];
+  [tag2 release];
+  [tag3 release];
+  
+  return [[SwankNoteAppDelegate context] executeFetchRequest:req error:nil];
+}
+
++ (NSArray *)fetchAllTags
+{
+  NSMutableSet *tags = [[NSMutableSet alloc] init];
+  
+  for (Note *note in [self fetchAll])
+  {
+    if (note.tags != nil)
+    {
+      for (NSString *tag in [note.tags componentsSeparatedByString:@" "])
+      {
+        if ([tag length] > 0)
+          [tags addObject:tag];
+      }
+    }
+  }
+  
+  return [[tags allObjects] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+}
+
++ (Note *)atIndex:(NSInteger)index
 {
   NSFetchRequest *request = [self request];
   [request setFetchOffset:index];
   [request setFetchLimit:1];
 
-  NSArray *result = [self.context executeFetchRequest:request error:nil];
+  NSArray *result = [[SwankNoteAppDelegate context] executeFetchRequest:request error:nil];
   
   if ([result count] > 0)
     return [result objectAtIndex:0];
@@ -140,16 +167,10 @@
   return nil;
 }
 
-- (NSInteger)indexOf:(Note *)note
++ (NSInteger)indexOf:(Note *)note
 {
-  NSArray *result = [self.context executeFetchRequest:[self request] error:nil];
+  NSArray *result = [[SwankNoteAppDelegate context] executeFetchRequest:[self request] error:nil];
   return [result indexOfObject:note];
-}
-
-- (void)dealloc
-{
-  [context release];
-  [super dealloc];
 }
 
 @end

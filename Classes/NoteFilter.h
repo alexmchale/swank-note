@@ -3,26 +3,22 @@
 
 @interface NoteFilter : NSObject
 {
-  NSManagedObjectContext *context;
-  NSString *searchTerm;
 }
 
-@property (nonatomic, retain) NSManagedObjectContext *context;
-@property (nonatomic, retain) NSString *searchTerm;
++ (Note *) newNote;
 
-- (NoteFilter *)initWithContext;
++ (NSDate *) swankSyncTime;
++ (NSInteger) count;
 
-- (Note *)findBySwankId:(NSNumber *)swankId;
++ (NSArray *) fetchRecentNotes:(NSInteger)count;
++ (Note *) fetchFirstDirtyNote;
++ (NSArray *) fetchDirtyNotes:(bool)dirty;
++ (NSArray *) fetchAll;
++ (NSArray *) fetchAllWithTag:(NSString *)tag;
++ (NSArray *) fetchAllTags;
++ (Note *) fetchBySwankId:(NSNumber *)swankId;
 
-- (Note *)newNote;
-
-- (void)searchText:(NSString *)searchTerm;
-- (void)resetContext;
-- (NSDate *)swankSyncTime;
-- (NSInteger)count;
-- (NSArray *)fetchDirtyNotes:(bool)dirty;
-- (NSArray *)fetchAll;
-- (Note *)atIndex:(NSInteger)index;
-- (NSInteger)indexOf:(Note *)note;
++ (Note *) atIndex:(NSInteger)index;
++ (NSInteger) indexOf:(Note *)note;
 
 @end
