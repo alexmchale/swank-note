@@ -12,7 +12,7 @@
                                        inManagedObjectContext:[SwankNoteAppDelegate context]];
 }
 
-+ (Account *) create:(NSString *)username withPassword:(NSString *)password
++ (Account *) create:(NSString *)username withPassword:(NSString *)password error:(NSString **)errorMessage
 {
   // Generate data to send to SwankDB.
   
@@ -26,7 +26,6 @@
   
   // Build the URL to post to.
   
-  NSString *kSwankHost = @"swankdb.com:3000";
   NSString *userPath = @"/users";
   NSString *urlString = [NSString stringWithFormat:@"http://%@%@?%@", kSwankHost, userPath, paramString];    
   NSURL *url = [NSURL URLWithString:urlString];
@@ -44,40 +43,42 @@
   // Parse the response, if available.
   
   if (responseData == nil || [responseData length] == 0)
-    return false;
+  {
+    *errorMessage = @"Received no response from SwankDB.";
+    return nil;
+  }
   
   NSDictionary *responseDict = [[CJSONDeserializer deserializer] deserialize:responseData error:nil];
   
   if (responseDict == nil)
-    return false;
+  {
+    *errorMessage = @"Received an invalid response from SwankDB.";
+    return nil;
+  }
   
+  id swankId = [responseDict valueForKey:@"id"];
   id frob = [responseDict valueForKey:@"frob"];
+  *errorMessage = [responseDict valueForKey:@"error_message"];
   
-  // The frob should be a 40-character SHA-1 hex string.
-  
-  if ([frob isKindOfClass:[NSString class]] && [frob length] == 40)
+  if (![*errorMessage isKindOfClass:[NSString class]])
+  {
+    if (!([frob isKindOfClass:[NSString class]] && [frob length] == 40))
+      *errorMessage = @"Account key could not be found.";
+    else if (!([swankId isKindOfClass:[NSNumber class]] && [swankId intValue] > 0))
+      *errorMessage = @"Account identifier could not be found.";
+  }
+
+  if (![*errorMessage isKindOfClass:[NSString class]])
   {
     Account *account = [Account new];
+    account.swankId = swankId;
     account.username = username;
     account.password = password;
     account.frob = frob;
     return account;
   }
   
-  id errorMessage = [responseDict valueForKey:@"error_message"];
-  
-  if (![errorMessage isKindOfClass:[NSString class]])
-    errorMessage = @"There was an error trying to create your account.";
-  
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account Error" 
-                                                  message:errorMessage
-                                                 delegate:nil 
-                                        cancelButtonTitle:@"Okay"
-                                        otherButtonTitles:nil];
-  [alert show];
-  [alert release];
-  
-  return false;
+  return nil;
 }
 
 + (NSFetchRequest *)request
@@ -94,9 +95,35 @@
   return request;
 }
 
+// Get the account after the given account.
+// Returns the first account if the given account is nil.
+// Returns nil if there are no more accounts after this one.
++ (Account *) next:(Account *)account1
+{
+  const NSArray *allAccounts = [self fetchAllAccounts];
+  
+  if (allAccounts == nil || [allAccounts count] == 0)
+    return nil;
+  
+  if (account1 == nil)
+    return [allAccounts objectAtIndex:0];
+  
+  const NSUInteger index1 = [allAccounts indexOfObject:account1];
+  
+  if (index1 == NSNotFound)
+    return nil;
+  
+  const NSUInteger index2 = index1 + 1;
+  
+  if (index2 >= [allAccounts count])
+    return nil;
+  
+  return [allAccounts objectAtIndex:index2];
+}
+
 + (Account *) fetchBySwankId:(NSInteger)swankId
 {
-  if (swankId > 0 && swankId != NSNotFound)
+  if (swankId == 0 || swankId == NSNotFound)
     return nil;
   
   NSFetchRequest *req = [self request];
@@ -153,16 +180,14 @@
 {
   // Generate data to send to SwankDB.
   
-  NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
+  NSMutableDictionary *paramDict = [[[NSMutableDictionary alloc] init] autorelease];
   [paramDict setValue:self.username forKey:@"username"];
   [paramDict setValue:self.password forKey:@"password"];
   [paramDict setValue:@"true" forKey:@"json"];
   NSString *paramString = [paramDict convertDictionaryToURIParameterString];
-  [paramDict release];
   
   // Build the URL to post to.
 
-  NSString *kSwankHost = @"swankdb.com:3000";
   NSString *notePath = @"/users/login";
   NSString *urlString = [NSString stringWithFormat:@"http://%@%@?%@", kSwankHost, notePath, paramString];    
   NSURL *url = [NSURL URLWithString:urlString];
@@ -180,7 +205,7 @@
   // Parse the response, if available.
   
   if (responseData == nil || [responseData length] == 0)
-    return false;
+    return nil;
   
   NSDictionary *responseDict = [[CJSONDeserializer deserializer] deserialize:responseData error:nil];
   
@@ -188,13 +213,21 @@
     return false;
   
   id frob = [responseDict valueForKey:@"frob"];
+  id swankId = [responseDict valueForKey:@"id"];
   
   // The frob should be a 40-character SHA-1 hex string.
   
-  if ([frob isKindOfClass:[NSString class]])
-    return [(NSString *)frob length] == 40;
+  if ([frob isKindOfClass:[NSString class]] && [frob length] == 40)
+    self.frob = frob;
+  else
+    return false;
   
-  return false;
+  if ([swankId isKindOfClass:[NSNumber class]] && [swankId intValue] > 0)
+    self.swankId = swankId;
+  else
+    return false;
+  
+  return true;
 }
 
 - (bool) testConnection:(UIView *)progressViewParent

@@ -10,8 +10,10 @@
 @property (nonatomic, retain) NSString *frob;
 
 + (Account *) new;
-+ (Account *) create:(NSString *)username withPassword:(NSString *)password;
++ (Account *) create:(NSString *)username withPassword:(NSString *)password error:(NSString **)errorMessage;
++ (Account *) next:(Account *)account1;
 + (NSArray *) fetchAllAccounts;
++ (Account *) fetchDefaultAccount;
 + (Account *) fetchByUsername:(NSString *)username;
 
 - (bool) isDefault;

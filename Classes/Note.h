@@ -12,6 +12,7 @@
 @property (nonatomic, retain) NSDate *updatedAt;
 @property (nonatomic, retain) NSDate *swankTime;
 @property (nonatomic, retain) NSNumber *dirty;
+@property (nonatomic, retain) Account *account;
 
 - (NSString *)swankDbPostPath;
 - (void)save:(bool)isDirty;

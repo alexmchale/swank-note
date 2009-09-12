@@ -52,6 +52,9 @@
     
     [note save:YES];    
     [self synchronize];
+    
+    self.note = nil;
+    
     [self.navigationController popViewControllerAnimated:YES];
   }
 }

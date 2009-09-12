@@ -3,6 +3,8 @@
 #import "NoteDownloader.h"
 #import "NoteUploader.h"
 
+#define kSwankHost @"swankdb.com:3000"
+
 @protocol NoteSyncDelegate
 
 - (void)notesWereUpdated;

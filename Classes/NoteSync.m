@@ -6,9 +6,6 @@
 #import "NoteFilter.h"
 #import "NSDictionaryUtilities.h"
 
-#define kSwankHost @"swankdb.com:3000"
-#define kFrob @"91eb85ae181114313fdf441d3a02d7a4a02a0e13"
-
 @implementation NoteSync
 @synthesize downloader, uploader;
 
@@ -30,8 +27,11 @@
 
 - (void) updateNotes
 {
-  [self.downloader startRequest];
-  [self.uploader startRequest];
+  if ([AppSettings sync])
+  {
+    [self.downloader startRequest];
+    [self.uploader startRequest];
+  }
 }
 
 - (void) dealloc

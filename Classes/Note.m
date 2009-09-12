@@ -5,6 +5,7 @@
 @dynamic identity, swankId;
 @dynamic text, tags;
 @dynamic createdAt, updatedAt, swankTime, dirty;
+@dynamic account;
 
 - (NSString *)swankDbPostPath
 {

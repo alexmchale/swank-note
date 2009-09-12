@@ -4,39 +4,40 @@
 #import "CJSONDeserializer.h"
 #import "TopLevelViewController.h"
 
-#define kSwankHost @"swankdb.com:3000"
-#define kFrob @"91eb85ae181114313fdf441d3a02d7a4a02a0e13"
-
 @implementation NoteDownloader
-@synthesize dataCache, connection;
+@synthesize dataCache, connection, account;
 
 - (void) startRequest
 {
   // Do not start a new request if one is already in progress.
   
-  if (self.connection != nil)
+  if (connection != nil)
     return;
   
+  // Determine what account to request.
+  
+  self.account = [Account next:account];
+  
+  if (account == nil || account.frob == nil)
+    return;
+
   // Allocate the buffer for incoming data.
   
-  NSMutableData *newDataCache = [[NSMutableData alloc] init];
-  self.dataCache = newDataCache;
-  [newDataCache release];
+  self.dataCache = [[[NSMutableData alloc] init] autorelease];
   
   // Get the date formatter to use in creating our request.
   
-  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];  
+  NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
   [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
   [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
   
   // Build the URL parameters for the query to SwankDB.
   
-  NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
-  [paramDict setValue:kFrob forKey:@"frob"];
+  NSMutableDictionary *paramDict = [[[NSMutableDictionary alloc] init] autorelease];
+  [paramDict setValue:account.frob forKey:@"frob"];
   [paramDict setValue:@"json" forKey:@"mode"];
   [paramDict setValue:[dateFormatter stringFromDate:[NoteFilter swankSyncTime]] forKey:@"starting_at"];
   NSString *paramString = [paramDict convertDictionaryToURIParameterString];
-  [paramDict release];
   
   // Build the URL to request from SwankDB.
   
@@ -45,11 +46,8 @@
   
   // Start the connection.
 
-  NSURLRequest *req = [[NSURLRequest alloc] initWithURL:url];
-  NSURLConnection *newConn = [[NSURLConnection alloc] initWithRequest:req delegate:self];
-  self.connection = newConn;
-  [newConn release];  
-  [req release];
+  NSURLRequest *req = [[[NSURLRequest alloc] initWithURL:url] autorelease];
+  self.connection = [[[NSURLConnection alloc] initWithRequest:req delegate:self] autorelease];
 }
 
 - (void) importNotes
@@ -122,6 +120,7 @@
 {
   self.dataCache = nil;
   self.connection = nil;
+  [self startRequest];
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
@@ -129,6 +128,16 @@
   [self importNotes];
   self.dataCache = nil;
   self.connection = nil;
+  [self startRequest];
+}
+
+#pragma mark Memory Management
+- (void) dealloc
+{
+  [account release];
+  [dataCache release];
+  [connection release];
+  [super dealloc];
 }
 
 @end

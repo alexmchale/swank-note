@@ -13,6 +13,7 @@ typedef enum
 @synthesize swankSyncEnabled, enableSync, accounts;
 @synthesize accountEditor;
 
+#pragma mark UI Methods
 - (void) viewWillAppear:(BOOL)animated
 {
   self.accounts = [Account fetchAllAccounts];
@@ -69,14 +70,15 @@ typedef enum
   [super dealloc];
 }
 
-- (void) cancel:(id)sender
+#pragma mark Cancel and Save Actions
+- (IBAction) cancel:(id)sender
 {
   self.enableSync = [AppSettings sync];
   [[SwankNoteAppDelegate context] rollback];
   [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) save:(id)sender
+- (IBAction) save:(id)sender
 {
   [AppSettings setSync:swankSyncEnabled.on];
   self.enableSync = [AppSettings sync];

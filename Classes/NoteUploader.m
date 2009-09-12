@@ -4,38 +4,47 @@
 #import "CJSONSerializer.h"
 #import "CJSONDeserializer.h"
 
-#define kSwankHost @"swankdb.com:3000"
-#define kFrob @"91eb85ae181114313fdf441d3a02d7a4a02a0e13"
-
 @implementation NoteUploader
-@synthesize connection, dataCache, noteBeingUploaded;
+@synthesize connection, dataCache, note;
+
+// TODO: This will currently retry until a failure occurrs or it's done.
+// Weakness: if SwankDB breaks and sends incorrect results, it can loop forever.
+
+- (void) getNextNote
+{
+  self.note = [NoteFilter fetchFirstDirtyNote];
+  
+  // Verify that this note has been associated with an account.
+  
+  if (note != nil && note.account == nil)
+  {
+    note.account = [Account fetchDefaultAccount];
+    [[SwankNoteAppDelegate context] save:nil];
+  }
+}
 
 - (void) startRequest
 {
   if (connection != nil)
     return;
+
+  [self getNextNote];
   
-  Note *note = [NoteFilter fetchFirstDirtyNote];
-  self.noteBeingUploaded = note;
-  
-  if (note == nil)
+  if (note == nil || note.account == nil || note.account.frob == nil)
     return;
 
   // Allocate the buffer for incoming data.
   
-  NSMutableData *newDataCache = [[NSMutableData alloc] init];
-  self.dataCache = newDataCache;
-  [newDataCache release];
+  self.dataCache = [[[NSMutableData alloc] init] autorelease];
   
   // Generate data to send to SwankDB.
   
-  NSMutableDictionary *paramDict = [[NSMutableDictionary alloc] init];
-  [paramDict setValue:kFrob forKey:@"frob"];
+  NSMutableDictionary *paramDict = [[[NSMutableDictionary alloc] init] autorelease];
+  [paramDict setValue:note.account.frob forKey:@"frob"];
   [paramDict setValue:note.text forKey:@"entry_content"];
   [paramDict setValue:note.tags forKey:@"entry_tags"];
   [paramDict setValue:@"true" forKey:@"json"];
   NSString *paramString = [paramDict convertDictionaryToURIParameterString];
-  [paramDict release];
   
   // Build the URL to post to.
   
@@ -45,7 +54,7 @@
   
   // Build the post request.
   
-  NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:url];
+  NSMutableURLRequest *req = [[[NSMutableURLRequest alloc] initWithURL:url] autorelease];
   
   if (note.swankId == nil || [note.swankId intValue] == 0)
     [req setHTTPMethod:@"POST"];
@@ -54,18 +63,14 @@
   
   // Post to SwankDB.
   
-  NSURLConnection *newConn = [[NSURLConnection alloc] initWithRequest:req delegate:self];
-  self.connection = newConn;
-  [newConn release];  
-  
-  [req release];
+  self.connection = [[[NSURLConnection alloc] initWithRequest:req delegate:self] autorelease];
 }
 
 - (void) markNoteInResponse
 {
   // This would be an error condition.
   
-  if (noteBeingUploaded == nil)
+  if (note == nil)
     return;
   
   // Flag the note with the new swank id if we just got one.
@@ -75,12 +80,8 @@
   
   if ([swankId isKindOfClass:[NSNumber class]])
   {
-    self.noteBeingUploaded.swankId = swankId;
-    [self.noteBeingUploaded save:NO];
-    
-    // Successfully updated this note.  Start the next update.
-    
-    [self startRequest];
+    note.swankId = swankId;
+    [note save:NO];
   }
 }
 
@@ -94,7 +95,7 @@
 {
   self.dataCache = nil;
   self.connection = nil;
-  self.noteBeingUploaded = nil;
+  self.note = nil;
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
@@ -102,7 +103,17 @@
   [self markNoteInResponse];
   self.dataCache = nil;
   self.connection = nil;
-  self.noteBeingUploaded = nil;
+  self.note = nil;
+  [self startRequest];
+}
+
+#pragma mark Memory Management
+- (void) dealloc
+{
+  [note release];
+  [dataCache release];
+  [connection release];
+  [super dealloc];
 }
 
 @end

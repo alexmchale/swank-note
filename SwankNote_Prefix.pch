@@ -12,6 +12,7 @@
   #import <UIKit/UIKit.h>
   #import <CoreData/CoreData.h>
 
+  #import "Account.h"
   #import "ChildViewController.h"
   #import "UITableViewUtilities.h"
   #import "NSArrayUtilities.h"

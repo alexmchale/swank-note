@@ -108,7 +108,17 @@ enum
   
   if (isNewAccount.on)
   {
-    self.account = [Account create:username.text withPassword:password.text];
+    NSString *error;
+    
+    self.account = [Account create:username.text withPassword:password.text error:&error];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account Error" 
+                                                    message:error
+                                                   delegate:nil 
+                                          cancelButtonTitle:@"Okay"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
     
     if (account == nil)
       return;
@@ -120,7 +130,7 @@ enum
   {
     if ([Account fetchByUsername:username.text] != nil)
     {
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Authentication Error" 
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account Error" 
                                                       message:@"An account with that username already exists in SwankNote."
                                                      delegate:nil 
                                             cancelButtonTitle:@"Okay"
@@ -139,6 +149,9 @@ enum
   
   if ([self.account testConnection:self.view])
   {
+    if ([Account fetchDefaultAccount] == nil && [account.swankId intValue] > 0)
+      [AppSettings setDefaultAccountSwankId:[account.swankId intValue]];
+    
     [[SwankNoteAppDelegate context] save:nil];
     [self.navigationController popViewControllerAnimated:YES];
   }
@@ -148,7 +161,7 @@ enum
     [[SwankNoteAppDelegate context] rollback];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Authentication Error" 
-                                                    message:@"Failed to authenticate that username and password."
+                                                    message:@"SwankNote could not authenticate that username and password with SwankDB."
                                                    delegate:nil 
                                           cancelButtonTitle:@"Okay"
                                           otherButtonTitles:nil];

@@ -100,6 +100,7 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SwankNote_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwankNote_Prefix.pch; sourceTree = "<group>"; };
+		74089E2C105BAF7A00BE5B68 /* SwankNote 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 10.xcdatamodel"; sourceTree = "<group>"; };
 		741DD95F10415E030036534B /* SwankNote 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 5.xcdatamodel"; sourceTree = "<group>"; };
 		741DDAE71041B06F0036534B /* NoteFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteFilter.h; sourceTree = "<group>"; };
 		741DDAE81041B06F0036534B /* NoteFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteFilter.m; sourceTree = "<group>"; };
@@ -784,8 +785,9 @@
 				74F186F3104402DE007EEB2A /* SwankNote 7.xcdatamodel */,
 				74F1870A1044DA40007EEB2A /* SwankNote 8.xcdatamodel */,
 				749671291052B3AB0057A3A6 /* SwankNote 9.xcdatamodel */,
+				74089E2C105BAF7A00BE5B68 /* SwankNote 10.xcdatamodel */,
 			);
-			currentVersion = 749671291052B3AB0057A3A6 /* SwankNote 9.xcdatamodel */;
+			currentVersion = 74089E2C105BAF7A00BE5B68 /* SwankNote 10.xcdatamodel */;
 			path = SwankNote.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
