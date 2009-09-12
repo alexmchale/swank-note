@@ -83,6 +83,7 @@ typedef enum
   [AppSettings setSync:swankSyncEnabled.on];
   self.enableSync = [AppSettings sync];
   [[SwankNoteAppDelegate context] save:nil];
+  [self synchronize];
   [self.navigationController popViewControllerAnimated:YES];
 }
 

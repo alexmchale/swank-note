@@ -7,4 +7,6 @@
 
 @property (nonatomic, retain) UIImage *rowImage;
 
+- (void) synchronize;
+
 @end
