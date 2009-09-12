@@ -34,6 +34,8 @@ enum
 {
   [super viewWillAppear:animated];
   
+  markAsDefault = false;
+  
   [self.tableView reloadData];
 }
 
@@ -149,7 +151,7 @@ enum
   
   if ([self.account testConnection:self.view])
   {
-    if ([Account fetchDefaultAccount] == nil && [account.swankId intValue] > 0)
+    if (markAsDefault || ([Account fetchDefaultAccount] == nil && [account.swankId intValue] > 0))
       [AppSettings setDefaultAccountSwankId:[account.swankId intValue]];
     
     [[SwankNoteAppDelegate context] save:nil];
@@ -228,6 +230,8 @@ enum
       break;
       
     case kSectionUseAsDefault:
+      markAsDefault = true;
+      [tableView reloadData];
       break;
       
     case kSectionDeleteAccount:
@@ -246,9 +250,14 @@ enum
 {
   switch (section)
   {
-    case kSectionCredentials:   return (account == nil) ? 3 : 2;
-    case kSectionUseAsDefault:  return 1;
-    case kSectionDeleteAccount: return 1;
+    case kSectionCredentials:   
+      return (account == nil) ? 3 : 2;
+    
+    case kSectionUseAsDefault:
+      return (account == nil || [account.swankId intValue] == 0) ? 0 : 1;
+    
+    case kSectionDeleteAccount:
+      return (account == nil) ? 0 : 1;
   }
   
   return 0;
@@ -324,6 +333,11 @@ enum
       if (indexPath.section == kSectionUseAsDefault)
       {
         cell.textLabel.text = @"Use as Default Account";
+        
+        if ([account isDefault] || markAsDefault)
+          cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        else
+          cell.accessoryType = UITableViewCellAccessoryNone;
       }
       else if (indexPath.section == kSectionDeleteAccount)
       {

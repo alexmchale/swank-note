@@ -4,6 +4,8 @@
 {
   Account *account;
   
+  bool markAsDefault;
+  
   UITextField *username;
   UITextField *password;
   UISwitch *isNewAccount;

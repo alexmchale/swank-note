@@ -137,7 +137,28 @@
 
 + (Account *) fetchDefaultAccount
 {
-  return [self fetchBySwankId:[AppSettings defaultAccountSwankId]];
+  Account *configured = [self fetchBySwankId:[AppSettings defaultAccountSwankId]];
+  
+  if (configured != nil)
+    return configured;
+  
+  NSArray *all = [self fetchAllAccounts];
+  
+  if (all == nil || [all count] == 0)
+    return nil;
+  
+  for (Account *defaulted in all)
+  {
+    NSInteger swankId = [defaulted.swankId integerValue];
+    
+    if (swankId > 0)
+    {
+      [AppSettings setDefaultAccountSwankId:swankId];
+      return defaulted;
+    }
+  }
+
+  return nil;
 }
 
 + (NSArray *) fetchAllAccounts
@@ -165,15 +186,7 @@
 #pragma mark Instance Methods
 - (bool) isDefault
 {
-  if (self.swankId == nil)
-    return false;
-  
-  NSInteger defaultSwankId = [AppSettings defaultAccountSwankId];
-  
-  if (defaultSwankId == NSNotFound)
-    return false;
-  
-  return [self.swankId isEqualToNumber:[NSNumber numberWithInt:defaultSwankId]];
+  return self == [Account fetchDefaultAccount];
 }
 
 - (bool) authenticateByUsername
