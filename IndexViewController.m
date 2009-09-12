@@ -4,6 +4,7 @@
 #import "Note.h"
 #import "NoteFilter.h"
 #import "AppSettings.h"
+#import "AccountImageView.h"
 
 @implementation IndexViewController
 @synthesize notes, searchBar, noteEditor;
@@ -99,7 +100,7 @@
   
   cell.textLabel.text = note.text;
   cell.detailTextLabel.text = detailText; 
-  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; 
+  cell.accessoryView = [[[AccountImageView alloc] initWithColor:[note.account color]] autorelease];
 
   return cell;
 }

@@ -4,6 +4,7 @@
 #import "AccountSettingsViewController.h"
 #import "TagIndexViewController.h"
 #import "EditNoteViewController.h"
+#import "AccountImageView.h"
 
 enum TopLevelSections 
 {
@@ -154,7 +155,7 @@ enum TopLevelSections
       
       Note *note = [recentNotes objectAtIndex:indexPath.row];
       cell.textLabel.text = note.text;
-      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+      cell.accessoryView = [[[AccountImageView alloc] initWithColor:[note.account color]] autorelease];
       
       return cell;
     }
