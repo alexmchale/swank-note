@@ -94,6 +94,7 @@
       note.createdAt = [dateFormatter dateFromString:[noteDict valueForKey:@"created_at"]];
       note.updatedAt = newSwankTime;
       note.swankTime = newSwankTime;
+      note.account = account;
       
       note.dirty = [NSNumber numberWithBool:NO];
       
