@@ -14,6 +14,8 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		7408A0C3105C126900BE5B68 /* AccountImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408A0C2105C126900BE5B68 /* AccountImageView.m */; };
+		7408A0C4105C126900BE5B68 /* AccountImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408A0C2105C126900BE5B68 /* AccountImageView.m */; };
 		741DDAE91041B06F0036534B /* NoteFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DDAE81041B06F0036534B /* NoteFilter.m */; };
 		743AB97E103EB4BE00924994 /* SwankRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743AB97C103EB4BE00924994 /* SwankRootViewController.m */; };
 		743AB97F103EB4BE00924994 /* SwankRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 743AB97D103EB4BE00924994 /* SwankRootViewController.xib */; };
@@ -101,6 +103,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SwankNote_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwankNote_Prefix.pch; sourceTree = "<group>"; };
 		74089E2C105BAF7A00BE5B68 /* SwankNote 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 10.xcdatamodel"; sourceTree = "<group>"; };
+		7408A0C1105C126900BE5B68 /* AccountImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountImageView.h; sourceTree = "<group>"; };
+		7408A0C2105C126900BE5B68 /* AccountImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountImageView.m; sourceTree = "<group>"; };
 		741DD95F10415E030036534B /* SwankNote 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 5.xcdatamodel"; sourceTree = "<group>"; };
 		741DDAE71041B06F0036534B /* NoteFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteFilter.h; sourceTree = "<group>"; };
 		741DDAE81041B06F0036534B /* NoteFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteFilter.m; sourceTree = "<group>"; };
@@ -394,6 +398,8 @@
 				74967D3F1058B0D60057A3A6 /* Account.m */,
 				74967D8C10591ECF0057A3A6 /* EditAccountViewController.h */,
 				74967D8D10591ECF0057A3A6 /* EditAccountViewController.m */,
+				7408A0C1105C126900BE5B68 /* AccountImageView.h */,
+				7408A0C2105C126900BE5B68 /* AccountImageView.m */,
 			);
 			name = "Account Settings";
 			sourceTree = "<group>";
@@ -590,6 +596,7 @@
 				74967D401058B0D60057A3A6 /* Account.m in Sources */,
 				74967D8E10591ECF0057A3A6 /* EditAccountViewController.m in Sources */,
 				74967E6C105A2CCE0057A3A6 /* MBProgressHUD.m in Sources */,
+				7408A0C4105C126900BE5B68 /* AccountImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +629,7 @@
 				74967D411058B0D60057A3A6 /* Account.m in Sources */,
 				74967D8F10591ECF0057A3A6 /* EditAccountViewController.m in Sources */,
 				74967E6D105A2CCE0057A3A6 /* MBProgressHUD.m in Sources */,
+				7408A0C3105C126900BE5B68 /* AccountImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
