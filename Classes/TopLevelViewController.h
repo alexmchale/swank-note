@@ -6,6 +6,8 @@
   NSArray *controllers;
   NSArray *recentNotes;
   EditNoteViewController *recentNoteEditor;
+  
+  bool multipleAccounts;
 }
 
 @property (nonatomic, retain) NSArray *controllers;

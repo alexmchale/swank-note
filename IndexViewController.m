@@ -13,7 +13,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  
+  multipleAccounts = [[Account fetchAllAccounts] count] > 1;
   [self reload];
 }
 
@@ -100,7 +100,11 @@
   
   cell.textLabel.text = note.text;
   cell.detailTextLabel.text = detailText; 
-  cell.accessoryView = [[[AccountImageView alloc] initWithColor:[note.account color]] autorelease];
+  
+  if (multipleAccounts)
+    cell.accessoryView = [[[AccountImageView alloc] initWithColor:[note.account color]] autorelease];
+  else
+    cell.accessoryView = nil;
 
   return cell;
 }

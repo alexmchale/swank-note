@@ -11,6 +11,8 @@
   NSArray *notes;
   EditNoteViewController *noteEditor;
   NSString *filterForTag;
+  
+  bool multipleAccounts;
 }
 
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;

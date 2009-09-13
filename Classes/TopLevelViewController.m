@@ -27,6 +27,7 @@ enum TopLevelSections
 
 - (void)viewWillAppear:(BOOL)animated
 {
+  multipleAccounts = [[Account fetchAllAccounts] count] > 1;
   [self refreshRecentNotes];
 }
 
@@ -155,7 +156,11 @@ enum TopLevelSections
       
       Note *note = [recentNotes objectAtIndex:indexPath.row];
       cell.textLabel.text = note.text;
-      cell.accessoryView = [[[AccountImageView alloc] initWithColor:[note.account color]] autorelease];
+      
+      if (multipleAccounts)
+        cell.accessoryView = [[[AccountImageView alloc] initWithColor:[note.account color]] autorelease];
+      else
+        cell.accessoryView = nil;
       
       return cell;
     }
