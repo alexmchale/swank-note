@@ -1,6 +1,7 @@
 #import "AccountSettingsViewController.h"
 #import "UITableViewUtilities.h"
 #import "NSArrayUtilities.h"
+#import "AccountImageView.h"
 
 typedef enum
 {
@@ -176,6 +177,7 @@ typedef enum
   Account *account = [accounts objectAtIndex:row];
 
   cell.textLabel.text = account.username;
+  cell.accessoryView = [[[AccountImageView alloc] initWithColor:[account color]] autorelease];
   
   return cell;
 }
