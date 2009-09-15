@@ -23,12 +23,16 @@
   self.dirty = [NSNumber numberWithBool:isDirty];
   
   [[self managedObjectContext] save:nil];
+  
+  [AppSettings resetAllTags];
 }
 
 - (void)destroy
 {
   self.text = @"";
   [self save:YES];
+  
+  [AppSettings resetAllTags];
 }
 
 @end

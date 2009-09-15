@@ -3,24 +3,33 @@
 #import "NewTagsViewController.h"
 
 @implementation EditNoteTagsViewController
-@synthesize allTags, currentTags, orderedTags, newTagsController;
+@synthesize allTags, currentTags, newTagsController;
 
-- (void)resetForNote:(Note *)note
+- (void) resetForNote:(Note *)note
 {
   // Get the list of all saved tags.
-  
-  self.allTags = [NSMutableArray arrayWithArray:[NoteFilter fetchAllTags]];
-  
   // Move all tags in the given note from the list of all tags to the list of current tags.
   
-  NSMutableArray *newCurrentTags = [[NSMutableArray alloc] init];
-  self.currentTags = newCurrentTags;
+  NSArray *noteTags = [note.tags splitForTags];
+  
+  self.allTags = [[[NSMutableArray alloc] init] autorelease];
+  self.currentTags = [[[NSMutableArray alloc] init] autorelease];
+  
+  for (NSString *tag in [AppSettings allTags])
+  {
+    if ([noteTags containsObject:tag])
+      [currentTags addObject:[tag copy]];
+    else
+      [allTags addObject:[tag copy]];
+  }
+
+  /*
   for (NSString *tag in [note.tags splitForTags])
   {
     [allTags removeObject:tag];
     [currentTags addObject:tag];
   }
-  [newCurrentTags release];
+   */
   
   // Reset the view for the new data.
 

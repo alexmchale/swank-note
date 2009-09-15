@@ -7,7 +7,7 @@
 {
   // Update Tags
   
-  self.tags = [NoteFilter fetchAllTags];
+  self.tags = [AppSettings allTags];
   
   [self.tableView reloadData];
 }
