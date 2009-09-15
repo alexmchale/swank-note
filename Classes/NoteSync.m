@@ -2,7 +2,6 @@
 #import "CJSONSerializer.h"
 #import "CJSONDeserializer.h"
 #import "SwankNoteAppDelegate.h"
-#import "SwankRootViewController.h"
 #import "NoteFilter.h"
 #import "NSDictionaryUtilities.h"
 

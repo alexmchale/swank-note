@@ -1,4 +1,3 @@
-#import "SwankRootViewController.h"
 #import "TopLevelViewController.h"
 
 @implementation SwankNoteAppDelegate

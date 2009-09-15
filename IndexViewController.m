@@ -1,6 +1,5 @@
 #import "IndexViewController.h"
 #import "SwankNoteAppDelegate.h"
-#import "SwankRootViewController.h"
 #import "Note.h"
 #import "NoteFilter.h"
 #import "AppSettings.h"
