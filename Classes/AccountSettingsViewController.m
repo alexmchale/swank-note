@@ -172,12 +172,17 @@ typedef enum
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableId];
   
   if (cell == nil)
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableId] autorelease];
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:tableId] autorelease];
   
   Account *account = [accounts objectAtIndex:row];
 
   cell.textLabel.text = account.username;
   cell.accessoryView = [[[AccountImageView alloc] initWithColor:[account color]] autorelease];
+  
+  if ([account isDefault] && [accounts count] > 1)
+    cell.detailTextLabel.text = @"(Default)";
+  else
+    cell.detailTextLabel.text = @"";
   
   return cell;
 }

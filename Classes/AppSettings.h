@@ -10,4 +10,7 @@
 + (NSInteger) defaultAccountSwankId;
 + (void) setDefaultAccountSwankId:(NSInteger)swankId;
 
++ (NSArray *) allTags;
++ (void) resetAllTags;
+
 @end

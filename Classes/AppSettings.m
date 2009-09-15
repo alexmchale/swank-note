@@ -1,5 +1,6 @@
 #import "AppSettings.h"
 #import "SwankNoteAppDelegate.h"
+#import "NoteFilter.h"
 
 @implementation AppSettings
 
@@ -85,6 +86,26 @@
 + (void) setDefaultAccountSwankId:(NSInteger)swankId
 {
   [self valueForKey:@"defaultAccountSwankId" newValue:[NSString stringWithFormat:@"%d", swankId]];
+}
+
++ (NSArray *) allTags
+{
+  NSArray *tags = [[self valueForKey:@"allTags"] splitForTags];
+  
+  if (tags == nil)
+    return [[[NSArray alloc] init] autorelease];
+  
+  return tags;
+}
+
++ (void) resetAllTags
+{
+  NSArray *tags = [NoteFilter fetchAllTags];
+  
+  if (tags == nil)
+    [self valueForKey:@"allTags" newValue:@""];
+  else
+    [self valueForKey:@"allTags" newValue:[tags componentsJoinedByString:@" "]];
 }
 
 @end
