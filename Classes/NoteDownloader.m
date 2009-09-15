@@ -36,7 +36,7 @@
   NSMutableDictionary *paramDict = [[[NSMutableDictionary alloc] init] autorelease];
   [paramDict setValue:account.frob forKey:@"frob"];
   [paramDict setValue:@"json" forKey:@"mode"];
-  [paramDict setValue:[dateFormatter stringFromDate:[NoteFilter swankSyncTime]] forKey:@"starting_at"];
+  [paramDict setValue:[dateFormatter stringFromDate:[NoteFilter swankSyncTime:account]] forKey:@"starting_at"];
   NSString *paramString = [paramDict convertDictionaryToURIParameterString];
   
   // Build the URL to request from SwankDB.

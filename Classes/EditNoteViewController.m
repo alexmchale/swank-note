@@ -3,13 +3,33 @@
 #import "IndexViewController.h"
 #import "Note.h"
 
+#define kKeyboardHeightPortrait 216
+#define kKeyboardHeightLandscape 140
+
 @implementation EditNoteViewController
-@synthesize text, backgroundImage;
+@synthesize text;
 @synthesize note, navigation;
-@synthesize noteLeft, noteRight, trash;
+@synthesize bottomToolbar, noteLeft, noteRight, trash;
 @synthesize tagsController;
 
+- (void)dealloc 
+{
+  [note release];
+  [text release];
+  [noteLeft release];
+  [noteRight release];
+  [trash release];
+  [tagsController release];
+  [navigation release];
+  [super dealloc];
+}
+
 #pragma mark Public Methods
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+  return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+}
+
 - (IBAction)editTags
 {
   [self.navigationController pushViewController:tagsController animated:YES];
@@ -30,32 +50,30 @@
 - (IBAction)cancel:(id)sender
 {
   [[note managedObjectContext] rollback];
+  
+  self.note = nil;
+  self.navigation = nil;
+  
   [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)save:(id)sender
 {
-  if ([text isFirstResponder])
-  {
-    [text resignFirstResponder];
-  }
-  else
-  {
-    if (note == nil)
-      note = [NoteFilter newNote];
-    
-    NSString *newTags = [tagsController.currentTags componentsJoinedByString:@" "];
-    
-    note.text = [text text];
-    note.tags = newTags;
-    
-    [note save:YES];    
-    [self synchronize];
-    
-    self.note = nil;
-    
-    [self.navigationController popViewControllerAnimated:YES];
-  }
+  if (note == nil)
+    self.note = [NoteFilter newNote];
+  
+  NSString *newTags = [tagsController.currentTags componentsJoinedByString:@" "];
+  
+  note.text = [text text];
+  note.tags = newTags;
+  
+  [note save:YES];    
+  [self synchronize];
+  
+  self.note = nil;
+  self.navigation = nil;
+  
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)destroy
@@ -105,7 +123,12 @@
 
 - (void)setNote:(Note *)newNote
 {
-  note = newNote;
+  if (note != newNote)
+  {
+    note = newNote;
+    [note retain];
+  }
+  
   [tagsController resetForNote:note];
 }
 
@@ -116,125 +139,123 @@
   
   // Set the left navigation button.
   
-  UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" 
-                                                                   style:UIBarButtonItemStyleBordered 
-                                                                  target:self 
-                                                                  action:@selector(cancel:)];
-  self.navigationItem.leftBarButtonItem = cancelButton;
-  [cancelButton release];
+  self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" 
+                                                                            style:UIBarButtonItemStyleBordered 
+                                                                           target:self 
+                                                                           action:@selector(cancel:)] autorelease];
   
   // Set the right navigation button.
   
-  UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" 
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Save" 
                                                                  style:UIBarButtonItemStyleDone 
                                                                 target:self 
-                                                                action:@selector(save:)];
-  self.navigationItem.rightBarButtonItem = saveButton;
-  [saveButton release];
-  
-  // Set the editor background image.
-  
-  if (self.backgroundImage == nil && FALSE)
-  {
-    self.backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notepaper.png"]];
-    [self.view addSubview: self.backgroundImage];
-    [self.view sendSubviewToBack: self.backgroundImage];
-  }
+                                                                action:@selector(save:)] autorelease];
   
   // Add keyboard hooks.
   
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-  [nc addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-  [nc addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+  [nc addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+  [nc addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
   
   // Add tag editor.
   
-  EditNoteTagsViewController *newTagsController = [[EditNoteTagsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-  self.tagsController = newTagsController;
-  [newTagsController resetForNote:note];
-  [newTagsController release];
+  self.tagsController = [[[EditNoteTagsViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+  [tagsController resetForNote:note];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void) viewWillAppear:(BOOL)animated
 {
-  [super viewWillAppear:animated];
-  
-  if (note == nil)
-    text.text = @"";
-  else
-    text.text = note.text;
-  
   noteLeft.enabled = [self noteAtOffset:-1] != nil;
   noteRight.enabled = [self noteAtOffset:+1] != nil;
   trash.enabled = note != nil;
   
-  if ([text.text length] == 0)
-    [text becomeFirstResponder];
+  text.text = (note == nil) ? @"" : note.text;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-  note.text = text.text;
+- (void) viewDidAppear:(BOOL)animated
+{  
+  if ([text.text length] == 0)
+    [text becomeFirstResponder];
+  else
+    [text resignFirstResponder];
+  
+  // Scroll to top.
+
+  CGRect bounds = text.bounds;
+  bounds.origin.x = 0;
+  bounds.origin.y = 0;
+  text.bounds = bounds;
 }
 
 - (void)viewDidUnload 
 {
-  self.backgroundImage = nil;
   self.note = nil;
   self.text = nil;
   self.noteLeft = nil;
   self.noteRight = nil;
   self.trash = nil;
   self.tagsController = nil;
+  self.navigation = nil;
+  [super viewDidUnload];
 }
 
-- (void)dealloc 
+#pragma mark Adjust the text entry box for the keyboard and view shifts.
+- (NSUInteger) textFieldHeight:(bool)keyboardIsVisible
 {
-  [backgroundImage release];
-  [note release];
-  [text release];
-  [noteLeft release];
-  [noteRight release];
-  [trash release];
-  [tagsController release];
-  [super dealloc];
+  UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+  
+  NSUInteger screenHeight = UIDeviceOrientationIsLandscape(orientation)
+                            ? text.window.frame.size.width
+                            : text.window.frame.size.height;
+  
+  NSUInteger textTop = text.superview.superview.frame.origin.y;
+  NSUInteger textBot = bottomToolbar.frame.origin.y;
+  
+  NSUInteger keyboardHeight = UIDeviceOrientationIsLandscape(orientation)
+                              ? kKeyboardHeightLandscape : kKeyboardHeightPortrait;
+  
+  NSUInteger keyboardPadding = UIDeviceOrientationIsLandscape(orientation) ? 5 : 25;
+  
+  if (keyboardIsVisible)
+    return screenHeight - textTop - keyboardHeight + keyboardPadding;
+  else
+    return textBot;
 }
 
-#pragma mark Keyboard Hooks
--(void) keyboardWillShow:(NSNotification *)notification
+-(void) keyboardDidShow:(NSNotification *)notification
 {
   // Change the right button to Done, to dismiss the keyboard.
   
-  self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
-  self.navigationItem.rightBarButtonItem.title = @"Done";
-  self.navigationItem.rightBarButtonItem.action = @selector(dismissKeyboard:);
+  //self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleDone;
+  self.navigationItem.leftBarButtonItem.title = @"Done Editing";
+  self.navigationItem.leftBarButtonItem.action = @selector(dismissKeyboard:);
   
   // Adjust the text view to accomidate the keyboard.
   
-  CGRect textDim = text.frame;
-  CGRect keyboardDim;
+  //NSUInteger textTop = [[text superview] superview].frame.origin.y;
   
-  [[notification.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardDim];
-  textDim.size.height -= keyboardDim.size.height - 70;
+  CGRect textDim = text.frame;
+  
+  //[[notification.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardDim];
+  textDim.size.height = [self textFieldHeight:true];
   
   text.frame = textDim;
 }
 
--(void) keyboardWillHide:(NSNotification *)notification
+-(void) keyboardDidHide:(NSNotification *)notification
 {
   // Change right button to Save.
   
-  self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
-  self.navigationItem.rightBarButtonItem.title = @"Save";
-  self.navigationItem.rightBarButtonItem.action = @selector(save:);
+  //self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleBordered;
+  self.navigationItem.leftBarButtonItem.title = @"Cancel";
+  self.navigationItem.leftBarButtonItem.action = @selector(cancel:);
   
   // Adjust the text view to its original size.
   
   CGRect textDim = text.frame;
-  CGRect keyboardDim;
   
-  [[notification.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardDim];
-  textDim.size.height += keyboardDim.size.height - 70;
+  //[[notification.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardDim];
+  textDim.size.height = [self textFieldHeight:false];
   
   text.frame = textDim;
 }

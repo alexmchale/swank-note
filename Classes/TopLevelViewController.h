@@ -3,14 +3,17 @@
 
 @interface TopLevelViewController : UITableViewController 
 {
-  NSArray *controllers;
+  NSMutableArray *controllers;
+  NSMutableArray *accountControllers;
+  
   NSArray *recentNotes;
   EditNoteViewController *recentNoteEditor;
   
   bool multipleAccounts;
 }
 
-@property (nonatomic, retain) NSArray *controllers;
+@property (nonatomic, retain) NSMutableArray *controllers;
+@property (nonatomic, retain) NSMutableArray *accountControllers;
 @property (nonatomic, retain) NSArray *recentNotes;
 @property (nonatomic, retain) EditNoteViewController *recentNoteEditor;
 

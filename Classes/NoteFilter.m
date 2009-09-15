@@ -59,13 +59,13 @@
   return [res objectAtIndex:0];
 }
 
-+ (NSDate *)swankSyncTime
++ (NSDate *)swankSyncTime:(Account *)account
 {
   NSFetchRequest *req = [self request];
   
   NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO] autorelease];
   [req setSortDescriptors:[NSArray arrayWithObject:sort]];
-  [req setPredicate:[NSPredicate predicateWithFormat:@"dirty=0 AND swankId>0"]];
+  [req setPredicate:[NSPredicate predicateWithFormat:@"dirty=0 AND swankId>0 AND account=%@", account]];
   [req setFetchLimit:1];
   
   NSArray *res = [[SwankNoteAppDelegate context] executeFetchRequest:req error:nil];

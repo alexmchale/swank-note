@@ -17,8 +17,6 @@
 		7408A0C3105C126900BE5B68 /* AccountImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408A0C2105C126900BE5B68 /* AccountImageView.m */; };
 		7408A0C4105C126900BE5B68 /* AccountImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408A0C2105C126900BE5B68 /* AccountImageView.m */; };
 		741DDAE91041B06F0036534B /* NoteFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DDAE81041B06F0036534B /* NoteFilter.m */; };
-		743AB97E103EB4BE00924994 /* SwankRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743AB97C103EB4BE00924994 /* SwankRootViewController.m */; };
-		743AB97F103EB4BE00924994 /* SwankRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 743AB97D103EB4BE00924994 /* SwankRootViewController.xib */; };
 		749063611042850400DF65DA /* NoteSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 749063601042850400DF65DA /* NoteSync.m */; };
 		7490656E10429A0500DF65DA /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490651D10429A0500DF65DA /* CDataScanner.m */; };
 		7490656F10429A0500DF65DA /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652010429A0500DF65DA /* CDataScanner_Extensions.m */; };
@@ -85,6 +83,8 @@
 		74967EB4105A32BF0057A3A6 /* WPpregressHUDBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 74967EB2105A32BF0057A3A6 /* WPpregressHUDBackground.png */; };
 		74A73C7B103FB2950016986D /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A73C7A103FB2950016986D /* Note.m */; };
 		74A73CEC103FBAE60016986D /* SwankNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74A73CEB103FBAE60016986D /* SwankNote.xcdatamodeld */; };
+		74B3D727105CB339000F05C0 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3D726105CB339000F05C0 /* UIViewAdditions.m */; };
+		74B3D728105CB339000F05C0 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3D726105CB339000F05C0 /* UIViewAdditions.m */; };
 		74DB9BD9103EC76D0053BEA0 /* EditNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB9BD7103EC76D0053BEA0 /* EditNoteViewController.m */; };
 		74DB9BDA103EC76D0053BEA0 /* EditNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74DB9BD8103EC76D0053BEA0 /* EditNoteViewController.xib */; };
 		74FD196C103E46BD0060CF1C /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD196A103E46BD0060CF1C /* IndexViewController.m */; };
@@ -108,9 +108,6 @@
 		741DD95F10415E030036534B /* SwankNote 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 5.xcdatamodel"; sourceTree = "<group>"; };
 		741DDAE71041B06F0036534B /* NoteFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteFilter.h; sourceTree = "<group>"; };
 		741DDAE81041B06F0036534B /* NoteFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteFilter.m; sourceTree = "<group>"; };
-		743AB97B103EB4BE00924994 /* SwankRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwankRootViewController.h; sourceTree = "<group>"; };
-		743AB97C103EB4BE00924994 /* SwankRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwankRootViewController.m; sourceTree = "<group>"; };
-		743AB97D103EB4BE00924994 /* SwankRootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwankRootViewController.xib; sourceTree = "<group>"; };
 		746CD5801040200B003EA2E7 /* SwankNote 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 4.xcdatamodel"; sourceTree = "<group>"; };
 		7490635F1042850400DF65DA /* NoteSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSync.h; sourceTree = "<group>"; };
 		749063601042850400DF65DA /* NoteSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSync.m; sourceTree = "<group>"; };
@@ -176,6 +173,8 @@
 		74A73C79103FB2950016986D /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		74A73C7A103FB2950016986D /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		74A73CED103FBAE60016986D /* SwankNote 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 2.xcdatamodel"; sourceTree = "<group>"; };
+		74B3D725105CB339000F05C0 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
+		74B3D726105CB339000F05C0 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		74DB9BD6103EC76D0053BEA0 /* EditNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNoteViewController.h; sourceTree = "<group>"; };
 		74DB9BD7103EC76D0053BEA0 /* EditNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNoteViewController.m; sourceTree = "<group>"; };
 		74DB9BD8103EC76D0053BEA0 /* EditNoteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditNoteViewController.xib; sourceTree = "<group>"; };
@@ -223,7 +222,6 @@
 				74966BF61049417B0057A3A6 /* Widgets */,
 				741DD7FF10402D2A0036534B /* Note */,
 				74DB9BD5103EC73A0053BEA0 /* Edit Note */,
-				743AB97A103EB44600924994 /* Swank Root */,
 				74FD196F103E46ED0060CF1C /* App Delegate */,
 				74FD196E103E46C90060CF1C /* Index */,
 			);
@@ -303,16 +301,6 @@
 			name = Note;
 			sourceTree = "<group>";
 		};
-		743AB97A103EB44600924994 /* Swank Root */ = {
-			isa = PBXGroup;
-			children = (
-				743AB97B103EB4BE00924994 /* SwankRootViewController.h */,
-				743AB97C103EB4BE00924994 /* SwankRootViewController.m */,
-				743AB97D103EB4BE00924994 /* SwankRootViewController.xib */,
-			);
-			name = "Swank Root";
-			sourceTree = "<group>";
-		};
 		74906514104299D900DF65DA /* Touch JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +362,8 @@
 		74966C301049A5D00057A3A6 /* Monkey Patches */ = {
 			isa = PBXGroup;
 			children = (
+				74B3D725105CB339000F05C0 /* UIViewAdditions.h */,
+				74B3D726105CB339000F05C0 /* UIViewAdditions.m */,
 				74966C311049A5ED0057A3A6 /* NSStringUtilities.h */,
 				74966C321049A5ED0057A3A6 /* NSStringUtilities.m */,
 				74966C351049A6AD0057A3A6 /* NSDictionaryUtilities.h */,
@@ -519,7 +509,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				743AB97F103EB4BE00924994 /* SwankRootViewController.xib in Resources */,
 				74DB9BDA103EC76D0053BEA0 /* EditNoteViewController.xib in Resources */,
 				749670251050A3550057A3A6 /* AccountSettingsViewController.xib in Resources */,
 				7496703C1050A8140057A3A6 /* notepaper.png in Resources */,
@@ -566,7 +555,6 @@
 				1D3623260D0F684500981E51 /* SwankNoteAppDelegate.m in Sources */,
 				74A73CEC103FBAE60016986D /* SwankNote.xcdatamodeld in Sources */,
 				74FD196C103E46BD0060CF1C /* IndexViewController.m in Sources */,
-				743AB97E103EB4BE00924994 /* SwankRootViewController.m in Sources */,
 				74DB9BD9103EC76D0053BEA0 /* EditNoteViewController.m in Sources */,
 				74A73C7B103FB2950016986D /* Note.m in Sources */,
 				741DDAE91041B06F0036534B /* NoteFilter.m in Sources */,
@@ -597,6 +585,7 @@
 				74967D8E10591ECF0057A3A6 /* EditAccountViewController.m in Sources */,
 				74967E6C105A2CCE0057A3A6 /* MBProgressHUD.m in Sources */,
 				7408A0C4105C126900BE5B68 /* AccountImageView.m in Sources */,
+				74B3D728105CB339000F05C0 /* UIViewAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +619,7 @@
 				74967D8F10591ECF0057A3A6 /* EditAccountViewController.m in Sources */,
 				74967E6D105A2CCE0057A3A6 /* MBProgressHUD.m in Sources */,
 				7408A0C3105C126900BE5B68 /* AccountImageView.m in Sources */,
+				74B3D727105CB339000F05C0 /* UIViewAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +642,7 @@
 				GCC_PREFIX_HEADER = SwankNote_Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "SwankNote-Info.plist";
+				NSZombieEnabled = YES;
 				PRODUCT_NAME = SwankNote;
 			};
 			name = Debug;

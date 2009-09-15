@@ -7,7 +7,7 @@
 
 + (Note *) newNote;
 
-+ (NSDate *) swankSyncTime;
++ (NSDate *) swankSyncTime:(Account *)account;
 + (NSInteger) count;
 
 + (NSArray *) fetchRecentNotes:(NSInteger)count;

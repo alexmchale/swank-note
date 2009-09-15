@@ -14,13 +14,10 @@
 @interface EditNoteViewController : UIViewController <UITextViewDelegate>
 {  
   UITextView *text;
-  UIImageView *backgroundImage;
   
   bool viewShifted;
   Note *note;
   NSArray *navigation;
-  
-  UIToolbar *keyboardToolbar;
   
   EditNoteTagsViewController *tagsController;
   
@@ -32,9 +29,9 @@
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *text;
-@property (nonatomic, retain) UIImageView *backgroundImage;
 @property (nonatomic, retain) Note *note;
 @property (nonatomic, retain) NSArray *navigation;
+@property (nonatomic, retain) IBOutlet UIToolbar *bottomToolbar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *noteLeft;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *noteRight;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *trash;

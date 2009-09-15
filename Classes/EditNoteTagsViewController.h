@@ -7,14 +7,12 @@
 {
   NSMutableArray *allTags;
   NSMutableArray *currentTags;
-  NSMutableArray *orderedTags;
   
   NewTagsViewController *newTagsController;
 }
 
 @property (nonatomic, retain) NSMutableArray *allTags;
 @property (nonatomic, retain) NSMutableArray *currentTags;
-@property (nonatomic, retain) NSMutableArray *orderedTags;
 @property (nonatomic, retain) NewTagsViewController *newTagsController;
 
 - (void)resetForNote:(Note *)note;
