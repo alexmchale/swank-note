@@ -20,16 +20,7 @@
 {
   [super viewDidLoad];
 
-  EditNoteViewController *newEditor = [[EditNoteViewController alloc] init];
-  self.noteEditor = newEditor;
-  [newEditor release];
-  
-  /*
-  NoteSync *noteSync = [[NoteSync alloc] init];
-  [newNoteSync release];
-  self.noteSync.delegate = self;
-  [self.noteSync updateNotes];
-   */
+  self.noteEditor = [[[EditNoteViewController alloc] init] autorelease];
   
   // Don't show the search box by default.
   //[self.tableView setContentOffset:CGPointMake(0.0, 44.0) animated:NO];

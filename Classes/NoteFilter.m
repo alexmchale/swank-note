@@ -18,7 +18,7 @@
   NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Note" 
                                                        inManagedObjectContext:[SwankNoteAppDelegate context]];
   
-  NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO];
+  NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO] autorelease];
   
   NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
   [request setEntity:entityDescription];
@@ -26,8 +26,6 @@
   
   NSPredicate *pred = [NSPredicate predicateWithFormat:@"(text != nil) && (text != '')"];
   [request setPredicate:pred];
-  
-  [sort release];
   
   return request;
 }
@@ -37,13 +35,11 @@
   if (count <= 0)
     return [NSArray arrayWithObjects:nil];
   
-  NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO];
+  NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO] autorelease];
   
   NSFetchRequest *req = [self request];
   [req setFetchLimit:count];
   [req setSortDescriptors:[NSArray arrayWithObject:sort]];
-  
-  [sort release];
   
   return [[SwankNoteAppDelegate context] executeFetchRequest:req error:nil];
 }
@@ -67,14 +63,12 @@
 {
   NSFetchRequest *req = [self request];
   
-  NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO];
+  NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO] autorelease];
   [req setSortDescriptors:[NSArray arrayWithObject:sort]];
   [req setPredicate:[NSPredicate predicateWithFormat:@"dirty=0 AND swankId>0"]];
   [req setFetchLimit:1];
   
   NSArray *res = [[SwankNoteAppDelegate context] executeFetchRequest:req error:nil];
-  
-  [sort release];
   
   if (res == nil || [res count] == 0)
     return nil;
@@ -136,7 +130,7 @@
 
 + (NSArray *)fetchAllTags
 {
-  NSMutableSet *tags = [[NSMutableSet alloc] init];
+  NSMutableSet *tags = [[[NSMutableSet alloc] init] autorelease];
   
   for (Note *note in [self fetchAll])
   {

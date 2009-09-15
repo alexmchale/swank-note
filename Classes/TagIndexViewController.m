@@ -14,9 +14,7 @@
 
 - (void)viewDidLoad
 {
-  IndexViewController *index = [[IndexViewController alloc] init];
-  self.indexViewController = index;
-  [index release];
+  self.indexViewController = [[[IndexViewController alloc] init] autorelease];
 }
 
 - (void)viewDidUnload

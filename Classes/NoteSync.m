@@ -12,13 +12,8 @@
 {
   if (self = [super init])
   {
-    NoteDownloader *newDownloader = [[NoteDownloader alloc] init];
-    self.downloader = newDownloader;
-    [newDownloader release];
-    
-    NoteUploader *newUploader = [[NoteUploader alloc] init];
-    self.uploader = newUploader;
-    [newUploader release];
+    self.downloader = [[[NoteDownloader alloc] init] autorelease];    
+    self.uploader = [[[NoteUploader alloc] init] autorelease];
   }
   
   return self;
@@ -36,6 +31,7 @@
 - (void) dealloc
 {
   [downloader release];
+  [uploader release];
   [super dealloc];
 }
 

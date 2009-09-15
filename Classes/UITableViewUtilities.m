@@ -23,13 +23,11 @@
   {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     
-    labelField = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 75, 25)];
+    labelField = [[[UILabel alloc] initWithFrame:CGRectMake(10, 10, 75, 25)] autorelease];
     [cell.contentView addSubview:labelField];
-    [labelField release];
     
-    textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 12, 200, 25)];
+    textField = [[[UITextField alloc] initWithFrame:CGRectMake(90, 12, 200, 25)] autorelease];
     [cell.contentView addSubview:textField];
-    [textField release];
   }
   else
   {

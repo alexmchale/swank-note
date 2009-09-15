@@ -21,9 +21,7 @@
 
 - (void)viewDidLoad
 {
-  UITextField *newTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 12, 275, 25)];
-  self.textField = newTextField;
-  [newTextField release];
+  self.textField = [[[UITextField alloc] initWithFrame:CGRectMake(10, 12, 275, 25)] autorelease];
   
   textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
   textField.clearsOnBeginEditing = NO;

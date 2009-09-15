@@ -55,18 +55,14 @@
 {
   // New tag button.
   
-  UIBarButtonItem *newTagButton = [[UIBarButtonItem alloc] initWithTitle:@"New Tags" 
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"New Tags" 
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self 
-                                                                  action:@selector(addNewTag:)];
-  self.navigationItem.rightBarButtonItem = newTagButton;
-  [newTagButton release];
+                                                                  action:@selector(addNewTag:)] autorelease];
   
   // Load new tag controller.
   
-  NewTagsViewController *newNewTagsController = [[NewTagsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-  self.newTagsController = newNewTagsController;
-  [newNewTagsController release];
+  self.newTagsController = [[[NewTagsViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
 }
 
 - (void)viewDidUnload

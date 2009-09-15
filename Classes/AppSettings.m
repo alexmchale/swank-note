@@ -13,7 +13,7 @@
   NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"AppSettings" 
                                                        inManagedObjectContext:context];
   
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
   [request setEntity:entityDescription];
   [request setFetchLimit:1];
   [request setPredicate:[NSPredicate predicateWithFormat:@"key LIKE %@", key]];
@@ -46,8 +46,6 @@
     [context save:nil];
     value = [newValue copy];
   }
-  
-  [request release];
     
   return value;
 }
