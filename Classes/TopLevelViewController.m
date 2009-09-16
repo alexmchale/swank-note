@@ -20,7 +20,9 @@ enum TopLevelSections
 - (IBAction) editNewNote
 {
   // New Note
+
   EditNoteViewController *editor = [[[EditNoteViewController alloc] init] autorelease];
+  
   [self.navigationController pushViewController:editor animated:YES];
 }
 
@@ -33,14 +35,18 @@ enum TopLevelSections
   [self.tableView reloadData]; 
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-  return YES;
+  // Apple recommends against allowing portrait upside-down, because it will stay that
+  // way when a phone call begins.
+  
+  return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   multipleAccounts = [[Account fetchAllAccounts] count] > 1;
+  
   [self refreshRecentNotes];
 }
 
