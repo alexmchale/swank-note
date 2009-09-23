@@ -111,19 +111,39 @@
   return [[SwankNoteAppDelegate context] executeFetchRequest:[self request] error:nil];
 }
 
-+ (NSArray *)fetchAllWithTag:(NSString *)tag
++ (NSPredicate *)tagPredicate:(NSString *)tag
 {
+  NSString *tag0 = tag;
+  NSString *tag1 = [NSString stringWithFormat:@"* %@", tag];
+  NSString *tag2 = [NSString stringWithFormat:@"%@ *", tag];
+  NSString *tag3 = [NSString stringWithFormat:@"* %@ *", tag];
+  
+  return [NSPredicate predicateWithFormat:
+          @"(tags LIKE %@ || tags LIKE %@ || tags LIKE %@ || tags LIKE %@)", 
+          tag0, tag1, tag2, tag3];
+}
+
++ (NSArray *) fetchAllWithTag:(NSString *)tag
+{
+  return [self fetchWithPhrase:nil withTag:tag];
+}
+
++ (NSArray *) fetchWithPhrase:(NSString *)phrase withTag:(NSString *)tag
+{
+  NSMutableArray *preds = [[[NSMutableArray alloc] init] autorelease];
+  
+  if (phrase == nil || [phrase length] == 0)
+    [preds addObject:[NSPredicate predicateWithFormat:@"text != nil && text != ''"]];
+  else
+    [preds addObject:[NSPredicate predicateWithFormat:@"text CONTAINS[cd] %@", phrase]];
+  
+  if (tag != nil && [tag length] > 0)
+    [preds addObject:[self tagPredicate:tag]];
+  
+  NSPredicate *pred = [NSCompoundPredicate andPredicateWithSubpredicates:preds];
+  
   NSFetchRequest *req = [self request];
-  
-  NSString *tag1 = [[NSString alloc] initWithFormat:@"* %@", tag];
-  NSString *tag2 = [[NSString alloc] initWithFormat:@"%@ *", tag];
-  NSString *tag3 = [[NSString alloc] initWithFormat:@"* %@ *", tag];
-  
-  [req setPredicate:[NSPredicate predicateWithFormat:@"text != nil && text != '' && (tags LIKE %@ || tags LIKE %@ || tags LIKE %@ || tags LIKE %@)", tag, tag1, tag2, tag3]];
-  
-  [tag1 release];
-  [tag2 release];
-  [tag3 release];
+  [req setPredicate:pred];
   
   return [[SwankNoteAppDelegate context] executeFetchRequest:req error:nil];
 }

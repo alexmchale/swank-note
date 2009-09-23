@@ -4,7 +4,6 @@
 @interface TopLevelViewController : UITableViewController 
 {
   NSMutableArray *controllers;
-  NSMutableArray *accountControllers;
   
   NSArray *recentNotes;
   EditNoteViewController *recentNoteEditor;
@@ -13,7 +12,6 @@
 }
 
 @property (nonatomic, retain) NSMutableArray *controllers;
-@property (nonatomic, retain) NSMutableArray *accountControllers;
 @property (nonatomic, retain) NSArray *recentNotes;
 @property (nonatomic, retain) EditNoteViewController *recentNoteEditor;
 

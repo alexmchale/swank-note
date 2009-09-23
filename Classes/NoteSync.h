@@ -3,7 +3,7 @@
 #import "NoteDownloader.h"
 #import "NoteUploader.h"
 
-#define kSwankHost @"swankdb.com:3000"
+#define kSwankHost @"swankdb.com"
 
 @protocol NoteSyncDelegate
 

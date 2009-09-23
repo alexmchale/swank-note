@@ -21,4 +21,5 @@
   #import "AppSettings.h"
   #import "Account.h"
   #import "NSDictionaryUtilities.h"
+  #import "NoteFilter.h"
 #endif

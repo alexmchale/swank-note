@@ -16,6 +16,7 @@
 + (NSArray *) fetchAll;
 + (NSArray *) fetchAllWithTag:(NSString *)tag;
 + (NSArray *) fetchAllTags;
++ (NSArray *) fetchWithPhrase:(NSString *)phrase withTag:(NSString *)tag;
 + (Note *) fetchBySwankId:(NSNumber *)swankId;
 
 + (Note *) atIndex:(NSInteger)index;

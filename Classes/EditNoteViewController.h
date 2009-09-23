@@ -11,7 +11,7 @@
 // the duration of the animation for the view shift
 #define kVerticalOffsetAnimationDuration		0.50
 
-@interface EditNoteViewController : UIViewController <UITextViewDelegate>
+@interface EditNoteViewController : UIViewController <UITextViewDelegate, UIActionSheetDelegate>
 {  
   UITextView *text;
   

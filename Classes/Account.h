@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "AccountImageView.h"
 
 @interface Account : NSManagedObject
 {
@@ -18,6 +19,7 @@
 
 - (bool) isDefault;
 - (bool) testConnection:(UIView *)progressViewParent;
-- (UIColor *) color;
+
+- (AccountImageView *) imageView;
 
 @end

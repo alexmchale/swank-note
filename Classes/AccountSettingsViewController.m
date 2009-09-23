@@ -72,11 +72,43 @@ typedef enum
 }
 
 #pragma mark Cancel and Save Actions
+- (void) push:(UINavigationController *)navCon;
+{
+  [UIView beginAnimations:nil context:nil];
+  
+  [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft 
+                         forView:navCon.view
+                           cache:YES];
+  
+  [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+  [UIView setAnimationDuration:1.0];
+  
+  [navCon pushViewController:self animated:NO];
+  
+  [UIView commitAnimations];
+}
+
+- (void) pop
+{
+  [UIView beginAnimations:nil context:nil];
+  
+  [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
+                         forView:self.navigationController.view
+                           cache:YES];
+  
+  [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+  [UIView setAnimationDuration:1.0];
+  
+  [self.navigationController popViewControllerAnimated:NO];
+  
+  [UIView commitAnimations];
+}
+
 - (IBAction) cancel:(id)sender
 {
   self.enableSync = [AppSettings sync];
   [[SwankNoteAppDelegate context] rollback];
-  [self.navigationController popViewControllerAnimated:YES];
+  [self pop];
 }
 
 - (IBAction) save:(id)sender
@@ -85,7 +117,7 @@ typedef enum
   self.enableSync = [AppSettings sync];
   [[SwankNoteAppDelegate context] save:nil];
   [self synchronize];
-  [self.navigationController popViewControllerAnimated:YES];
+  [self pop];
 }
 
 // Reload the table when the sync enable switch changes.
@@ -177,7 +209,7 @@ typedef enum
   Account *account = [accounts objectAtIndex:row];
 
   cell.textLabel.text = account.username;
-  cell.accessoryView = [[[AccountImageView alloc] initWithColor:[account color]] autorelease];
+  cell.accessoryView = [account imageView];
   
   if ([account isDefault] && [accounts count] > 1)
     cell.detailTextLabel.text = @"(Default)";

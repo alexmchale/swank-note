@@ -1,6 +1,5 @@
 #import "EditNoteViewController.h"
 #import "SwankNoteAppDelegate.h"
-#import "IndexViewController.h"
 #import "Note.h"
 
 #define kKeyboardHeightPortrait 216
@@ -78,9 +77,27 @@
 
 - (IBAction)destroy
 {
-  [note destroy];
-  [self synchronize];
-  [self.navigationController popViewControllerAnimated:YES];
+  UIActionSheet *sheet = 
+    [[[UIActionSheet alloc] initWithTitle:@"Are you sure you want to delete this note?"
+                                 delegate:self
+                        cancelButtonTitle:@"Wait, no."
+                   destructiveButtonTitle:@"Yes, destroy it!"
+                        otherButtonTitles:nil] autorelease];
+  [sheet showInView:self.navigationController.view];
+  
+//  [note destroy];
+//  [self synchronize];
+//  [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+  if (buttonIndex == 0)
+  {
+    [note destroy];
+    [self synchronize];
+    [self.navigationController popViewControllerAnimated:YES];
+  }  
 }
 
 - (Note *)noteAtOffset:(NSInteger)offset

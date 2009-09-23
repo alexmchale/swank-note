@@ -16,4 +16,6 @@
 @property (nonatomic, retain) NSArray *accounts;
 @property (nonatomic, retain) EditAccountViewController *accountEditor;
 
+- (void) push:(UINavigationController *)navCon;
+
 @end

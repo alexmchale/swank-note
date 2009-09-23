@@ -7,6 +7,8 @@
 
 @property (nonatomic, retain) UIColor *color;
 
++ (id) forIndex:(NSUInteger)index;
+
 - (id) initWithColor:(UIColor *)color;
 
 @end

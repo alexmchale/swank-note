@@ -256,19 +256,11 @@
   return result;
 }
 
-- (UIColor *) color
+- (AccountImageView *) imageView
 {
   NSUInteger index = [[Account fetchAllAccounts] indexOfObject:self];
   
-  switch (index % 6)
-  {
-    case 0:  return [UIColor redColor];
-    case 1:  return [UIColor blueColor];
-    case 2:  return [UIColor greenColor];
-    case 3:  return [UIColor yellowColor];
-    case 4:  return [UIColor purpleColor];
-    default: return [UIColor orangeColor];
-  }
+  return [AccountImageView forIndex:index];
 }
 
 @end

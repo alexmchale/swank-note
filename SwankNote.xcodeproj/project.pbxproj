@@ -17,6 +17,12 @@
 		7408A0C3105C126900BE5B68 /* AccountImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408A0C2105C126900BE5B68 /* AccountImageView.m */; };
 		7408A0C4105C126900BE5B68 /* AccountImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408A0C2105C126900BE5B68 /* AccountImageView.m */; };
 		741DDAE91041B06F0036534B /* NoteFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 741DDAE81041B06F0036534B /* NoteFilter.m */; };
+		74203C6E1060DA5E0085BDAA /* document_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 74203C6D1060DA5E0085BDAA /* document_edit.png */; };
+		74203C6F1060DA5E0085BDAA /* document_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 74203C6D1060DA5E0085BDAA /* document_edit.png */; };
+		74203C731060DAF10085BDAA /* document_edit_196x196.png in Resources */ = {isa = PBXBuildFile; fileRef = 74203C721060DAF10085BDAA /* document_edit_196x196.png */; };
+		74203C741060DAF10085BDAA /* document_edit_196x196.png in Resources */ = {isa = PBXBuildFile; fileRef = 74203C721060DAF10085BDAA /* document_edit_196x196.png */; };
+		74203D53106112300085BDAA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74203D52106112300085BDAA /* Icon.png */; };
+		74203D54106112300085BDAA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74203D52106112300085BDAA /* Icon.png */; };
 		749063611042850400DF65DA /* NoteSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 749063601042850400DF65DA /* NoteSync.m */; };
 		7490656E10429A0500DF65DA /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490651D10429A0500DF65DA /* CDataScanner.m */; };
 		7490656F10429A0500DF65DA /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7490652010429A0500DF65DA /* CDataScanner_Extensions.m */; };
@@ -87,7 +93,10 @@
 		74B3D728105CB339000F05C0 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3D726105CB339000F05C0 /* UIViewAdditions.m */; };
 		74DB9BD9103EC76D0053BEA0 /* EditNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB9BD7103EC76D0053BEA0 /* EditNoteViewController.m */; };
 		74DB9BDA103EC76D0053BEA0 /* EditNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74DB9BD8103EC76D0053BEA0 /* EditNoteViewController.xib */; };
-		74FD196C103E46BD0060CF1C /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD196A103E46BD0060CF1C /* IndexViewController.m */; };
+		74F2D8BA106723730003D240 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F2D8B8106723730003D240 /* IndexViewController.m */; };
+		74F2D8BB106723730003D240 /* IndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F2D8B9106723730003D240 /* IndexViewController.xib */; };
+		74F2D8BC106723730003D240 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F2D8B8106723730003D240 /* IndexViewController.m */; };
+		74F2D8BD106723730003D240 /* IndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F2D8B9106723730003D240 /* IndexViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,17 +107,17 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ../MainWindow.xib; sourceTree = "<group>"; };
-		28C3AD890F43EF2300507BA6 /* SwankNote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = SwankNote.xcdatamodel; sourceTree = "<group>"; };
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SwankNote_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwankNote_Prefix.pch; sourceTree = "<group>"; };
-		74089E2C105BAF7A00BE5B68 /* SwankNote 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 10.xcdatamodel"; sourceTree = "<group>"; };
+		74089E2C105BAF7A00BE5B68 /* SwankNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SwankNote.xcdatamodel; sourceTree = "<group>"; };
 		7408A0C1105C126900BE5B68 /* AccountImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountImageView.h; sourceTree = "<group>"; };
 		7408A0C2105C126900BE5B68 /* AccountImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountImageView.m; sourceTree = "<group>"; };
-		741DD95F10415E030036534B /* SwankNote 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 5.xcdatamodel"; sourceTree = "<group>"; };
 		741DDAE71041B06F0036534B /* NoteFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteFilter.h; sourceTree = "<group>"; };
 		741DDAE81041B06F0036534B /* NoteFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteFilter.m; sourceTree = "<group>"; };
-		746CD5801040200B003EA2E7 /* SwankNote 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 4.xcdatamodel"; sourceTree = "<group>"; };
+		74203C6D1060DA5E0085BDAA /* document_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = document_edit.png; sourceTree = "<group>"; };
+		74203C721060DAF10085BDAA /* document_edit_196x196.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = document_edit_196x196.png; sourceTree = "<group>"; };
+		74203D52106112300085BDAA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		7490635F1042850400DF65DA /* NoteSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteSync.h; sourceTree = "<group>"; };
 		749063601042850400DF65DA /* NoteSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteSync.m; sourceTree = "<group>"; };
 		7490646A104294FF00DF65DA /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
@@ -130,7 +139,6 @@
 		7490652B10429A0500DF65DA /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
 		7490652C10429A0500DF65DA /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
 		7490652D10429A0500DF65DA /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
-		749066DF1042C22F00DF65DA /* SwankNote 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 6.xcdatamodel"; sourceTree = "<group>"; };
 		74966BF9104941A20057A3A6 /* WPProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPProgressHUD.h; sourceTree = "<group>"; };
 		74966BFA104941A20057A3A6 /* WPProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPProgressHUD.m; sourceTree = "<group>"; };
 		74966C311049A5ED0057A3A6 /* NSStringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringUtilities.h; sourceTree = "<group>"; };
@@ -147,7 +155,6 @@
 		749670DD10529CF20057A3A6 /* NSArrayUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayUtilities.m; sourceTree = "<group>"; };
 		749671221052B38D0057A3A6 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		749671231052B38D0057A3A6 /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
-		749671291052B3AB0057A3A6 /* SwankNote 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 9.xcdatamodel"; sourceTree = "<group>"; };
 		7496721A105310660057A3A6 /* ChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildViewController.h; sourceTree = "<group>"; };
 		7496721B105310660057A3A6 /* ChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
 		7496721F105310E90057A3A6 /* TopLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopLevelViewController.h; sourceTree = "<group>"; };
@@ -172,16 +179,14 @@
 		74967EB2105A32BF0057A3A6 /* WPpregressHUDBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WPpregressHUDBackground.png; sourceTree = "<group>"; };
 		74A73C79103FB2950016986D /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		74A73C7A103FB2950016986D /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
-		74A73CED103FBAE60016986D /* SwankNote 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 2.xcdatamodel"; sourceTree = "<group>"; };
 		74B3D725105CB339000F05C0 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		74B3D726105CB339000F05C0 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		74DB9BD6103EC76D0053BEA0 /* EditNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNoteViewController.h; sourceTree = "<group>"; };
 		74DB9BD7103EC76D0053BEA0 /* EditNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNoteViewController.m; sourceTree = "<group>"; };
 		74DB9BD8103EC76D0053BEA0 /* EditNoteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditNoteViewController.xib; sourceTree = "<group>"; };
-		74F186F3104402DE007EEB2A /* SwankNote 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 7.xcdatamodel"; sourceTree = "<group>"; };
-		74F1870A1044DA40007EEB2A /* SwankNote 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwankNote 8.xcdatamodel"; sourceTree = "<group>"; };
-		74FD1969103E46BD0060CF1C /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexViewController.h; path = ../IndexViewController.h; sourceTree = "<group>"; };
-		74FD196A103E46BD0060CF1C /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndexViewController.m; path = ../IndexViewController.m; sourceTree = "<group>"; };
+		74F2D8B7106723730003D240 /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexViewController.h; sourceTree = "<group>"; };
+		74F2D8B8106723730003D240 /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexViewController.m; sourceTree = "<group>"; };
+		74F2D8B9106723730003D240 /* IndexViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IndexViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SwankNote-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SwankNote-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,9 +268,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74203C721060DAF10085BDAA /* document_edit_196x196.png */,
 				74967EB2105A32BF0057A3A6 /* WPpregressHUDBackground.png */,
+				74203C6D1060DA5E0085BDAA /* document_edit.png */,
 				74967E73105A2F8B0057A3A6 /* RoundedRectBlack.png */,
 				7496703A1050A8140057A3A6 /* notepaper.png */,
+				74203D52106112300085BDAA /* Icon.png */,
 				74A73CEB103FBAE60016986D /* SwankNote.xcdatamodeld */,
 				8D1107310486CEB800E47090 /* SwankNote-Info.plist */,
 			);
@@ -431,8 +439,9 @@
 		74FD196E103E46C90060CF1C /* Index */ = {
 			isa = PBXGroup;
 			children = (
-				74FD1969103E46BD0060CF1C /* IndexViewController.h */,
-				74FD196A103E46BD0060CF1C /* IndexViewController.m */,
+				74F2D8B7106723730003D240 /* IndexViewController.h */,
+				74F2D8B8106723730003D240 /* IndexViewController.m */,
+				74F2D8B9106723730003D240 /* IndexViewController.xib */,
 			);
 			name = Index;
 			sourceTree = "<group>";
@@ -514,6 +523,10 @@
 				7496703C1050A8140057A3A6 /* notepaper.png in Resources */,
 				74967E74105A2F8B0057A3A6 /* RoundedRectBlack.png in Resources */,
 				74967EB3105A32BF0057A3A6 /* WPpregressHUDBackground.png in Resources */,
+				74203C6F1060DA5E0085BDAA /* document_edit.png in Resources */,
+				74203C741060DAF10085BDAA /* document_edit_196x196.png in Resources */,
+				74203D54106112300085BDAA /* Icon.png in Resources */,
+				74F2D8BD106723730003D240 /* IndexViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +538,10 @@
 				7496703B1050A8140057A3A6 /* notepaper.png in Resources */,
 				74967E75105A2F8B0057A3A6 /* RoundedRectBlack.png in Resources */,
 				74967EB4105A32BF0057A3A6 /* WPpregressHUDBackground.png in Resources */,
+				74203C6E1060DA5E0085BDAA /* document_edit.png in Resources */,
+				74203C731060DAF10085BDAA /* document_edit_196x196.png in Resources */,
+				74203D53106112300085BDAA /* Icon.png in Resources */,
+				74F2D8BB106723730003D240 /* IndexViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,7 +571,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* SwankNoteAppDelegate.m in Sources */,
 				74A73CEC103FBAE60016986D /* SwankNote.xcdatamodeld in Sources */,
-				74FD196C103E46BD0060CF1C /* IndexViewController.m in Sources */,
 				74DB9BD9103EC76D0053BEA0 /* EditNoteViewController.m in Sources */,
 				74A73C7B103FB2950016986D /* Note.m in Sources */,
 				741DDAE91041B06F0036534B /* NoteFilter.m in Sources */,
@@ -586,6 +602,7 @@
 				74967E6C105A2CCE0057A3A6 /* MBProgressHUD.m in Sources */,
 				7408A0C4105C126900BE5B68 /* AccountImageView.m in Sources */,
 				74B3D728105CB339000F05C0 /* UIViewAdditions.m in Sources */,
+				74F2D8BC106723730003D240 /* IndexViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +637,7 @@
 				74967E6D105A2CCE0057A3A6 /* MBProgressHUD.m in Sources */,
 				7408A0C3105C126900BE5B68 /* AccountImageView.m in Sources */,
 				74B3D727105CB339000F05C0 /* UIViewAdditions.m in Sources */,
+				74F2D8BA106723730003D240 /* IndexViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,17 +794,9 @@
 		74A73CEB103FBAE60016986D /* SwankNote.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				28C3AD890F43EF2300507BA6 /* SwankNote.xcdatamodel */,
-				74A73CED103FBAE60016986D /* SwankNote 2.xcdatamodel */,
-				746CD5801040200B003EA2E7 /* SwankNote 4.xcdatamodel */,
-				741DD95F10415E030036534B /* SwankNote 5.xcdatamodel */,
-				749066DF1042C22F00DF65DA /* SwankNote 6.xcdatamodel */,
-				74F186F3104402DE007EEB2A /* SwankNote 7.xcdatamodel */,
-				74F1870A1044DA40007EEB2A /* SwankNote 8.xcdatamodel */,
-				749671291052B3AB0057A3A6 /* SwankNote 9.xcdatamodel */,
-				74089E2C105BAF7A00BE5B68 /* SwankNote 10.xcdatamodel */,
+				74089E2C105BAF7A00BE5B68 /* SwankNote.xcdatamodel */,
 			);
-			currentVersion = 74089E2C105BAF7A00BE5B68 /* SwankNote 10.xcdatamodel */;
+			currentVersion = 74089E2C105BAF7A00BE5B68 /* SwankNote.xcdatamodel */;
 			path = SwankNote.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

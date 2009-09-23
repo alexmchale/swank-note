@@ -15,6 +15,7 @@
 @property (nonatomic, retain) Account *account;
 
 - (NSString *)swankDbPostPath;
+- (NSString *) changedDelta;
 - (void)save:(bool)isDirty;
 - (void)destroy;
 

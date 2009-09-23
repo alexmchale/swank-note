@@ -38,7 +38,9 @@
   NSString *tag = [tags objectAtIndex:indexPath.row];
   
   indexViewController.title = tag;
-  indexViewController.filterForTag = tag;
+  indexViewController.searchPhrase = @"";
+  indexViewController.searchTag = tag;
+  
   [self.navigationController pushViewController:indexViewController animated:YES];
 }
 

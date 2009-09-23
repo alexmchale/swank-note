@@ -10,20 +10,29 @@ enum TopLevelSections
 {
   kNavigationSection,
   kRecentNotesSection,
-  kAccountSection,
   kSectionCount
 };
 
 @implementation TopLevelViewController
-@synthesize controllers, accountControllers, recentNotes, recentNoteEditor;
+@synthesize controllers, recentNotes, recentNoteEditor;
 
 - (IBAction) editNewNote
 {
   // New Note
 
   EditNoteViewController *editor = [[[EditNoteViewController alloc] init] autorelease];
-  
+
   [self.navigationController pushViewController:editor animated:YES];
+}
+
+- (IBAction) editSettings
+{
+  // Edit SwankNote Settings
+  
+  AccountSettingsViewController *settings = 
+    [[[AccountSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+  
+  [settings push:self.navigationController];
 }
 
 - (void) refreshRecentNotes
@@ -46,7 +55,6 @@ enum TopLevelSections
 - (void)viewWillAppear:(BOOL)animated
 {
   multipleAccounts = [[Account fetchAllAccounts] count] > 1;
-  
   [self refreshRecentNotes];
 }
 
@@ -55,6 +63,13 @@ enum TopLevelSections
   ChildViewController *child;
   
   self.title = @"Swank Note";
+  
+  // Configure left nav button.
+  self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
+                                            initWithTitle:@"Settings"
+                                            style:UIBarButtonItemStyleBordered
+                                            target:self
+                                            action:@selector(editSettings)] autorelease];
   
   // Configure right nav button.
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] 
@@ -66,7 +81,6 @@ enum TopLevelSections
   self.recentNoteEditor = [[[EditNoteViewController alloc] init] autorelease];
   
   self.controllers = [[[NSMutableArray alloc] init] autorelease];
-  self.accountControllers = [[[NSMutableArray alloc] init] autorelease];
   
   // All Notes
   child = [[[IndexViewController alloc] init] autorelease];
@@ -77,11 +91,6 @@ enum TopLevelSections
   child = [[[TagIndexViewController alloc] init] autorelease];
   child.title = @"Tags";
   [controllers addObject:child];
-  
-  // Settings
-  child = [[[AccountSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-  child.title = @"Settings";
-  [accountControllers addObject:child];
   
   [super viewDidLoad];
 }
@@ -114,7 +123,6 @@ enum TopLevelSections
   {
     case kNavigationSection:  return nil;
     case kRecentNotesSection: return @"Recent Notes";
-    case kAccountSection:     return nil;
   }
   
   return nil;
@@ -126,7 +134,6 @@ enum TopLevelSections
   {
     case kNavigationSection:  return [controllers count];
     case kRecentNotesSection: return (recentNotes == nil) ? 0 : [recentNotes count];
-    case kAccountSection:     return [accountControllers count];
   }
   
   return 0;
@@ -168,42 +175,15 @@ enum TopLevelSections
       UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableId];
       
       if (cell == nil)
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableId] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:tableId] autorelease];
       
       // Configure the cell.
       
       Note *note = [recentNotes objectAtIndex:indexPath.row];
+
       cell.textLabel.text = note.text;
-      
-      if (multipleAccounts)
-        cell.accessoryView = [[[AccountImageView alloc] initWithColor:[note.account color]] autorelease];
-      else
-        cell.accessoryView = nil;
-      
-      return cell;
-    }
-      
-    case kAccountSection:
-    {
-      static NSString *tableId = @"TopLevelAcctTableId";
-      
-      UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableId];
-      
-      if (cell == nil)
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableId] autorelease];
-      
-      // Configure the cell.
-      
-      UIViewController *child = [accountControllers objectAtIndex:indexPath.row];
-      cell.textLabel.text = child.title;
-      
-      if ([child isKindOfClass:[ChildViewController class]])
-      {
-        ChildViewController *childC = (ChildViewController *)child;
-        cell.imageView.image = childC.rowImage;
-      }
-      
-      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+      cell.detailTextLabel.text = [note changedDelta];
+      cell.accessoryView = multipleAccounts ? [note.account imageView] : nil;
       
       return cell;
     }
@@ -231,13 +211,7 @@ enum TopLevelSections
       recentNoteEditor.note = note;
       recentNoteEditor.navigation = recentNotes;
       [self.navigationController pushViewController:recentNoteEditor animated:YES];
-    } break;
-      
-    case kAccountSection:
-    {
-      ChildViewController *child = [self.accountControllers objectAtIndex:indexPath.row];
-      [self.navigationController pushViewController:child animated:YES];
-    } break;
+    } break;      
   }
 }
 

@@ -35,4 +35,35 @@
   [AppSettings resetAllTags];
 }
 
+- (NSString *) changedDelta
+{
+  if (self.updatedAt == nil)
+    return @"";
+  
+  NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:self.updatedAt];
+  NSTimeInterval minutes = seconds / 60.0;
+  NSTimeInterval hours = minutes / 60.0;
+  NSTimeInterval days = hours / 24.0;
+  NSTimeInterval weeks = days / 7.0;
+  NSTimeInterval months = (weeks * 12.0) / 52.0;
+  NSTimeInterval years = months / 12.0;
+  
+  if (years >= 2.0)
+    return [NSString stringWithFormat:@"%d years", (int)years];
+  else if (months >= 2.0)
+    return [NSString stringWithFormat:@"%d months", (int)months];
+  else if (weeks >= 2.0)
+    return [NSString stringWithFormat:@"%d weeks", (int)weeks];
+  else if (days >= 2.0)
+    return [NSString stringWithFormat:@"%d days", (int)days];
+  else if (hours >= 2.0)
+    return [NSString stringWithFormat:@"%d hours", (int)hours];
+  else if (minutes >= 2.0)
+    return [NSString stringWithFormat:@"%d minutes", (int)minutes];
+  else if (seconds >= 2.0)
+    return [NSString stringWithFormat:@"%d seconds", (int)seconds];
+  
+  return @"";
+}
+
 @end
