@@ -180,9 +180,20 @@ enum TopLevelSections
       // Configure the cell.
       
       Note *note = [recentNotes objectAtIndex:indexPath.row];
+      
+      NSString *details = @"";
+      NSString *delta = [note changedDelta];
+      NSString *tags = [[note tags] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+      
+      if ([delta length] && [tags length])
+        details = [NSString stringWithFormat:@"%@ - %@", delta, tags];
+      else if ([delta length])
+        details = delta;
+      else if ([tags length])
+        details = tags;
 
       cell.textLabel.text = note.text;
-      cell.detailTextLabel.text = [note changedDelta];
+      cell.detailTextLabel.text = details;
       cell.accessoryView = multipleAccounts ? [note.account imageView] : nil;
       
       return cell;

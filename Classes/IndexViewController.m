@@ -112,7 +112,20 @@
     Note *note = [notes objectAtIndex:[indexPath row]];
     
     cell.textLabel.text = note.text;
-    cell.detailTextLabel.text = [note changedDelta]; 
+    
+    NSString *details = @"";
+    NSString *delta = [note changedDelta];
+    NSString *tags = [[note tags] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([delta length] && [tags length])
+      details = [NSString stringWithFormat:@"%@ - %@", delta, tags];
+    else if ([delta length])
+      details = delta;
+    else if ([tags length])
+      details = tags;
+    
+    cell.detailTextLabel.text = details; 
+    
     cell.accessoryView = multipleAccounts ? [note.account imageView] : nil;
   }
   else
