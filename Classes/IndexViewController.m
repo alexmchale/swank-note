@@ -40,17 +40,12 @@
 {
   multipleAccounts = [[Account fetchAllAccounts] count] > 1;
   [self reload];
-  
+
   [super viewWillAppear:animated];
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
-  if (searchPhrase == nil || [searchPhrase length] == 0)
-    [tableView setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
-  else
-    [tableView setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
-  
   [searchBar resignFirstResponder];
   
   [super viewDidAppear:animated];
@@ -152,15 +147,11 @@
   self.searchBar.text = @"";
   [self reload];  
   
-  [tableView setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
   [self.searchBar resignFirstResponder];
 }
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-  if (searchPhrase == nil || [searchPhrase length] == 0)
-    [tableView setContentOffset:CGPointMake(0.0, 44.0) animated:YES];
-  
   [self.searchBar resignFirstResponder];
 }
 
