@@ -248,7 +248,10 @@
   WPProgressHUD *hud = [[WPProgressHUD alloc] initWithLabel:@"Connecting"];
   bool result;
   
-  [hud show];  
+  [hud show];
+  
+  [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
+  
   result = [self authenticateByUsername];  
   [hud dismissWithClickedButtonIndex:0 animated:YES];  
   [hud release];
