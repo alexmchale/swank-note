@@ -16,8 +16,11 @@
   UITextView *text;
   
   bool viewShifted;
+  
   Note *note;
   NSArray *navigation;
+  NSString *currentText;
+  NSString *currentTags;
   
   EditNoteTagsViewController *tagsController;
   
@@ -26,23 +29,27 @@
   UIBarButtonItem *noteRight;
   UIBarButtonItem *separator;
   UIBarButtonItem *trash;
+  
+  bool closedIntentionally;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *text;
 @property (nonatomic, retain) Note *note;
 @property (nonatomic, retain) NSArray *navigation;
+@property (nonatomic, retain) NSString *currentText;
+@property (nonatomic, retain) NSString *currentTags;
 @property (nonatomic, retain) IBOutlet UIToolbar *bottomToolbar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *noteLeft;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *noteRight;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *trash;
 @property (nonatomic, retain) EditNoteTagsViewController *tagsController;
 
-- (IBAction)dismissKeyboard:(id)sender;
-- (IBAction)cancel:(id)sender;
-- (IBAction)save:(id)sender;
-- (IBAction)previous;
-- (IBAction)next;
-- (IBAction)destroy;
-- (IBAction)editTags;
+- (IBAction) dismissKeyboard:(id)sender;
+- (IBAction) cancel:(id)sender;
+- (IBAction) save:(id)sender;
+- (IBAction) previous;
+- (IBAction) next;
+- (IBAction) destroy;
+- (IBAction) editTags;
 
 @end

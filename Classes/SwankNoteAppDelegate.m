@@ -9,7 +9,8 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (void) applicationDidFinishLaunching:(UIApplication *)application 
+{    
   // Override point for customization after app launch
 
   self.synchronizer = [[NoteSync alloc] init];
@@ -20,21 +21,29 @@
 	[window addSubview:navController.view];
   
 	[window makeKeyAndVisible];
+  
+  Note *note;
+  NSString *text;
+  NSString *tags;
+  
+  if ([AppSettings noteInProgress:&note withText:&text withTags:&tags])
+  {
+    [AppSettings clearNoteInProgress];
+    
+    if (note == nil)
+      note = [NoteFilter newNote];
+    
+    note.text = text;
+    note.tags = tags;
+    
+    EditNoteViewController *editor = [[[EditNoteViewController alloc] init] autorelease];
+    editor.note = note;
+    [top.navigationController pushViewController:editor animated:YES];
+  }
 }
 
-/**
- applicationWillTerminate: saves changes in the application's managed object context before the application terminates.
- */
-- (void)applicationWillTerminate:(UIApplication *)application {
-	
-    NSError *error;
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-			// Handle error
-			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-			exit(-1);  // Fail
-        } 
-    }
+- (void) applicationWillTerminate:(UIApplication *)application
+{
 }
 
 

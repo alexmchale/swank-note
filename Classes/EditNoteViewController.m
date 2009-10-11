@@ -6,10 +6,10 @@
 #define kKeyboardHeightLandscape 140
 
 @implementation EditNoteViewController
-@synthesize text;
+@synthesize text, tagsController;
 @synthesize note, navigation;
+@synthesize currentText, currentTags;
 @synthesize bottomToolbar, noteLeft, noteRight, trash;
-@synthesize tagsController;
 
 - (void)dealloc 
 {
@@ -20,87 +20,13 @@
   [trash release];
   [tagsController release];
   [navigation release];
+  [currentText release];
+  [currentTags release];
   [super dealloc];
 }
 
-#pragma mark Public Methods
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-  return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
-}
-
-- (IBAction)editTags
-{
-  [self.navigationController pushViewController:tagsController animated:YES];
-}
-
-- (void) synchronize
-{
-  SwankNoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-  [appDelegate.synchronizer updateNotes];
-}
-
-#pragma mark Controller Actions
-- (IBAction)dismissKeyboard:(id)sender
-{
-  [text resignFirstResponder];
-}
-
-- (IBAction)cancel:(id)sender
-{
-  [[note managedObjectContext] rollback];
-  
-  self.note = nil;
-  self.navigation = nil;
-  
-  [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (IBAction)save:(id)sender
-{
-  if (note == nil)
-    self.note = [NoteFilter newNote];
-  
-  NSString *newTags = [tagsController.currentTags componentsJoinedByString:@" "];
-  
-  note.text = [text text];
-  note.tags = newTags;
-  
-  [note save:YES];    
-  [self synchronize];
-  
-  self.note = nil;
-  self.navigation = nil;
-  
-  [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (IBAction)destroy
-{
-  UIActionSheet *sheet = 
-    [[[UIActionSheet alloc] initWithTitle:@"Are you sure you want to delete this note?"
-                                 delegate:self
-                        cancelButtonTitle:@"Wait, no."
-                   destructiveButtonTitle:@"Yes, destroy it!"
-                        otherButtonTitles:nil] autorelease];
-  [sheet showInView:self.navigationController.view];
-  
-//  [note destroy];
-//  [self synchronize];
-//  [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-  if (buttonIndex == 0)
-  {
-    [note destroy];
-    [self synchronize];
-    [self.navigationController popViewControllerAnimated:YES];
-  }  
-}
-
-- (Note *)noteAtOffset:(NSInteger)offset
+#pragma mark Utility Methods
+- (Note *) noteRelativeToThisOne:(NSInteger)offset
 {
   if (navigation == nil || note == nil)
     return nil;
@@ -118,27 +44,13 @@
   return [navigation objectAtIndex:otherNoteIndex];
 }
 
-- (IBAction)previous
+- (void) synchronize
 {
-  Note *previousNote = [self noteAtOffset:-1];
-  
-  if (previousNote != nil)
-    self.note = previousNote;
-  
-  [self viewWillAppear:NO];
+  SwankNoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+  [appDelegate.synchronizer updateNotes];
 }
 
-- (IBAction)next
-{
-  Note *nextNote = [self noteAtOffset:+1];
-  
-  if (nextNote != nil)
-    self.note = nextNote;
-  
-  [self viewWillAppear:NO];
-}
-
-- (void)setNote:(Note *)newNote
+- (void) setNote:(Note *)newNote
 {
   if (note != newNote)
   {
@@ -146,11 +58,117 @@
     [note retain];
   }
   
+  if (note != nil)
+  {
+    self.currentText = note.text;
+    self.currentTags = note.tags;
+  }
+  else
+  {
+    self.currentText = @"";
+    self.currentTags = @"";
+  }
+  
   [tagsController resetForNote:note];
 }
 
+#pragma mark Public Methods
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+  return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+}
+
+- (IBAction) editTags
+{
+  [self.navigationController pushViewController:tagsController animated:YES];
+}
+
+#pragma mark Controller Actions
+- (IBAction)dismissKeyboard:(id)sender
+{
+  [text resignFirstResponder];
+}
+
+- (IBAction)cancel:(id)sender
+{  
+  self.note = nil;
+  self.navigation = nil;
+  
+  closedIntentionally = true;
+  
+  [[note managedObjectContext] rollback];
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)save:(id)sender
+{
+  NSString *newTags = [tagsController.currentTags componentsJoinedByString:@" "];
+  
+  if (note == nil)
+    self.note = [NoteFilter newNote];
+  
+  note.text = [text text];  
+  note.tags = newTags;
+  
+  [note save:YES];    
+  [self synchronize];
+  
+  self.note = nil;
+  self.navigation = nil;
+
+  closedIntentionally = true;
+  
+  [self.navigationController popViewControllerAnimated:YES];
+}
+ 
+- (IBAction)destroy
+{
+  UIActionSheet *sheet = 
+    [[[UIActionSheet alloc] initWithTitle:@"Are you sure you want to delete this note?"
+                                 delegate:self
+                        cancelButtonTitle:@"Wait, no."
+                   destructiveButtonTitle:@"Yes, destroy it!"
+                        otherButtonTitles:nil] autorelease];
+  [sheet showInView:self.navigationController.view];
+}
+
+// Respond to the destroy confirmation sheet.
+- (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+  if (buttonIndex == 0)
+  {
+    [note destroy];
+    self.note = nil;
+    [self synchronize];
+    
+    closedIntentionally = true;
+    
+    [self.navigationController popViewControllerAnimated:YES];
+  }  
+}
+
+- (IBAction) previous
+{
+  Note *previousNote = [self noteRelativeToThisOne:-1];
+  
+  if (previousNote != nil)
+    self.note = previousNote;
+  
+  [self viewWillAppear:NO];
+}
+
+- (IBAction) next
+{
+  Note *nextNote = [self noteRelativeToThisOne:+1];
+  
+  if (nextNote != nil)
+    self.note = nextNote;
+  
+  [self viewWillAppear:NO];
+}
+
 #pragma mark View Initializers
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
   [super viewDidLoad];
   
@@ -182,15 +200,17 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-  noteLeft.enabled = [self noteAtOffset:-1] != nil;
-  noteRight.enabled = [self noteAtOffset:+1] != nil;
+  noteLeft.enabled = [self noteRelativeToThisOne:-1] != nil;
+  noteRight.enabled = [self noteRelativeToThisOne:+1] != nil;
   trash.enabled = note != nil;
   
-  text.text = (note == nil) ? @"" : note.text;
+  text.text = (currentText == nil) ? @"" : currentText;
 }
 
 - (void) viewDidAppear:(BOOL)animated
-{  
+{ 
+  // If this is a new note, open the keyboard.
+  
   if ([text.text length] == 0)
     [text becomeFirstResponder];
   else
@@ -202,6 +222,24 @@
   bounds.origin.x = 0;
   bounds.origin.y = 0;
   text.bounds = bounds;
+  
+  closedIntentionally = false;
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+  self.currentText = text.text;
+  self.currentTags = [tagsController.currentTags componentsJoinedByString:@" "];
+  
+  // Get rid of any unsaved changes before storing the application state.
+  [[SwankNoteAppDelegate context] rollback];
+  
+  if (closedIntentionally)
+    [AppSettings clearNoteInProgress];
+  else
+    [AppSettings setNoteInProgress:note withText:currentText withTags:currentTags];
+  
+  [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload 
@@ -213,6 +251,8 @@
   self.trash = nil;
   self.tagsController = nil;
   self.navigation = nil;
+  self.currentText = nil;
+  self.currentTags = nil;
   [super viewDidUnload];
 }
 
@@ -229,7 +269,8 @@
   NSUInteger textBot = bottomToolbar.frame.origin.y;
   
   NSUInteger keyboardHeight = UIDeviceOrientationIsLandscape(orientation)
-                              ? kKeyboardHeightLandscape : kKeyboardHeightPortrait;
+                              ? kKeyboardHeightLandscape 
+                              : kKeyboardHeightPortrait;
   
   NSUInteger keyboardPadding = UIDeviceOrientationIsLandscape(orientation) ? 5 : 25;
   

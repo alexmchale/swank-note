@@ -2,7 +2,8 @@
 
 @class SwankRootViewController;
 
-@interface SwankNoteAppDelegate : NSObject <UIApplicationDelegate> {
+@interface SwankNoteAppDelegate : NSObject <UIApplicationDelegate> 
+{
   UINavigationController *navController;
   
   NoteSync *synchronizer;

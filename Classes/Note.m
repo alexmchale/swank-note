@@ -27,7 +27,7 @@
   [AppSettings resetAllTags];
 }
 
-- (void)destroy
+- (void) destroy
 {
   self.text = @"";
   [self save:YES];

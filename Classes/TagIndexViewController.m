@@ -57,10 +57,15 @@
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableId];
   
   if (cell == nil)
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableId] autorelease];
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:tableId] autorelease];
   
-  cell.textLabel.text = [tags objectAtIndex:indexPath.row];
-  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; 
+  NSString *tagName = [tags objectAtIndex:indexPath.row];
+  NSInteger noteCount = [[NoteFilter fetchWithPhrase:nil withTag:tagName] count];
+  //NSString *rowText = [NSString stringWithFormat:@"%@ (%d)", tagName, noteCount];
+  
+  cell.textLabel.text = tagName;
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", noteCount];
+  cell.accessoryType = UITableViewCellAccessoryNone; 
   
   return cell;
 }
