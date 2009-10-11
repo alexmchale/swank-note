@@ -193,6 +193,7 @@ enum TopLevelSections
         details = tags;
 
       cell.textLabel.text = note.text;
+      cell.textLabel.lineBreakMode = UILineBreakModeClip;
       cell.detailTextLabel.text = details;
       cell.accessoryView = multipleAccounts ? [note.account imageView] : nil;
       

@@ -105,9 +105,7 @@
   if (indexPath.row < [notes count])
   {
     Note *note = [notes objectAtIndex:[indexPath row]];
-    
-    cell.textLabel.text = note.text;
-    
+        
     NSString *details = @"";
     NSString *delta = [note changedDelta];
     NSString *tags = [[note tags] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -119,8 +117,9 @@
     else if ([tags length])
       details = tags;
     
-    cell.detailTextLabel.text = details; 
-    
+    cell.textLabel.text = note.text;
+    cell.textLabel.lineBreakMode = UILineBreakModeClip;
+    cell.detailTextLabel.text = details;     
     cell.accessoryView = multipleAccounts ? [note.account imageView] : nil;
   }
   else
@@ -130,7 +129,6 @@
     cell.accessoryView = nil;
   }
 
-  
   return cell;  
 }
 
