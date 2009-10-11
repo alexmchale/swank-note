@@ -13,4 +13,8 @@
 + (NSArray *) allTags;
 + (void) resetAllTags;
 
++ (bool) noteInProgress:(Note **)note withText:(NSString **)text withTags:(NSString **)tags;
++ (void) clearNoteInProgress;
++ (void) setNoteInProgress:(Note *)note withText:(NSString *)text withTags:(NSString *)tags;
+
 @end
