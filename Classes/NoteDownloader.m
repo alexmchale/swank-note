@@ -41,7 +41,7 @@
   
   // Build the URL to request from SwankDB.
   
-  NSString *urlString = [NSString stringWithFormat:@"http://%@/entries/download?%@", kSwankHost, paramString];
+  NSString *urlString = [NSString stringWithFormat:@"https://%@/entries/download?%@", kSwankHost, paramString];
   NSURL *url = [NSURL URLWithString:urlString];
   
   // Start the connection.

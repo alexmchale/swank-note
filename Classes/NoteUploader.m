@@ -49,7 +49,7 @@
   // Build the URL to post to.
   
   NSString *notePath = [note swankDbPostPath];
-  NSString *urlString = [NSString stringWithFormat:@"http://%@%@?%@", kSwankHost, notePath, paramString];    
+  NSString *urlString = [NSString stringWithFormat:@"https://%@%@?%@", kSwankHost, notePath, paramString];    
   NSURL *url = [NSURL URLWithString:urlString];
   
   // Build the post request.
