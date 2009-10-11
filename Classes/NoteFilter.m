@@ -135,7 +135,9 @@
   if (phrase == nil || [phrase length] == 0)
     [preds addObject:[NSPredicate predicateWithFormat:@"text != nil && text != ''"]];
   else
-    [preds addObject:[NSPredicate predicateWithFormat:@"text CONTAINS[cd] %@", phrase]];
+    [preds addObject:[NSPredicate 
+                      predicateWithFormat:@"(text CONTAINS[cd] %@ || tags CONTAINS[cd] %@)", 
+                      phrase, phrase]];
   
   if (tag != nil && [tag length] > 0)
     [preds addObject:[self tagPredicate:tag]];
