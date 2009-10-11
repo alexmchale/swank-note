@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSMutableArray *currentTags;
 @property (nonatomic, retain) NewTagsViewController *newTagsController;
 
-- (void)resetForNote:(Note *)note;
+- (void) resetForNote:(Note *)note;
+- (void) resetForString:(NSString *)tags;
 
 @end

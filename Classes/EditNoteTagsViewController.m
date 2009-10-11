@@ -5,35 +5,30 @@
 @implementation EditNoteTagsViewController
 @synthesize allTags, currentTags, newTagsController;
 
-- (void) resetForNote:(Note *)note
-{
+- (void) resetForString:(NSString *)tags
+{  
   // Get the list of all saved tags.
   // Move all tags in the given note from the list of all tags to the list of current tags.
   
-  NSArray *noteTags = [note.tags splitForTags];
-  
   self.allTags = [[[NSMutableArray alloc] init] autorelease];
-  self.currentTags = [[[NSMutableArray alloc] init] autorelease];
+  self.currentTags = [NSMutableArray arrayWithArray:[tags splitForTags]];
   
   for (NSString *tag in [AppSettings allTags])
   {
-    if ([noteTags containsObject:tag])
-      [currentTags addObject:[tag copy]];
-    else
+    if (![currentTags containsObject:tag])
+
+      
       [allTags addObject:[tag copy]];
   }
-
-  /*
-  for (NSString *tag in [note.tags splitForTags])
-  {
-    [allTags removeObject:tag];
-    [currentTags addObject:tag];
-  }
-   */
   
   // Reset the view for the new data.
-
+  
   [self.tableView reloadData];
+}
+
+- (void) resetForNote:(Note *)note
+{
+  [self resetForString:note.tags];
 }
 
 - (void)addNewTag:(id)sender
@@ -46,10 +41,7 @@
   if (newTagsController != nil && [newTagsController tags] != nil)
   {
     for (NSString *tag in [newTagsController tags])
-    {
-      [allTags addObject:tag];
       [currentTags addObject:tag];
-    }
     
     [allTags sortUsingSelector:@selector(caseInsensitiveCompare:)];
     [currentTags sortUsingSelector:@selector(caseInsensitiveCompare:)];
