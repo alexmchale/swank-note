@@ -110,30 +110,14 @@ enum
   
   if (isNewAccount.on)
   {
-    NSString *error;
+    NSString *error = nil;
     
     self.account = [Account create:username.text withPassword:password.text error:&error];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account Error" 
-                                                    message:error
-                                                   delegate:nil 
-                                          cancelButtonTitle:@"Okay"
-                                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-    
-    if (account == nil)
-      return;
-  }
-  
-  // Verify that no other account has that username.
-  
-  if (self.account == nil)
-  {
-    if ([Account fetchByUsername:username.text] != nil)
+    if (account == nil || error != nil)
     {
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Account Error" 
-                                                      message:@"An account with that username already exists in SwankNote."
+                                                      message:error
                                                      delegate:nil 
                                             cancelButtonTitle:@"Okay"
                                             otherButtonTitles:nil];
@@ -142,9 +126,15 @@ enum
       
       return;
     }
-    
-    self.account = [Account new];
   }
+  
+  // Verify that no other account has that username.
+  
+  if (account == nil)
+    self.account = [Account fetchByUsername:username.text];
+  
+  if (account == nil)
+    self.account = [Account new];
   
   self.account.username = username.text;
   self.account.password = password.text;
