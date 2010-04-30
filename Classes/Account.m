@@ -38,11 +38,13 @@
   // Post to SwankDB.
   
   NSURLResponse *response;
-  NSData *responseData = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:nil];
+  NSError *error;
+  NSData *responseData = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
+  NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSASCIIStringEncoding];
   
   // Parse the response, if available.
   
-  if (responseData == nil || [responseData length] == 0)
+  if (responseString == nil || responseData == nil || [responseData length] == 0)
   {
     *errorMessage = @"Received no response from SwankDB.";
     return nil;
